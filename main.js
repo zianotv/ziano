@@ -3,6 +3,7 @@ let currentSearch = "";
 let currentPage = 1;
 const itemsPerPage = 10;
 let selectedCourseId = null;
+let selectedLessonIndex = 0;
 
 function renderCategories() {
     document.getElementById("categoryNav").innerHTML = categories.map(e => {
@@ -111,7 +112,10 @@ function renderGrid() {
                 <div class="course-card-title">
                     <h3 class="course-title-text">
                         <span class="course-title-short">${e.title}</span>
-                        <span class="course-title-marquee">${e.title}</span>
+                        <span class="course-title-marquee">
+                            <span class="course-title-loop">${e.title}</span>
+                            <span class="course-title-loop">${e.title}</span>
+                        </span>
                     </h3>
                 </div>
             </article>
@@ -132,11 +136,15 @@ function adjustCourseTitleElements() {
     document.querySelectorAll("#courseGrid .course-title-text").forEach(e => {
         const t = e.querySelector(".course-title-short");
         const n = e.querySelector(".course-title-marquee");
-        if (!t || !n) return;
+        const loopText = e.querySelector(".course-title-loop");
+        if (!t || !n || !loopText) return;
 
-        if (n.scrollWidth > e.clientWidth) {
-            const distance = -(n.scrollWidth - e.clientWidth + 12);
-            const duration = Math.abs(distance) / 45;
+        const overflow = loopText.scrollWidth - e.clientWidth;
+        const gap = parseFloat(getComputedStyle(n).gap) || 0;
+
+        if (overflow > 0) {
+            const distance = -(loopText.scrollWidth + gap);
+            const duration = Math.abs(distance) / 38;
             e.style.setProperty("--title-distance", `${distance}px`);
             e.style.setProperty("--title-duration", `${duration}s`);
             e.classList.add("has-overflow");
@@ -203,7 +211,8 @@ function openCourseDetail(e) {
                     </span>
                     <div class="marquee-wrapper">
                         <span class="marquee-text">
-                            ${e.title}
+                            <span class="lesson-title-loop">${e.title}</span>
+                            <span class="lesson-title-loop">${e.title}</span>
                         </span>
                     </div>
                 </div>
@@ -229,18 +238,23 @@ function openCourseDetail(e) {
 function adjustMarqueeElements() {
     document.querySelectorAll("#lessonsList .marquee-wrapper").forEach(e => {
         const t = e.querySelector(".marquee-text");
-        if (!t) return;
+        const loopText = e.querySelector(".lesson-title-loop");
+        if (!t || !loopText) return;
         
         const n = e.clientWidth;
-        const r = t.scrollWidth;
+        const r = loopText.scrollWidth;
+        const gap = parseFloat(getComputedStyle(t).gap) || 0;
         
         if (r > n) {
-            const e = -(r - n + 12);
-            t.style.setProperty("--marquee-distance", `${e}px`);
+            const distance = -(r + gap);
+            const duration = Math.abs(distance) / 38;
+            t.style.setProperty("--marquee-distance", `${distance}px`);
+            t.style.setProperty("--marquee-duration", `${duration}s`);
             t.classList.add("has-overflow");
         } else {
             t.classList.remove("has-overflow");
             t.style.removeProperty("--marquee-distance");
+            t.style.removeProperty("--marquee-duration");
         }
     });
 }
@@ -280,10 +294,56 @@ function updateFavoriteUI(e) {
 
 function openPlayerModal(e) {
     const t = coursesData.find(e => e.id === selectedCourseId) || coursesData[0];
-    document.getElementById("playerTitle").innerText = e || `${t.title} - Aula 1`;
-    document.getElementById("playerInstructor").innerText = t.instructor;
+    const lessonIndex = e ? t.lessons.findIndex(t => t.title === e) : 0;
+    selectedLessonIndex = lessonIndex >= 0 ? lessonIndex : 0;
+    renderPlayerLesson(t);
     document.getElementById("videoModal").showModal();
-    document.getElementById("mainVideoPlayer").play().catch(() => {});
+    loadSelectedLessonVideo(t);
+}
+
+function renderPlayerLesson(course) {
+    const lesson = course.lessons[selectedLessonIndex];
+    document.getElementById("playerTitle").innerText = lesson ? lesson.title : `${course.title} - Aula 1`;
+    document.getElementById("playerInstructor").innerText = course.instructor;
+    document.getElementById("playerLessons").innerHTML = course.lessons.map((lesson, index) => `
+        <button onclick="selectPlayerLesson(${index})" class="player-lesson ${index === selectedLessonIndex ? "is-active" : ""}">
+            <img class="player-lesson-thumb" src="${lesson.thumb || course.poster}" alt="Thumbnail da ${lesson.title}" onerror="this.onerror=null; this.src='${course.poster}'">
+            <span class="player-lesson-number">Aula ${index + 1}</span>
+            <span class="player-lesson-title">${lesson.title}</span>
+            <time>${lesson.duration}</time>
+        </button>
+    `).join("");
+}
+
+function loadSelectedLessonVideo(course) {
+    const lesson = course.lessons[selectedLessonIndex];
+    const video = document.getElementById("mainVideoPlayer");
+    if (!lesson) return;
+
+    video.src = lesson.video;
+    video.load();
+    video.play().catch(() => {});
+}
+
+function selectPlayerLesson(index) {
+    const course = coursesData.find(course => course.id === selectedCourseId) || coursesData[0];
+    if (!course.lessons[index]) return;
+
+    selectedLessonIndex = index;
+    renderPlayerLesson(course);
+    loadSelectedLessonVideo(course);
+    const video = document.getElementById("mainVideoPlayer");
+    document.getElementById("videoModal").scrollTo({ top: 0, behavior: "smooth" });
+    video.focus({ preventScroll: true });
+}
+
+function togglePlayerFullscreen() {
+    const playerArea = document.querySelector("#videoModal .modal-video");
+    if (!document.fullscreenElement) {
+        playerArea.requestFullscreen?.();
+    } else {
+        document.exitFullscreen?.();
+    }
 }
 
 function closePlayerModal() {
