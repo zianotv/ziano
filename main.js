@@ -136,11 +136,14 @@ function adjustCourseTitleElements() {
 
         if (n.scrollWidth > e.clientWidth) {
             const distance = -(n.scrollWidth - e.clientWidth + 12);
+            const duration = Math.abs(distance) / 45;
             e.style.setProperty("--title-distance", `${distance}px`);
+            e.style.setProperty("--title-duration", `${duration}s`);
             e.classList.add("has-overflow");
         } else {
             e.classList.remove("has-overflow");
             e.style.removeProperty("--title-distance");
+            e.style.removeProperty("--title-duration");
         }
     });
 }
@@ -290,6 +293,10 @@ function closePlayerModal() {
 }
 
 window.addEventListener("resize", () => {
+    if (window.innerWidth <= 767) {
+        document.getElementById("sidebar").classList.remove("sidebar-collapsed");
+    }
+
     adjustCourseTitleElements();
     if (!document.getElementById("detailView").classList.contains("is-hidden")) {
         adjustMarqueeElements();
