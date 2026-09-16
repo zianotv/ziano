@@ -6,26 +6,47 @@ const categories = [
 { id: 'marketing', name: 'Marketing Digital', icon: 'bi bi-megaphone' },
 { id: 'dados', name: 'Ciência de Dados', icon: 'bi bi-database' },
 { id: 'ia', name: 'Inteligência Artificial', icon: 'bi bi-robot' },
+{ id: 'empreendedorismo', name: 'Empreendedorismo', icon: 'bi bi-lightbulb' },
 { id: 'favoritos', name: 'Favoritos', icon: 'bi bi-star' }
 ];
 
 const coursesData = [
 {
     id: 'course-1',
-    title: 'Desenvolvimento Web Fullstack',
-    category: 'programacao',
-    instructor: 'Prof. Ricardo Silva',
-    level: 'Iniciante ao Avançado',
-    duration: '42 horas',
+    title: 'Demoday',
+    category: 'empreendedorismo',
+    instructor: 'Itaipu Parquetec',
+    level: 'Iniciante',
+    duration: 'N/A',
     date: '2025',
     favorite: false,
-    poster: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&auto=format&fit=crop&q=80',
-    description: 'Aprenda a criar aplicações modernas com HTML5, CSS3, JavaScript, React e Node.js. Um curso prático com projetos reais aplicados ao mercado de trabalho.',
+    poster: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=600&auto=format&fit=crop&q=80',
+    description: 'Apresentações e projetos do Demoday Itaipu Parquetec, reunindo ideias, soluções e iniciativas empreendedoras.',
     lessons: [
-        { title: '01. Introdução à Arquitetura Web de Alta Performance e Microsserviços', duration: '15 min', thumb: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=480&auto=format&fit=crop&q=80', video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' },
-        { title: '02. HTML5 Semântico e Estruturação', duration: '28 min', thumb: 'https://images.unsplash.com/photo-1547658719-da2b51169166?w=480&auto=format&fit=crop&q=80', video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4' },
-        { title: '03. CSS Moderno, Flexbox Layout e Grid System Responsivo', duration: '35 min', thumb: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=480&auto=format&fit=crop&q=80', video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4' },
-        { title: '04. Lógica com JavaScript ES6+', duration: '45 min', thumb: 'https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=480&auto=format&fit=crop&q=80', video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4' }
+        { title: '01. ExemploInspirador(AlunosRecebemInvestimento)', duration: '4m18s', thumb: 'https://drive.google.com/thumbnail?id=1bVe1aZY1yKF6rtlwHbQL4pNyd5LYiDVT&sz=w800', video: 'https://drive.google.com/file/d/1bVe1aZY1yKF6rtlwHbQL4pNyd5LYiDVT/preview' },
+        { title: '02. PrevMaint(PitchElogiado)', duration: '4m21s', thumb: 'https://drive.google.com/thumbnail?id=1CTOLu1YgrJWNPs66uXZsB2ijXwursuIW&sz=w800', video: 'https://drive.google.com/file/d/1CTOLu1YgrJWNPs66uXZsB2ijXwursuIW/preview' },
+        { title: '03. InspiraçãoEnfermagem_20260613_094845', duration: 'N/A', thumb: 'https://drive.google.com/thumbnail?id=1xFCQjhrYdNCotaGYHreEhz6O8iDTSQam&sz=w800', video: 'https://drive.google.com/file/d/1xFCQjhrYdNCotaGYHreEhz6O8iDTSQam/preview' },
+        { title: '04. VID_20260613_095325', duration: '4m18s', thumb: 'https://drive.google.com/thumbnail?id=1nW2cigFz-FN_iwOrNncUtWO1q2SmxM60&sz=w800', video: 'https://drive.google.com/file/d/1nW2cigFz-FN_iwOrNncUtWO1q2SmxM60/preview' },
+        { title: '05. VID_20260613_095530', duration: 'N/A', thumb: 'https://drive.google.com/thumbnail?id=1DqcYV4LsuAOY8Cl-SRTcCtvAZn5dZlyY&sz=w800', video: 'https://drive.google.com/file/d/1DqcYV4LsuAOY8Cl-SRTcCtvAZn5dZlyY/preview' },
+        { title: '06. VID_20260613_100045', duration: 'N/A', thumb: 'https://drive.google.com/thumbnail?id=1kATpcrBRVS0cTwHHUitLzo7FqkPGyR_4&sz=w800', video: 'https://drive.google.com/file/d/1kATpcrBRVS0cTwHHUitLzo7FqkPGyR_4/preview' },
+        { title: '07. VID_20260613_100612', duration: 'N/A', thumb: 'https://drive.google.com/thumbnail?id=18LhdAYUNvoKJe5Q4zjccn_DYXM_mXaUF&sz=w800', video: 'https://drive.google.com/file/d/18LhdAYUNvoKJe5Q4zjccn_DYXM_mXaUF/preview' },
+        { title: '08. VID_20260613_102615', duration: 'N/A', thumb: 'https://drive.google.com/thumbnail?id=1QnLlBiPLQc3fcKWzQj_3Rk8S_Rt_jRU0&sz=w800', video: 'https://drive.google.com/file/d/1QnLlBiPLQc3fcKWzQj_3Rk8S_Rt_jRU0/preview' },
+        { title: '09. VID_20260613_103159', duration: 'N/A', thumb: 'https://drive.google.com/thumbnail?id=1F3rYGW7YjoblXCwLClE43Uwuyl-um-io&sz=w800', video: 'https://drive.google.com/file/d/1F3rYGW7YjoblXCwLClE43Uwuyl-um-io/preview' },
+        { title: '10. VID_20260613_103842', duration: 'N/A', thumb: 'https://drive.google.com/thumbnail?id=1yGQxaC4--v39FRuCZ_3n4XDV9mcnQDgD&sz=w800', video: 'https://drive.google.com/file/d/1yGQxaC4--v39FRuCZ_3n4XDV9mcnQDgD/preview' },
+        { title: '11. VID_20260613_104404', duration: 'N/A', thumb: 'https://drive.google.com/thumbnail?id=1q6dZ-ekhLwbNA8YigyxMp61BDMEVPdln&sz=w800', video: 'https://drive.google.com/file/d/1q6dZ-ekhLwbNA8YigyxMp61BDMEVPdln/preview' },
+        { title: '12. VID_20260613_105217', duration: 'N/A', thumb: 'https://drive.google.com/thumbnail?id=1WHgc_GLF-3-guTnMWkAAO7mTGX9--QSQ&sz=w800', video: 'https://drive.google.com/file/d/1WHgc_GLF-3-guTnMWkAAO7mTGX9--QSQ/preview' },
+        { title: '13. VID_20260613_110034', duration: 'N/A', thumb: 'https://drive.google.com/thumbnail?id=1vvS32avMmTMdb2qm2PA7mhWqKzlpgMUG&sz=w800', video: 'https://drive.google.com/file/d/1vvS32avMmTMdb2qm2PA7mhWqKzlpgMUG/preview' },
+        { title: '14. VID_20260613_111637', duration: 'N/A', thumb: 'https://drive.google.com/thumbnail?id=1s7_6YHnmdUSrYv4I0Ibs4XEZTuVo1WQu&sz=w800', video: 'https://drive.google.com/file/d/1s7_6YHnmdUSrYv4I0Ibs4XEZTuVo1WQu/preview' },
+        { title: '15. VID_20260613_112223', duration: 'N/A', thumb: 'https://drive.google.com/thumbnail?id=1ClpvqFlMlyX-ruuB2kJincMCmHP6yaid&sz=w800', video: 'https://drive.google.com/file/d/1ClpvqFlMlyX-ruuB2kJincMCmHP6yaid/preview' },
+        { title: '16. VID_20260613_112810', duration: 'N/A', thumb: 'https://drive.google.com/thumbnail?id=1OpInHuHc2i_B6nPgmb1hroDvf3sc0bJ_&sz=w800', video: 'https://drive.google.com/file/d/1OpInHuHc2i_B6nPgmb1hroDvf3sc0bJ_/preview' },
+        { title: '17. VID_20260613_113059', duration: 'N/A', thumb: 'https://drive.google.com/thumbnail?id=1fUWkG4TpI8uDfnCF5tXIfqDusXOnm31L&sz=w800', video: 'https://drive.google.com/file/d/1fUWkG4TpI8uDfnCF5tXIfqDusXOnm31L/preview' },
+        { title: '18. VID_20260613_114011', duration: 'N/A', thumb: 'https://drive.google.com/thumbnail?id=1m7mVgqqDyg7S_mP_ZlzJ7e3HuR8btdaF&sz=w800', video: 'https://drive.google.com/file/d/1m7mVgqqDyg7S_mP_ZlzJ7e3HuR8btdaF/preview' },
+        { title: '19. VID_20260613_114536', duration: 'N/A', thumb: 'https://drive.google.com/thumbnail?id=1dlV7E2BdQTAI3ll40J5i6IzNk3vGG8B3&sz=w800', video: 'https://drive.google.com/file/d/1dlV7E2BdQTAI3ll40J5i6IzNk3vGG8B3/preview' },
+        { title: '20. VID_20260613_121220', duration: 'N/A', thumb: 'https://drive.google.com/thumbnail?id=19lpeBWF16zegyXugvWrTLzoTOkMGib3H&sz=w800', video: 'https://drive.google.com/file/d/19lpeBWF16zegyXugvWrTLzoTOkMGib3H/preview' },
+        { title: '21. VID_20260613_121346', duration: 'N/A', thumb: 'https://drive.google.com/thumbnail?id=1v_cOybsboprbtYmOBU8gkGR2Qr2RY9Cc&sz=w800', video: 'https://drive.google.com/file/d/1v_cOybsboprbtYmOBU8gkGR2Qr2RY9Cc/preview' },
+        { title: '22. VID_20260613_121727', duration: 'N/A', thumb: 'https://drive.google.com/thumbnail?id=197pfd7Nr0Ymb0GD-eiMk62mfiuJgqS5d&sz=w800', video: 'https://drive.google.com/file/d/197pfd7Nr0Ymb0GD-eiMk62mfiuJgqS5d/preview' },
+        { title: '23. VID_20260613_122347', duration: 'N/A', thumb: 'https://drive.google.com/thumbnail?id=1h-xrkQlC2udhXwys0eQ-kWwGZ2e3gkme&sz=w800', video: 'https://drive.google.com/file/d/1h-xrkQlC2udhXwys0eQ-kWwGZ2e3gkme/preview' },
+        { title: '24. VID_20260613_122513', duration: 'N/A', thumb: 'https://drive.google.com/thumbnail?id=13NKVCSkagufllynDPgca-3AesQPN2hJ5&sz=w800', video: 'https://drive.google.com/file/d/13NKVCSkagufllynDPgca-3AesQPN2hJ5/preview' }
     ]
 },
 {

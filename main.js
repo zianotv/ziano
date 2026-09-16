@@ -295,10 +295,8 @@ function updateFavoriteUI(e) {
 function openPlayerModal(e) {
     const t = coursesData.find(e => e.id === selectedCourseId) || coursesData[0];
     const lessonIndex = e ? t.lessons.findIndex(t => t.title === e) : 0;
-    selectedLessonIndex = lessonIndex >= 0 ? lessonIndex : 0;
-    renderPlayerLesson(t);
-    document.getElementById("videoModal").showModal();
-    loadSelectedLessonVideo(t);
+    const index = lessonIndex >= 0 ? lessonIndex : 0;
+    window.location.href = `player.html?course=${encodeURIComponent(t.id)}&lesson=${index}`;
 }
 
 function renderPlayerLesson(course) {
@@ -318,8 +316,22 @@ function renderPlayerLesson(course) {
 function loadSelectedLessonVideo(course) {
     const lesson = course.lessons[selectedLessonIndex];
     const video = document.getElementById("mainVideoPlayer");
+    const drivePlayer = document.getElementById("driveVideoPlayer");
     if (!lesson) return;
 
+    if (lesson.video.includes("drive.google.com")) {
+        video.pause();
+        video.removeAttribute("src");
+        video.load();
+        video.hidden = true;
+        drivePlayer.hidden = false;
+        drivePlayer.src = lesson.video;
+        return;
+    }
+
+    drivePlayer.hidden = true;
+    drivePlayer.src = "about:blank";
+    video.hidden = false;
     video.src = lesson.video;
     video.load();
     video.play().catch(() => {});

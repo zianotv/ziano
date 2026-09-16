@@ -121,19 +121,16 @@
                     <p id="playerInstructor" class="modal-instructor"></p>
                 </div>
                 <div class="player-header-actions">
-                    <button onclick="togglePlayerFullscreen()" aria-label="Tela cheia" class="modal-action">
-                        <i class="bi bi-arrows-fullscreen"></i>
-                    </button>
                     <button onclick="closePlayerModal()" aria-label="Fechar reprodutor" class="modal-close">
                         <i class="bi bi-x-lg"></i>
                     </button>
                 </div>
             </header>
             <div class="modal-video">
-                <video id="mainVideoPlayer" controls preload="metadata">
-                    <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+                <video id="mainVideoPlayer" controls preload="metadata" hidden>
                     Seu navegador não suporta vídeos HTML5.
                 </video>
+                <iframe id="driveVideoPlayer" title="Player da aula" allow="autoplay; fullscreen" allowfullscreen hidden></iframe>
             </div>
             <aside id="playerLessons" class="player-lessons" aria-label="Aulas do curso"></aside>
         </div>

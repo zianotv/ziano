@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ZianoTV Player</title>
+    <link rel="icon" type="image/png" href="icon.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="player-page">
+    <main class="standalone-player">
+        <header class="standalone-player-header">
+            <div>
+                <h1 id="standalonePlayerTitle" class="modal-title">Assistindo Aula</h1>
+                <p id="standalonePlayerInstructor" class="modal-instructor"></p>
+            </div>
+        </header>
+        <section class="standalone-video" aria-label="Player de vídeo">
+            <video id="standaloneVideo" controls preload="metadata" hidden>
+                Seu navegador não suporta vídeos HTML5.
+            </video>
+            <iframe id="standaloneDriveVideo" title="Player da aula" allow="autoplay; fullscreen" allowfullscreen hidden></iframe>
+        </section>
+        <nav class="standalone-player-actions" aria-label="Controles do player">
+            <button id="nextLessonButton" class="next-lesson-button" onclick="playNextLesson()" aria-label="Próxima aula" title="Próxima aula">
+                Próxima aula
+            </button>
+            <a href="index.html" class="modal-close" aria-label="Fechar player">
+                <i class="bi bi-x-lg" aria-hidden="true"></i>
+            </a>
+        </nav>
+        <section id="standaloneLessons" class="standalone-lessons" aria-label="Aulas do curso"></section>
+        <nav id="lessonPagination" class="lesson-pagination" aria-label="Paginação das aulas">
+            <button id="lessonPaginationPrevious" onclick="changeLessonPage(-1)" aria-label="Aulas anteriores">Anterior</button>
+            <span id="lessonPaginationStatus"></span>
+            <button id="lessonPaginationNext" onclick="changeLessonPage(1)" aria-label="Próximas aulas">Próxima</button>
+        </nav>
+    </main>
+    <script src="data.js"></script>
+    <script src="player.js"></script>
+</body>
+</html>
