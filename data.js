@@ -55,16 +55,16 @@ const coursesData = [
 	category: 'negocios',
 	instructor: 'Descomplica Uniamérica',
 	level: 'Iniciante',
-	duration: '6h30',
+	duration: '6h16',
     date: '2025',
 	favorite: false,
 	poster: 'https://images.unsplash.com/photo-1456324504439-367cee3b3c32?w=600&auto=format&fit=crop&q=80',
 	description: 'Aprenda os fundamentos da metodologia e da escrita científica para planejar pesquisas, organizar trabalhos acadêmicos e apresentar resultados com clareza.',
     lessons: [
-	{ title: '1.1 Ciência conceito e objetivo', duration: '10 min', thumb: 'https://img.youtube.com/vi/d3NObHJ2t84/hqdefault.jpg', video: 'https://www.youtube.com/embed/d3NObHJ2t84?rel=0' },
-	{ title: '1.2 O que é conhecimento', duration: '10 min', thumb: 'https://img.youtube.com/vi/vYayS751hrk/hqdefault.jpg', video: 'https://www.youtube.com/embed/vYayS751hrk?rel=0' },
-	{ title: '1.3 A função social da pesquisa', duration: '10 min', thumb: 'https://img.youtube.com/vi/lkrm0RkpaxA/hqdefault.jpg', video: 'https://www.youtube.com/embed/lkrm0RkpaxA?rel=0' },
-	{ title: '1.4 Histórico da pesquisa científica', duration: '10 min', thumb: 'https://img.youtube.com/vi/9k7aNIr-Gwk/hqdefault.jpg', video: 'https://www.youtube.com/embed/9k7aNIr-Gwk?rel=0' },
+	{ title: '1.1 Ciência conceito e objetivo', duration: '11:51', thumb: 'https://img.youtube.com/vi/d3NObHJ2t84/hqdefault.jpg', video: 'https://www.youtube.com/embed/d3NObHJ2t84?rel=0' },
+	{ title: '1.2 O que é conhecimento', duration: '09:18', thumb: 'https://img.youtube.com/vi/vYayS751hrk/hqdefault.jpg', video: 'https://www.youtube.com/embed/vYayS751hrk?rel=0' },
+	{ title: '1.3 A função social da pesquisa', duration: '7:23', thumb: 'https://img.youtube.com/vi/lkrm0RkpaxA/hqdefault.jpg', video: 'https://www.youtube.com/embed/lkrm0RkpaxA?rel=0' },
+	{ title: '1.4 Histórico da pesquisa científica', duration: '10:08', thumb: 'https://img.youtube.com/vi/9k7aNIr-Gwk/hqdefault.jpg', video: 'https://www.youtube.com/embed/9k7aNIr-Gwk?rel=0' },
 	{ title: '1.5 Saber e ciência', duration: '10 min', thumb: 'https://img.youtube.com/vi/u4jYEjW9JDk/hqdefault.jpg', video: 'https://www.youtube.com/embed/u4jYEjW9JDk?rel=0' },
 	{ title: '2.1 Enfoque de pesquisa e seus processos', duration: '10 min', thumb: 'https://img.youtube.com/vi/NztqSN4b-yM/hqdefault.jpg', video: 'https://www.youtube.com/embed/NztqSN4b-yM?rel=0' },
 	{ title: '2.2 Quanto aos procedimentos', duration: '10 min', thumb: 'https://img.youtube.com/vi/fGtEud4R1wY/hqdefault.jpg', video: 'https://www.youtube.com/embed/fGtEud4R1wY?rel=0' },
@@ -114,7 +114,7 @@ const coursesData = [
     poster: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&auto=format&fit=crop&q=80',
     description: 'Aprenda a utilizar modelos de linguagem avançados, automação com IA e criação de agentes inteligentes para otimizar fluxos de trabalho corporativos.',
     lessons: [
-        { title: '01. Conceitos Fundamentais de LLMs', duration: '18 min', thumb: 'https://images.unsplash.com/photo-1677442136019-21780efad99a?w=480&auto=format&fit=crop&q=80', video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMobiles.mp4' },
+        { title: '01. Conceitos Fundamentais de LLMs', duration: '18 min', thumb: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=480&auto=format&fit=crop&q=80', video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMobiles.mp4' },
         { title: '02. Engenharia de Prompts Avançada', duration: '32 min', thumb: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=480&auto=format&fit=crop&q=80', video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerPasses.mp4' },
         { title: '03. Automação de Tarefas com Agentes Autônomos em Nuvem', duration: '50 min', thumb: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=480&auto=format&fit=crop&q=80', video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerSkates.mp4' }
     ]

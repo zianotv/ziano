@@ -113,7 +113,7 @@ button, input { font: inherit }
 .sidebar { display: flex; flex: 0 0 18rem; flex-direction: column; background: rgba(4, 9, 23, .84); border-right: .0625rem solid rgba(56, 189, 248, .1); backdrop-filter: blur(.875rem) }
 .sidebar-header, .main-header { display: flex; align-items: center }
 .sidebar-header { height: 5rem; flex: 0 0 5rem; gap: .75rem; padding: 1.25rem }
-.sidebar-collapse-toggle { display: grid; width: 2.5rem; height: 2.5rem; margin-left: auto; place-items: center; padding: 0; border: 0; border-radius: .5rem; color: #fff; background: transparent; font-size: 1.5rem }
+.sidebar-collapse-toggle { display: grid; width: 2.5rem; height: 2.5rem; margin-left: auto; place-items: center; padding: 0; border: 0; border-radius: .5rem; color: #fff; background: transparent; cursor: pointer; font-size: 1.5rem }
 .mobile-sidebar-close { display: none }
 .sidebar.sidebar-collapsed { flex-basis: 4.75rem }
 .sidebar.sidebar-collapsed .sidebar-header { display: grid; width: 4.75rem; align-items: center; justify-content: start; padding: 1.25rem 0 1.25rem .5625rem }
@@ -226,6 +226,25 @@ dialog#videoModal { width: 100vw; max-width: none; height: 100vh; max-height: no
 
 @media (max-width: 74.9375rem) { .course-grid { grid-template-columns: repeat(4, minmax(0, 1fr)) } }
 @media (max-width: 47.9375rem) {
+    .logo-mark,
+    .sidebar-collapse-toggle,
+    .mobile-sidebar-close,
+    .category-button,
+    .mobile-menu-toggle,
+    .pagination-btn,
+    .back-btn,
+    .course-card,
+    .watch-btn,
+    .favorite-btn,
+    .lesson-button,
+    .modal-action,
+    .modal-close,
+    .player-lesson,
+    .next-lesson-button,
+    .lesson-pagination button {
+        -webkit-tap-highlight-color: transparent;
+    }
+
     .app-shell { min-height: 100vh; overflow: visible }
     .sidebar { position: fixed; z-index: 20; right: 0; bottom: 0; left: 0; width: 100%; height: min(70vh, 32.5rem); flex-basis: auto; border-top: .0625rem solid rgba(56, 189, 248, .15); transform: translateY(100%); transition: transform .2s ease; }
     .sidebar.sidebar-open { transform: translateY(0) }
@@ -271,7 +290,7 @@ dialog#videoModal { width: 100vw; max-width: none; height: 100vh; max-height: no
 }
 
 @media (max-width: 26.25rem) {
-    .course-grid { grid-template-columns: 1fr; }
+    .course-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @keyframes titleMarquee {

@@ -57,7 +57,6 @@
                 </nav>
                 <div id="headerDetailControls" class="header-detail-controls is-hidden">
                     <button onclick="showCatalogView()" class="back-btn">
-                        <i class="bi bi-arrow-left"></i>
                         <span>Voltar ao Catálogo</span>
                     </button>
                 </div>
@@ -130,7 +129,7 @@
                 <video id="mainVideoPlayer" controls preload="metadata" hidden>
                     Seu navegador não suporta vídeos HTML5.
                 </video>
-                <iframe id="driveVideoPlayer" title="Player da aula" allow="autoplay; fullscreen" allowfullscreen hidden></iframe>
+                <iframe id="driveVideoPlayer" aria-label="Player da aula" allow="autoplay; fullscreen" allowfullscreen hidden></iframe>
             </div>
             <aside id="playerLessons" class="player-lessons" aria-label="Aulas do curso"></aside>
         </div>
