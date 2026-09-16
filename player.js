@@ -1,5 +1,6 @@
 const params = new URLSearchParams(window.location.search);
-const course = coursesData.find(course => course.id === params.get("course")) || coursesData[0];
+const courseId = Number.parseInt(params.get("course"), 10);
+const course = coursesData.find(course => course.id === courseId) || coursesData[0];
 let selectedLessonIndex = Number.parseInt(params.get("lesson"), 10);
 const mobileLessonsPerPage = 5;
 let lessonPage = 0;
@@ -66,7 +67,7 @@ function selectStandaloneLesson(index) {
 
     selectedLessonIndex = index;
     lessonPage = Math.floor(index / mobileLessonsPerPage);
-    const nextUrl = `player.html?course=${encodeURIComponent(course.id)}&lesson=${index}`;
+    const nextUrl = `/player/?course=${encodeURIComponent(course.id)}&lesson=${index}`;
     window.history.replaceState(null, "", nextUrl);
     renderStandalonePlayer();
     window.scrollTo({ top: 0, behavior: "smooth" });

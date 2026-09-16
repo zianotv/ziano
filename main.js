@@ -101,7 +101,7 @@ function renderGrid() {
     
     if (0 !== a.length) {
         e.innerHTML = a.map(e => `
-            <article onclick="openCourseDetail('${e.id}')" 
+            <article onclick="openCourseDetail(${e.id})" 
                      class="course-card">
                  <figure class="course-poster-frame">
                     <img src="${e.poster}" alt="${e.title}" 
@@ -184,8 +184,8 @@ function goToPage(e) {
 }
 
 function openCourseDetail(e) {
-    selectedCourseId = e;
-    const t = coursesData.find(t => t.id === e);
+    selectedCourseId = Number.parseInt(e, 10);
+    const t = coursesData.find(t => t.id === selectedCourseId);
     if (!t) return;
     
     document.getElementById("detailTitle").innerText = t.title;
@@ -212,9 +212,7 @@ function openCourseDetail(e) {
                 <div class="lesson-content">
                     <span class="lesson-title">${e.title}</span>
                 </div>
-                <time class="lesson-duration">
-                    <i class="bi bi-play-fill" aria-hidden="true"></i> ${e.duration}
-                </time>
+                <time class="lesson-duration">${e.duration}</time>
             </button>
         </li>
     `).join("");
@@ -292,7 +290,7 @@ function openPlayerModal(e) {
     const t = coursesData.find(e => e.id === selectedCourseId) || coursesData[0];
     const lessonIndex = e ? t.lessons.findIndex(t => t.title === e) : 0;
     const index = lessonIndex >= 0 ? lessonIndex : 0;
-    window.location.href = `player.html?course=${encodeURIComponent(t.id)}&lesson=${index}`;
+    window.location.href = `/player/?course=${encodeURIComponent(t.id)}&lesson=${index}`;
 }
 
 function renderPlayerLesson(course) {
