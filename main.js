@@ -205,16 +205,12 @@ function openCourseDetail(e) {
     document.getElementById("lessonsList").innerHTML = t.lessons.map((e, t) => `
         <li>
             <button onclick="openPlayerModal('${e.title}')" class="lesson-button">
+                <span class="lesson-number">
+                    ${t + 1}
+                </span>
+                <img class="lesson-thumb" src="${e.thumb || t.poster}" alt="" aria-hidden="true" onerror="this.onerror=null; this.src='${t.poster}'">
                 <div class="lesson-content">
-                    <span class="lesson-number">
-                        ${t + 1}
-                    </span>
-                    <div class="marquee-wrapper">
-                        <span class="marquee-text">
-                            <span class="lesson-title-loop">${e.title}</span>
-                            <span class="lesson-title-loop">${e.title}</span>
-                        </span>
-                    </div>
+                    <span class="lesson-title">${e.title}</span>
                 </div>
                 <time class="lesson-duration">
                     <i class="bi bi-play-fill" aria-hidden="true"></i> ${e.duration}
@@ -319,7 +315,7 @@ function loadSelectedLessonVideo(course) {
     const drivePlayer = document.getElementById("driveVideoPlayer");
     if (!lesson) return;
 
-    if (lesson.video.includes("drive.google.com")) {
+    if (lesson.video.includes("drive.google.com") || lesson.video.includes("youtube.com/embed/")) {
         video.pause();
         video.removeAttribute("src");
         video.load();

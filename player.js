@@ -14,7 +14,7 @@ function renderStandalonePlayer() {
     const lesson = course.lessons[selectedLessonIndex];
     const isMobile = window.matchMedia("(max-width: 47.9375rem)").matches;
     const totalPages = isMobile ? Math.ceil(course.lessons.length / mobileLessonsPerPage) : 1;
-    const firstLesson = lessonPage * mobileLessonsPerPage;
+    const firstLesson = isMobile ? lessonPage * mobileLessonsPerPage : 0;
     const visibleLessons = isMobile ? course.lessons.slice(firstLesson, firstLesson + mobileLessonsPerPage) : course.lessons;
     const displayTitle = lesson.title.replace(/^(\d+\.)\s+/, "$1\u00a0");
     document.title = `${lesson.title} | ZianoTV`;
@@ -43,7 +43,7 @@ function loadStandaloneLesson(lesson) {
     const video = document.getElementById("standaloneVideo");
     const driveVideo = document.getElementById("standaloneDriveVideo");
 
-    if (lesson.video.includes("drive.google.com")) {
+    if (lesson.video.includes("drive.google.com") || lesson.video.includes("youtube.com/embed/")) {
         video.pause();
         video.removeAttribute("src");
         video.load();
