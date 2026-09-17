@@ -290,7 +290,10 @@ function openPlayerModal(e) {
     const t = coursesData.find(e => e.id === selectedCourseId) || coursesData[0];
     const lessonIndex = e ? t.lessons.findIndex(t => t.title === e) : 0;
     const index = lessonIndex >= 0 ? lessonIndex : 0;
-    window.location.href = `/player/?course=${encodeURIComponent(t.id)}&lesson=${index}`;
+    selectedLessonIndex = index;
+    renderPlayerLesson(t);
+    loadSelectedLessonVideo(t);
+    document.getElementById("videoModal").showModal();
 }
 
 function renderPlayerLesson(course) {
@@ -354,7 +357,13 @@ function togglePlayerFullscreen() {
 
 function closePlayerModal() {
     const e = document.getElementById("videoModal");
-    document.getElementById("mainVideoPlayer").pause();
+    const video = document.getElementById("mainVideoPlayer");
+    const drivePlayer = document.getElementById("driveVideoPlayer");
+    video.pause();
+    video.removeAttribute("src");
+    video.load();
+    drivePlayer.src = "about:blank";
+    drivePlayer.hidden = true;
     e.close();
 }
 
