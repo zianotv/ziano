@@ -51,7 +51,7 @@ const coursesData = [
 },
 {
 	 id: 2,
-	title: 'Metodologia e Escrita Cientifica',
+	title: 'Metodologia e Escrita Científica',
 	category: 'negocios',
 	instructor: 'Tatiana Dornelas',
 	level: 'Iniciante',
