@@ -1,5 +1,5 @@
 const categories = [
-{ id: 'all', name: 'Todas as Aulas', icon: 'bi bi-grid' },
+{ id: 'all', name: 'Todos os Cursos', icon: 'bi bi-grid' },
 { id: 'programacao', name: 'Programação', icon: 'bi bi-code-slash' },
 { id: 'design', name: 'Design & UI/UX', icon: 'bi bi-palette' },
 { id: 'negocios', name: 'Negócios & Gestão', icon: 'bi bi-graph-up' },
