@@ -195,7 +195,6 @@ function goToPage(page) {
     renderGrid();
 }
 
-// Fallback de compatibilidade caso haja cache no navegador
 function openCourseDetail(courseId) {
     window.location.href = `course/?id=${courseId}`;
 }

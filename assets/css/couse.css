@@ -14,7 +14,11 @@
     flex: 0 0 18rem;
     aspect-ratio: 3 / 4;
     border: .0625rem solid rgba(56, 189, 248, .2);
-    border-radius: 1rem
+    border-radius: 1rem;
+}
+
+.detail-poster {
+    object-position:right; 
 }
 
 .detail-content {
