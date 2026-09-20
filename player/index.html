@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -7,39 +8,48 @@
     <link rel="icon" type="image/png" href="../assets/images/icon.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/style.css?v=6">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/player.css">
 </head>
 <body class="player-page">
     <div class="player-shell">
-        <header class="player-header">
-            <span id="playerCourseTitle" class="player-course-title"></span>
-            <div>
-                <a href="../" id="playerHeaderBackBtn" class="back-btn player-header-back-btn" style="text-decoration: none;">
-                    <i class="bi bi-chevron-left" aria-hidden="true"></i>
-                    <span>Voltar</span>
-                </a>
-            </div>
-        </header>
 
-        <div class="modal-video">
-            <iframe id="driveVideoPlayer" allow="fullscreen" allowfullscreen></iframe>
-        </div>
-        
-        <div class="player-actions">
-            <a href="../" id="playerMobileBackBtn" class="back-btn player-mobile-back-btn" style="text-decoration: none;">
+    <header class="player-header">
+        <span id="playerCourseTitle" class="player-course-title"></span>
+
+        <div>
+            <a href="../" id="playerHeaderBackBtn" class="back-btn player-header-back-btn" style="text-decoration: none;">
                 <i class="bi bi-chevron-left" aria-hidden="true"></i>
                 <span>Voltar</span>
             </a>
-            <button id="nextPlayerLessonButton" class="next-lesson-button">
-                Próxima aula
-            </button>
         </div>
-        
-        <form id="lessonsForm" class="player-lessons" aria-label="Aulas do curso" onsubmit="return false;">
-        </form>
+    </header>
+
+    <div class="modal-video">
+        <iframe
+            id="driveVideoPlayer"
+            allow="fullscreen"
+            allowfullscreen>
+        </iframe>
     </div>
 
-    <script src="../assets/js/data.js?v=6"></script>
-    <script src="../assets/js/player.js?v=6"></script>
+    <div class="player-actions">
+        <a href="../" id="playerMobileBackBtn" class="back-btn player-mobile-back-btn" style="text-decoration: none;">
+            <i class="bi bi-chevron-left" aria-hidden="true"></i>
+            <span>Voltar</span>
+        </a>
+
+        <a href="#" id="nextPlayerLessonButton" class="next-lesson-button">
+            Próxima aula
+        </a>
+    </div>
+
+    <ol id="lessonsForm" class="player-lessons" aria-label="Aulas do curso"></ol>
+
+</div>
+
+<script src="../assets/js/data.js?v=6"></script>
+<script src="../assets/js/player.js?v=6"></script>
+
 </body>
 </html>

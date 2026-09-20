@@ -1,0 +1,321 @@
+.player-page {
+    min-height: 100vh;
+    margin: 0;
+    overflow-x: hidden;
+    color: #f8fafc;
+    background: #091838;
+}
+
+.player-shell {
+    position: relative;
+    display: flex;
+    min-height: 100vh;
+    min-width: 0;
+    flex-direction: column;
+    background: #091838;
+}
+
+.player-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 4.5rem;
+    min-height: 4.5rem;
+    flex: 0 0 4.5rem;
+    padding: 0 1.5rem;
+    background: #091838;
+    border: 0;
+}
+
+.player-course-title {
+    margin: 0;
+    color: #fff;
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: .02em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex: 1;
+    min-width: 0;
+}
+
+.player-back-btn,
+.player-header-back-btn,
+.player-mobile-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .5rem 1.25rem;
+    border: .0625rem solid rgba(255, 255, 255, .2);
+    border-radius: .75rem;
+    color: #fff;
+    background: transparent;
+    cursor: pointer;
+    font-size: .95rem;
+    transition: background .15s ease, border-color .15s ease, color .15s ease;
+}
+
+.player-back-btn:hover,
+.player-header-back-btn:hover,
+.player-mobile-back-btn:hover {
+    background: rgba(255, 255, 255, .08);
+    border-color: rgba(255, 255, 255, .35);
+    color: #fff;
+}
+
+.player-mobile-back-btn {
+    display: none;
+}
+
+.modal-video {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: calc(100vh - 4.5rem);
+    height: calc(100dvh - 4.5rem);
+    min-height: calc(100vh - 4.5rem);
+    min-height: calc(100dvh - 4.5rem);
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+}
+
+.modal-video iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    object-fit: contain;
+}
+
+.player-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: .625rem;
+    padding: .75rem 1.5rem;
+    background: #091838;
+}
+
+.player-actions .modal-close {
+    transform: none;
+}
+
+.modal-close {
+    display: inline-flex;
+    width: auto;
+    height: 2.25rem;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    padding: 0 .75rem;
+    border: 0;
+    border-radius: .625rem;
+    color: #67e8f9;
+    background: #1e293b;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.modal-close:hover {
+    background: rgba(56, 189, 248, .15);
+}
+
+.next-lesson-button {
+    display: inline-flex;
+    height: 2.25rem;
+    align-items: center;
+    padding: 0 .875rem;
+    border: 0;
+    font-weight: 600;
+    border-radius: .625rem;
+    color: #111;
+    background: #fbbf24;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.next-lesson-button:disabled {
+    cursor: not-allowed;
+    opacity: .38;
+}
+
+.player-lessons {
+    display: flex;
+    gap: 1rem;
+    padding: 0 1rem 1rem;
+    margin-top: 0;
+    overflow-x: auto;
+    background: #091838;
+    list-style: none;
+}
+
+.player-lessons > li {
+    margin: 0;
+    padding: 0;
+}
+
+.player-lesson {
+    display: grid;
+    width: 13.75rem;
+    flex: 0 0 13.75rem;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: .375rem .625rem;
+    padding: 0 0 .75rem;
+    overflow: hidden;
+    border: .0625rem solid transparent;
+    border-radius: .625rem;
+    color: #cbd5e1;
+    background: #050d1f;
+    text-align: left;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.player-lesson:hover,
+.player-lesson.is-active,
+.player-lesson.current {
+    color: #fff;
+    background: rgba(14, 165, 233, .14);
+}
+
+.player-lesson-thumb {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    grid-column: 1 / -1;
+    margin-bottom: .25rem;
+    object-fit: cover;
+    background: #0f172a;
+}
+
+.player-lesson-number {
+    padding-left: .625rem;
+    color: #67e8f9;
+    font-size: .75rem;
+    font-weight: 600;
+}
+
+.player-lesson-title {
+    min-width: 0;
+    grid-column: 1 / -1;
+    padding: 0 .625rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.player-lesson time {
+    grid-column: 2;
+    grid-row: 2;
+    padding-right: .625rem;
+    color: #67e8f9;
+    font-size: .75rem;
+}
+
+@media (max-width: 47.9375rem) {
+
+    .player-shell {
+        width: 100%;
+        min-width: 0;
+        overflow-x: hidden;
+    }
+
+    .modal-close {
+        width: 2.25rem;
+        padding: 0;
+        transform: none;
+    }
+
+    .modal-close span {
+        display: none;
+    }
+
+    .player-actions .modal-close {
+        width: auto;
+        padding: 0 .75rem;
+    }
+
+    .player-actions .modal-close span {
+        display: inline;
+    }
+
+    .player-lessons {
+        display: flex;
+        width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+        flex-direction: column;
+        gap: .5rem;
+        padding: .75rem;
+        overflow-x: hidden;
+        border-top: 0;
+    }
+
+    .player-lessons .player-lesson {
+        display: flex;
+        width: 100%;
+        min-width: 0;
+        flex: 0 0 auto;
+        align-items: center;
+        gap: .75rem;
+        padding: .75rem;
+        box-sizing: border-box;
+    }
+
+    .player-lessons .player-lesson-thumb,
+    .player-lessons .player-lesson-number,
+    .player-lessons .player-lesson time {
+        display: none;
+    }
+
+    .player-lessons .player-lesson-title {
+        min-width: 0;
+        padding: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .player-header {
+        height: 3.5rem;
+        min-height: 3.5rem;
+        flex: 0 0 3.5rem;
+        padding: 0 1rem;
+    }
+
+    .player-header-back-btn {
+        display: none !important;
+    }
+
+    .player-mobile-back-btn {
+        display: inline-flex !important;
+        width: auto !important;
+        height: 2.25rem;
+        padding: 0 .875rem;
+        border-radius: .625rem;
+        font-size: .875rem;
+    }
+
+    .player-actions {
+        display: flex;
+        align-items: center;
+        justify-content: space-between !important;
+        gap: .625rem;
+        padding: .75rem 1rem;
+    }
+
+    .player-course-title {
+        font-size: 1rem;
+        flex: 1;
+        min-width: 0;
+    }
+
+    .modal-video {
+        height: calc(100vh - 3.5rem);
+        height: calc(100dvh - 3.5rem);
+        min-height: calc(100vh - 3.5rem);
+        min-height: calc(100dvh - 3.5rem);
+    }
+}
