@@ -104,16 +104,8 @@ dialog::backdrop {
     animation: marqueeScroll 6s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite alternate
 }
 
-*,
-*::before,
-*::after {
+*{
     box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-}
-
-html,
-body {
-    -webkit-tap-highlight-color: transparent;
 }
 
 body {

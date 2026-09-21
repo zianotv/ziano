@@ -1,12 +1,13 @@
 .detail-view {
     padding: 2rem 2rem 6rem;
-    background: #091838
+    background: #091838;
 }
 
 .detail-layout {
     display: flex;
     align-items: flex-start;
-    gap: 2rem
+    gap: 2rem;
+    max-width: 90rem;
 }
 
 .detail-poster-frame {
@@ -23,7 +24,7 @@
 
 .detail-content {
     min-width: 0;
-    flex: 1
+    flex: 1;
 }
 
 .detail-title {
@@ -44,24 +45,24 @@
 
 .detail-meta div {
     display: flex;
-    align-items: center
+    align-items: center;
 }
 
 .detail-meta dt {
     width: 8rem;
-    color: rgba(103, 232, 249, .6)
+    color: rgba(103, 232, 249, .6);
 }
 
 .detail-meta dd {
     margin: 0;
-    color: #fff
+    color: #fff;
 }
 
 .detail-actions {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
-    margin-top: 1.5rem
+    margin-top: 1.5rem;
 }
 
 .watch-btn,
@@ -122,7 +123,7 @@
     font-size: 1.25rem
 }
 
-.watch-btn\:hover {
+.watch-btn:hover {
     background: #fcd34d
 }
 
@@ -144,6 +145,7 @@
 .detail-section {
     max-width: 56rem;
     padding-top: 1.5rem;
+    max-width: 90rem;
     margin-top: 2rem
 }
 
