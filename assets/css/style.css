@@ -12,7 +12,7 @@ overflow: hidden
 }
 
 button,
-input {
+input, a {
 font: inherit;
 -webkit-tap-highlight-color: transparent;
 }

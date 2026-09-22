@@ -13,7 +13,7 @@
     main{width:100%;display:flex;flex-direction:column;gap:1.5rem}
     iframe{width:100%;aspect-ratio:16 / 9;height:auto;max-height:calc(100vh - 7rem);background:#000;border:none;flex-shrink:0}
     .header{display:flex;justify-content:space-between;align-items:center;padding:0 1rem}
-    .header button{border:.125rem solid #fff;padding:.4rem .8rem;border-radius:.5rem;cursor:pointer;font-size:.85rem;font-weight:600;transition:opacity .2s ease;display:inline-flex;align-items:center;gap:.5rem; -webkit-tap-highlight-color: transparent;}
+    .header button{border:.125rem solid #fff;padding:.4rem .8rem;border-radius:.5rem;cursor:pointer;font-family: inherit;font-size:.85rem;font-weight:600;transition:opacity .2s ease;display:inline-flex;align-items:center;gap:.5rem; -webkit-tap-highlight-color: transparent;}
     #exit{background:transparent;color:#fff;border:.0625rem solid #fff}
     #next{background:#fff;color:#091838}
     .header button:disabled{opacity:.5;cursor:not-allowed}
@@ -24,12 +24,12 @@
     .card.ativo img{border:.125rem solid #fff}
     .card span{font-size:.85rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block;width:100%}
     @media (max-width:768px){
-    .list{flex-direction:column;overflow-x:visible;scroll-snap-type:none}
+    .list{flex-direction:column;overflow-x:visible;scroll-snap-type:none;}
     .card{flex:none;width:100%;flex-direction:row;align-items:center;background:rgba(15,23,42,.6);color:#e2e8f0;border:.0625rem solid rgba(56,189,248,.15);border-radius:.5rem;padding:.75rem 1rem;transition:background-color .2s ease,border-color .2s ease,color .2s ease}
     .card:hover{background:#e2e8f0;color:#091838;border-color:#e2e8f0}
     .card img{display:none}
-    .card span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-    .card.ativo{color:#091838;background:#e2e8f0;border-color:#e2e8f0}
+    .card span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis; -webkit-tap-highlight-color: transparent;}
+    .card.ativo{color:#091838;background:#e2e8f0;border-color:#e2e8f0; -webkit-tap-highlight-color: transparent;}
     }
   </style>
 </head>
@@ -51,7 +51,7 @@
         <svg fill="currentColor" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
           <path d="M6.70711 2.29289C6.31658 1.90237 5.68342 1.90237 5.29289 2.29289L0.792893 6.79289C0.402369 7.18342 0.402369 7.81658 0.792893 8.20711L5.29289 12.7071C5.68342 13.0976 6.31658 13.0976 6.70711 12.7071C7.09763 12.3166 7.09763 11.6834 6.70711 11.2929L4 8.5H13.5C14.0523 8.5 14.5 8.05228 14.5 7.5C14.5 6.94772 14.0523 6.5 13.5 6.5H4L6.70711 3.70711C7.09763 3.31658 7.09763 2.68342 6.70711 2.29289Z"/>
         </svg>
-        Voltar
+        Sair
       </button>
 
       <button id="next">Próxima Aula</button>
@@ -89,7 +89,7 @@
     list.innerHTML = lessons.map((item,index) => `
       <div class="card ${index === current ? 'ativo' : ''}">
         <img src="${item.thumb}" loading="lazy">
-        <span>${item.title}</span>
+        <span>${index + 1}. ${item.title}</span>
       </div>
     `).join('');
 
