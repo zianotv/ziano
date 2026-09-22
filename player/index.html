@@ -1,55 +1,154 @@
 <!DOCTYPE html>
-
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ZianoTV</title>
-    <link rel="icon" type="image/png" href="../assets/images/icon.png">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="stylesheet" href="../assets/css/player.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Player</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{background-color:#091838;color:#fff;font-family:'Plus Jakarta Sans',sans-serif}
+    main{width:100%;display:flex;flex-direction:column;gap:1.5rem}
+    iframe{width:100%;aspect-ratio:16 / 9;height:auto;max-height:calc(100vh - 7rem);background:#000;border:none;flex-shrink:0}
+    .header{display:flex;justify-content:space-between;align-items:center;padding:0 1rem}
+    .header button{border:.125rem solid #fff;padding:.4rem .8rem;border-radius:.5rem;cursor:pointer;font-size:.85rem;font-weight:600;transition:opacity .2s ease;display:inline-flex;align-items:center;gap:.5rem}
+    #exit{background:transparent;color:#fff;border:.0625rem solid #fff}
+    #next{background:#fff;color:#091838}
+    .header button:disabled{opacity:.5;cursor:not-allowed}
+    .header button svg{width:1rem;height:1rem;display:block;flex-shrink:0}
+    .list{display:flex;gap:1rem;padding:0 1rem 1rem;overflow-x:auto;width:100%;flex-shrink:0;scroll-behavior:smooth}
+    .card{display:flex;flex-direction:column;gap:.4rem;color:inherit;text-decoration:none;cursor:pointer;flex:0 0 14rem;scroll-snap-align:start;min-width:0}
+    .card img{width:100%;height:7.875rem;object-fit:cover;border-radius:.5rem;border:.0625rem solid rgba(56,189,248,.2);transition:border-color .2s ease}
+    .card.ativo img{border:.125rem solid #fff}
+    .card span{font-size:.85rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block;width:100%}
+    @media (max-width:768px){
+    .list{flex-direction:column;overflow-x:visible;scroll-snap-type:none}
+    .card{flex:none;width:100%;flex-direction:row;align-items:center;background:rgba(15,23,42,.6);color:#e2e8f0;border:.0625rem solid rgba(56,189,248,.15);border-radius:.5rem;padding:.75rem 1rem;transition:background-color .2s ease,border-color .2s ease,color .2s ease}
+    .card:hover{background:#e2e8f0;color:#091838;border-color:#e2e8f0}
+    .card img{display:none}
+    .card span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .card.ativo{color:#091838;background:#e2e8f0;border-color:#e2e8f0}
+    }
+  </style>
 </head>
-<body class="player-page">
-    <div class="player-shell">
 
-    <header class="player-header">
-        <span id="playerCourseTitle" class="player-course-title"></span>
+<body>
 
-        <div>
-            <a href="../" id="playerHeaderBackBtn" class="back-btn player-header-back-btn" style="text-decoration: none;">
-                <i class="bi bi-chevron-left" aria-hidden="true"></i>
-                <span>Voltar</span>
-            </a>
-        </div>
-    </header>
+  <main>
 
-    <div class="modal-video">
-        <iframe
-            id="driveVideoPlayer"
-            allow="fullscreen"
-            allowfullscreen>
-        </iframe>
-    </div>
+    <iframe
+      name="player"
+      src=""
+      loading="lazy"
+      allow="autoplay; encrypted-media"
+      allowfullscreen
+    ></iframe>
 
-    <div class="player-actions">
-        <a href="../" id="playerMobileBackBtn" class="back-btn player-mobile-back-btn" style="text-decoration: none;">
-            <i class="bi bi-chevron-left" aria-hidden="true"></i>
-            <span>Voltar</span>
-        </a>
+    <section class="header">
+      <button id="exit">
+        <svg fill="currentColor" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6.70711 2.29289C6.31658 1.90237 5.68342 1.90237 5.29289 2.29289L0.792893 6.79289C0.402369 7.18342 0.402369 7.81658 0.792893 8.20711L5.29289 12.7071C5.68342 13.0976 6.31658 13.0976 6.70711 12.7071C7.09763 12.3166 7.09763 11.6834 6.70711 11.2929L4 8.5H13.5C14.0523 8.5 14.5 8.05228 14.5 7.5C14.5 6.94772 14.0523 6.5 13.5 6.5H4L6.70711 3.70711C7.09763 3.31658 7.09763 2.68342 6.70711 2.29289Z"/>
+        </svg>
+        Voltar
+      </button>
 
-        <a href="#" id="nextPlayerLessonButton" class="next-lesson-button">
-            Próxima aula
-        </a>
-    </div>
+      <button id="next">Próxima Aula</button>
+    </section>
 
-    <ol id="lessonsForm" class="player-lessons" aria-label="Aulas do curso"></ol>
+    <section class="list" id="list"></section>
 
-</div>
+  </main>
 
-<script src="../assets/js/data.js?v=6"></script>
-<script src="../assets/js/player.js?v=6"></script>
+  <script src="../data.js"></script>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const cursoId = Number(params.get('curso')) || 1;
+    const aulaParam = Number(params.get('aula'));
+
+    const course =
+      coursesData.find(item => item.id === cursoId) ||
+      coursesData[0];
+
+    const lessons = course.lessons;
+
+    const list = document.getElementById('list');
+    const exit = document.getElementById('exit');
+    const next = document.getElementById('next');
+    const player = document.querySelector('iframe');
+
+    let current =
+      Number.isInteger(aulaParam) &&
+      aulaParam >= 0 &&
+      aulaParam < lessons.length
+        ? aulaParam
+        : 0;
+
+    list.innerHTML = lessons.map((item,index) => `
+      <div class="card ${index === current ? 'ativo' : ''}">
+        <img src="${item.thumb}" loading="lazy">
+        <span>${item.title}</span>
+      </div>
+    `).join('');
+
+    const cards = Array.from(
+      list.querySelectorAll('.card')
+    );
+
+    player.src = lessons[current].video;
+
+    next.toggleAttribute(
+      'disabled',
+      current === cards.length - 1
+    );
+
+    exit.addEventListener('click',() => {
+      window.location.href = '../';
+    });
+
+    const update = index => {
+      cards[current].classList.remove('ativo');
+
+      current = index;
+
+      cards[current].classList.add('ativo');
+
+      player.src = lessons[current].video;
+
+      next.toggleAttribute(
+        'disabled',
+        current === cards.length - 1
+      );
+
+      list.scrollTo({
+        left:
+          cards[current].offsetLeft -
+          parseFloat(getComputedStyle(list).paddingLeft),
+        behavior:'smooth'
+      });
+    };
+
+    list.addEventListener('click',e => {
+      const card = e.target.closest('.card');
+
+      if (!card) return;
+
+      const index = cards.indexOf(card);
+
+      if (index === current) return;
+
+      if (index !== -1) {
+        update(index);
+      }
+    });
+
+    next.addEventListener('click',() => {
+      if (current < cards.length - 1) {
+        update(current + 1);
+      }
+    });
+  </script>
 
 </body>
 </html>
