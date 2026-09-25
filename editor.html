@@ -1,150 +1,203 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <title>dados</title>
-    <style>
-        body { font-family: system-ui, sans-serif; background: #f8fafc; color: #0f172a; margin: 0; padding: 2rem; }
-        header { max-width: 1200px; margin: 0 auto 2rem; display: flex; justify-content: space-between; align-items: center; }
-        main { max-width: 1200px; margin: 0 auto; } 
-        .card {  background: #f1f5f9; padding: 1rem; display: grid; grid-template-columns: 160px max-content max-content 2fr 1.5fr; gap: .5rem; align-items: center;}
-        .card img { grid-row: 1 / span 2; width: 160px; height: 100%; min-height: 80px; object-fit: cover; border-radius: 4px; }
-        .card .poster-input { grid-row: 3; width: 100%; }
-        .card .desc { grid-column: 2 / -1; grid-row: 2; }
-        .card .select-cat { grid-column: 2 / 4; grid-row: 3; }
-        .card .select-lvl { grid-column: 4; grid-row: 3; }
-        .card .select-date { grid-column: 5; grid-row: 3; }
-        .poster-input { box-sizing: border-box; padding: .25rem .5rem; border: 1px solid #cbd5e1; background: #fff; font-size: .8rem; font-family: monospace; outline: none; border-radius: 4px; color: inherit; }
-        [contenteditable], select { padding: .25rem .5rem; border: 1px solid #cbd5e1; background: #fff; font-size: .9rem; outline: none; border-radius: 4px; color: inherit; font-family: inherit; width: 100%; box-sizing: border-box; }
-        [contenteditable]:focus, select:focus, .poster-input:focus { border-color: #0284c7; box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.15); }   
-        .tag { padding: .25rem .5rem; background: #e2e8f0; color: #475569; font-size: .85rem; font-weight: 600; text-align: center; border-radius: 4px; white-space: nowrap; }
-        .btn { background: #0284c7; color: #fff; border: 0; padding: .75rem 1.5rem; border-radius: 6px; cursor: pointer; font-weight: 600; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cursos</title>
+
+<style>
+body{font-family:system-ui,sans-serif;background:#f8fafc;color:#0f172a;margin:0;padding:2rem}
+header,main{max-width:1100px;margin:auto}
+header{display:flex;justify-content:space-between;align-items:center;margin-bottom:2rem}
+nav{display:flex;gap:.5rem}
+button{border:0;background:#166534;color:#fff;padding:.7rem 1rem;border-radius:5px;cursor:pointer;font:inherit}
+button:hover{background:#14532d}
+output{font-weight:600;color:#475569}
+section{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem}
+article{background:#fff;border:1px solid #e2e8f0;border-radius:6px;overflow:hidden}
+article img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}
+article div{padding:1rem}
+article h2{font-size:1rem;margin:0 0 .5rem}
+article small{color:#64748b}
+dialog{border:0;border-radius:6px;padding:1.5rem;max-width:400px}
+dialog::backdrop{background:rgba(15,23,42,.35)}
+dialog img{display:block;width:100%;margin-bottom:1rem}
+dialog menu{display:flex;justify-content:flex-end;gap:.5rem;padding:0;margin:1rem 0 0}
+</style>
 </head>
+
 <body>
 
-    <header>
-        <span id="count">0 cursos</span>
-        <button class="btn" onclick="downloadFile()">Baixar</button>
-    </header>
+<header>
+    <output id="count">0 cursos</output>
 
-    <main id="container"></main>
+    <nav>
+        <button onclick="file.click()">
+            Importar curso
+        </button>
 
-    <script src="assets/js/data.js"></script>
-    <script>
-        const POSTER_PREFIX = 'https://img.youtube.com/vi/';
-        const POSTER_SUFFIX = '/maxresdefault.jpg';
-        const levels = ['Iniciante', 'Intermediário', 'Avançado'];
+        <button onclick="downloadFile()">
+            Baixar data.js
+        </button>
+    </nav>
+</header>
 
-        function extractVideoId(url = '') {
-            return url.includes('/vi/') ? url.split('/vi/')[1].split('/')[0] : url;
+<input id="file" type="file" accept=".json" hidden>
+
+<main>
+    <section id="courses"></section>
+</main>
+
+<dialog id="preview">
+    <img id="previewImage" alt="">
+    <h2 id="previewTitle"></h2>
+    <small id="previewLessons"></small>
+
+    <menu>
+        <button onclick="preview.close()">Cancelar</button>
+        <button onclick="importCourse()">Importar</button>
+    </menu>
+</dialog>
+
+<script src="data.js"></script>
+
+<script>
+
+let importedCourse=null;
+
+function render(){
+
+    courses.innerHTML='';
+
+    count.value=`${coursesData.length} cursos`;
+
+    coursesData.forEach(course=>{
+
+        const article=document.createElement('article');
+
+        article.innerHTML=`
+            <img
+                src="${course.poster}"
+                alt="${course.title}"
+                onerror="this.src='https://via.placeholder.com/640x360?text=Sem+imagem'"
+            >
+            <div>
+                <h2>${course.title}</h2>
+                <small>${course.lessons?.length||0} aulas</small>
+            </div>
+        `;
+
+        courses.appendChild(article);
+
+    });
+
+}
+
+
+file.onchange=async event=>{
+
+    const selectedFile=event.target.files[0];
+
+    if(!selectedFile)return;
+
+    try{
+
+        const text=await selectedFile.text();
+
+        const course=JSON.parse(text);
+
+        if(
+            !course ||
+            typeof course!=='object' ||
+            !course.title ||
+            !course.poster ||
+            !Array.isArray(course.lessons)
+        ){
+
+            throw new Error('JSON de curso inválido.');
+
         }
 
-        function buildPosterUrl(id) {
-            return `${POSTER_PREFIX}${id.trim()}${POSTER_SUFFIX}`;
-        }
+        importedCourse=course;
 
-        function getYearOptions(selectedYear) {
-            const currentYear = new Date().getFullYear();
-            let options = '';
-            for (let year = 2020; year <= currentYear; year++) {
-                const strYear = year.toString();
-                options += `<option value="${strYear}" ${selectedYear == strYear ? 'selected' : ''}>${strYear}</option>`;
-            }
-            return options;
-        }
+        previewImage.src=course.poster;
+        previewImage.alt=course.title;
 
-        function downloadFile() {
-            const content = `const categories = ${JSON.stringify(categories, null, 4)};\n\nconst coursesData = ${JSON.stringify(coursesData, null, 4)};`;
-            const a = document.createElement('a');
-            a.href = URL.createObjectURL(new Blob([content], { type: 'text/javascript' }));
-            a.download = 'data.js';
-            a.click();
-        }
+        previewTitle.textContent=course.title;
 
-        function calculateDuration(lessons = []) {
-            let sec = 0;
-            lessons.forEach(l => {
-                if (!l.duration) return;
-                const p = l.duration.toString().split(':').map(Number);
-                sec += p.length === 2 ? p[0] * 60 + p[1] : p[0] * 3600 + p[1] * 60 + p[2];
-            });
-            const h = Math.floor(sec / 3600), m = Math.floor((sec % 3600) / 60);
-            return h > 0 ? `${h}h ${m}m` : `${m}m`;
-        }
+        previewLessons.textContent=
+            `${course.lessons.length} aulas`;
 
-        function buildUI() {
-            const container = document.getElementById('container');
-            container.innerHTML = '';
-            document.getElementById('count').textContent = `${coursesData.length} cursos`;
+        preview.showModal();
 
-            const validCategories = (typeof categories !== 'undefined' ? categories : []).filter(cat => !['all', 'favoritos'].includes(cat.id));
+    }catch(error){
 
-            coursesData.forEach((c, idx) => {
-                c.duration = calculateDuration(c.lessons);
-                c.favorite = false;
+        alert('O arquivo não contém um curso JSON válido.');
 
-                const div = document.createElement('div');
-                div.className = 'card';
-                div.dataset.c = idx;
+        console.error(error);
 
-                const categoryOptions = validCategories.map(cat => 
-                    `<option value="${cat.name}" ${c.category === cat.name ? 'selected' : ''}>${cat.name}</option>`
-                ).join('');
+    }
 
-                const levelOptions = levels.map(lvl => 
-                    `<option value="${lvl}" ${c.level === lvl ? 'selected' : ''}>${lvl}</option>`
-                ).join('');
+    file.value='';
 
-                const yearOptions = getYearOptions(c.date);
-                const videoId = extractVideoId(c.poster);
+};
 
-                div.innerHTML = `
-                    <img src="${c.poster}" onerror="this.src='https://via.placeholder.com/160x90?text=Erro'">
-                    <span class="tag">#${c.id}</span>
-                    <span class="tag">${c.duration}</span>
-                    <div contenteditable data-field="title">${c.title}</div>
-                    <div contenteditable data-field="instructor">${c.instructor}</div>
 
-                    <div contenteditable class="desc" data-field="description">${c.description}</div>
+function importCourse(){
 
-                    <input type="text" class="poster-input" data-field="poster-id" value="${videoId}">
-                    <select class="select-cat" data-field="category">${categoryOptions}</select>
-                    <select class="select-lvl" data-field="level">${levelOptions}</select>
-                    <select class="select-date" data-field="date">${yearOptions}</select>
-                `;
-                container.appendChild(div);
-            });
+    if(!importedCourse)return;
 
-            document.querySelectorAll('[contenteditable]').forEach(el => {
-                el.oninput = (e) => {
-                    const idx = e.target.closest('[data-c]').dataset.c;
-                    const field = e.target.dataset.field;
-                    coursesData[idx][field] = e.target.textContent;
-                };
-            });
+    const exists=coursesData.some(
+        course=>Number(course.id)===Number(importedCourse.id)
+    );
 
-            document.querySelectorAll('input[data-field="poster-id"]').forEach(el => {
-                el.oninput = (e) => {
-                    const idx = e.target.closest('[data-c]').dataset.c;
-                    const videoId = e.target.value;
-                    const fullUrl = buildPosterUrl(videoId);
-                    coursesData[idx].poster = fullUrl;
-                    const img = e.target.closest('.card').querySelector('img');
-                    img.src = fullUrl;
-                };
-            });
+    if(exists){
 
-            document.querySelectorAll('select').forEach(el => {
-                el.onchange = (e) => {
-                    const idx = e.target.closest('[data-c]').dataset.c;
-                    const field = e.target.dataset.field;
-                    coursesData[idx][field] = e.target.value;
-                };
-            });
-        }
+        alert('Esse curso já existe no data.js.');
 
-        buildUI();
-    </script>
+        return;
+
+    }
+
+    coursesData.push(importedCourse);
+
+    importedCourse=null;
+
+    preview.close();
+
+    render();
+
+}
+
+
+function downloadFile(){
+
+    const content=
+        `const categories = ${JSON.stringify(categories,null,4)};\n\n`+
+        `const coursesData = ${JSON.stringify(coursesData,null,4)};`;
+
+    const blob=new Blob(
+        [content],
+        {type:'text/javascript'}
+    );
+
+    const url=URL.createObjectURL(blob);
+
+    const link=document.createElement('a');
+
+    link.href=url;
+    link.download='data.js';
+
+    link.click();
+
+    URL.revokeObjectURL(url);
+
+}
+
+
+render();
+
+</script>
+
 </body>
 </html>
