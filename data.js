@@ -10,16 +10,6 @@ const categories = [
         "icon": "bi bi-code-slash"
     },
     {
-        "id": "design",
-        "name": "Design & UI/UX",
-        "icon": "bi bi-palette"
-    },
-    {
-        "id": "negocios",
-        "name": "Negócios & Gestão",
-        "icon": "bi bi-graph-up"
-    },
-    {
         "id": "dados",
         "name": "Dados",
         "icon": "bi bi-database"
@@ -28,11 +18,6 @@ const categories = [
         "id": "ia",
         "name": "Inteligência Artificial",
         "icon": "bi bi-robot"
-    },
-    {
-        "id": "empreendedorismo",
-        "name": "Empreendedorismo",
-        "icon": "bi bi-lightbulb"
     },
     {
         "id": "favoritos",
