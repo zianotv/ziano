@@ -340,6 +340,13 @@ background: rgba(15, 23, 42, .8);
 font-size: 1rem
 }
 
+.modal-close,
+.modal-actions a,
+.modal-actions button {
+user-select: none;
+-webkit-user-select: none
+}
+
 .modal-close:hover {
 background: rgba(255, 255, 255, .1)
 }
