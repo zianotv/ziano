@@ -914,22 +914,6 @@ dialog#courseModal {
     gap: .85rem
 }
 
-#courseModal .meta-line {
-    display: block;
-    line-height: 1.5
-}
-
-#courseModal .meta-line strong {
-    display: block;
-    min-width: 0;
-    margin-bottom: .15rem
-}
-
-#courseModal .meta-line span {
-    display: block;
-    overflow-wrap: anywhere
-}
-
 #courseModal .modal-actions {
     flex-wrap: wrap
 }
