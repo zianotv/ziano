@@ -173,7 +173,6 @@
       playbackStarted = true;
       player = document.createElement('iframe');
       player.name = 'player';
-      player.loading = 'eager';
       player.allow = 'autoplay; encrypted-media';
       player.allowFullscreen = true;
       const video = new URL(lessons[current].video);
