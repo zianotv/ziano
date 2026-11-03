@@ -144,17 +144,8 @@
         player = null;
       }
       const videoId = getVideoId(lessons[current].video);
-      const thumbnailSizes = ['maxresdefault', 'sddefault', 'hqdefault'];
-      let thumbnailIndex = 0;
-      let activePreviewUrl = `https://img.youtube.com/vi/${videoId}/${thumbnailSizes[thumbnailIndex]}.jpg`;
-      playerPreview.onerror = () => {
-        playerPreview.classList.remove('is-loaded');
-        thumbnailIndex += 1;
-        if (thumbnailIndex < thumbnailSizes.length) {
-          activePreviewUrl = `https://img.youtube.com/vi/${videoId}/${thumbnailSizes[thumbnailIndex]}.jpg`;
-          playerPreview.src = activePreviewUrl;
-        }
-      };
+      const activePreviewUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+      playerPreview.onerror = () => playerPreview.classList.remove('is-loaded');
       playerPreview.onload = () => {
         const loadedUrl = playerPreview.currentSrc;
         playerPreview.decode().then(() => {
