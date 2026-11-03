@@ -333,7 +333,7 @@
 
       if (playbackRequested) {
         preparedVideoId = getVideoId(lessons[current].video);
-        beginPlayback();
+        playerStage.setAttribute('aria-label', `Aula: ${lessons[current].title}`);
         playerFrame.title = `Aula: ${lessons[current].title}`;
         if (playerReady) {
           youtubePlayer.loadVideoById(preparedVideoId);
