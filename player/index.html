@@ -26,16 +26,17 @@
     .header button{border:.125rem solid #fff;padding:.4rem .8rem;border-radius:.5rem;cursor:pointer;font-family: inherit;font-size:.85rem;font-weight:600;transition:opacity .2s ease;display:inline-flex;align-items:center;gap:.5rem; -webkit-tap-highlight-color: transparent;}
     #exit{background:transparent;color:#fff;border:.0625rem solid #fff}
     #next{background:#fff;color:#091838}
-    .header button:disabled{opacity:.5;cursor:not-allowed}
+    .header button:disabled{opacity:.5;cursor:not-allowed;user-select:none;-webkit-user-select:none}
     .header button svg{width:1rem;height:1rem;display:block;flex-shrink:0}
     .list{display:flex;gap:1rem;padding:0 1rem 1rem;overflow-x:auto;width:100%;flex-shrink:0;scroll-behavior:smooth}
-    .card{display:flex;flex-direction:column;gap:.4rem;color:inherit;text-decoration:none;cursor:pointer;flex:0 0 14rem;scroll-snap-align:start;min-width:0;outline:0;-webkit-tap-highlight-color: transparent;
+    .card{display:flex;flex-direction:column;gap:.4rem;color:inherit;text-decoration:none;cursor:pointer;flex:0 0 14rem;scroll-snap-align:start;min-width:0;outline:0;content-visibility:auto;contain-intrinsic-size:14rem 10rem;-webkit-tap-highlight-color: transparent;
 }
-    .card img{width:100%;height:7.875rem;object-fit:cover;border-radius:.5rem;border:0;transition:none;-webkit-tap-highlight-color:transparent}
+    .card img{width:100%;height:7.875rem;object-fit:cover;border-radius:.5rem;border:0;opacity:0;transition:opacity .15s ease;-webkit-tap-highlight-color:transparent}
+    .card img.is-loaded{opacity:1}
     .card.ativo .lesson-thumbnail img{outline:.125rem solid #fff;outline-offset:-.125rem}
     .card:focus img,.card:focus-visible img{box-shadow:none}
     .card span{font-size:.85rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block;width:100%}
-    .lesson-thumbnail{position:relative}
+    .lesson-thumbnail{position:relative;contain:paint;background-color:#13213b}
     .lesson-thumbnail img{display:block}
     .lesson-duration{position:absolute;right:.5rem;bottom:.5rem;width:auto!important;padding:.15rem .35rem;border-radius:.25rem;background:rgba(0,0,0,.8);color:#fff;font-size:.75rem!important;line-height:1.4;font-variant-numeric:tabular-nums;pointer-events:none}
     .lesson-copy{display:flex;flex-direction:column;gap:.4rem;min-width:0}
@@ -44,7 +45,7 @@
       .player-title{line-height:1}
       .player-episode{line-height:1}
       .list{flex-direction:column;overflow-x:visible;scroll-snap-type:none}
-      .card{flex:none;width:100%;display:flex;flex-direction:row;align-items:center;gap:.75rem}
+      .card{flex:none;width:100%;display:flex;flex-direction:row;align-items:center;gap:.75rem;contain-intrinsic-size:auto 4.5rem}
       .card .lesson-thumbnail{flex:0 0 min(34vw,11rem)}
       .card .lesson-thumbnail img{height:auto;aspect-ratio:16 / 9;object-fit:contain}
       .card .lesson-copy{display:block;flex:1;min-width:0;align-self:flex-start;line-height:1.15}
@@ -126,6 +127,17 @@
       return match ? match[1] : video.searchParams.get('v');
     };
 
+    const revealThumbnail = image => {
+      const loadedSource = image.currentSrc;
+      image.decode().then(() => {
+        if (image.currentSrc === loadedSource) image.classList.add('is-loaded');
+      }).catch(() => {
+        if (image.currentSrc === loadedSource && image.complete && image.naturalWidth > 0) {
+          image.classList.add('is-loaded');
+        }
+      });
+    };
+
     const initializeYoutubePlayer = () => {
       if (!playerApiReady || !playerFrame || youtubePlayer) return;
       youtubePlayer = new YT.Player(playerFrame, {
@@ -187,7 +199,7 @@
     list.innerHTML = lessons.map((item,index) => `
       <div class="card ${index === current ? 'ativo' : ''}">
         <div class="lesson-thumbnail">
-          <img src="https://img.youtube.com/vi/${getVideoId(item.video)}/maxresdefault.jpg" alt="" loading="lazy" onerror="this.onerror=null;this.src='${item.thumb}'">
+          <img src="https://img.youtube.com/vi/${getVideoId(item.video)}/maxresdefault.jpg" data-fallback="${item.thumb}" alt="" loading="lazy" decoding="async" fetchpriority="low">
           ${item.duration ? `<span class="lesson-duration" aria-label="Duração: ${item.duration}">${item.duration}</span>` : ''}
         </div>
         <div class="lesson-copy">
@@ -200,6 +212,19 @@
     const cards = Array.from(
       list.querySelectorAll('.card')
     );
+
+    list.querySelectorAll('.lesson-thumbnail img').forEach(image => {
+      image.addEventListener('load', () => revealThumbnail(image));
+      image.addEventListener('error', () => {
+        image.classList.remove('is-loaded');
+        const fallback = image.dataset.fallback;
+        if (fallback) {
+          image.dataset.fallback = '';
+          image.src = fallback;
+        }
+      });
+      if (image.complete && image.naturalWidth > 0) revealThumbnail(image);
+    });
 
     const showPreview = () => {
       preparePlayer();
