@@ -15,9 +15,12 @@
     .player-stage [hidden]{display:none!important}
     .player-stage iframe,.player-preview{position:absolute;inset:0;width:100%;height:100%;border:0}
     .player-stage iframe{z-index:0}
-    .player-preview{z-index:1;object-fit:cover;opacity:1}
-    .player-preview.is-leaving{pointer-events:none;opacity:0;transition:opacity 180ms ease 180ms}
-    @media (prefers-reduced-motion:reduce){.player-preview.is-leaving{transition:none}}
+    .player-cover{position:absolute;inset:0;z-index:1;background:#000}
+    .player-preview{z-index:2;object-fit:cover}
+    .player-loading{position:absolute;inset:0;z-index:3;display:grid;place-items:center;pointer-events:none}
+    .player-loading::after{content:'';width:2.5rem;height:2.5rem;border:.2rem solid #444;border-top-color:#fff;border-radius:50%;animation:player-spin .8s linear infinite}
+    @keyframes player-spin{to{transform:rotate(360deg)}}
+    @media (prefers-reduced-motion:reduce){.player-loading::after{animation:none}}
     .player-title{position:absolute;z-index:2;top:clamp(.75rem,2vw,1.5rem);left:clamp(.75rem,2vw,1.5rem);display:block;max-width:calc(100% - 2rem);padding:0;color:#fff;font-size:clamp(1rem,2vw,1.5rem);font-weight:700;line-height:1.2;text-shadow:0 2px 5px rgba(0,0,0,.8);overflow-wrap:anywhere;pointer-events:none}
     .player-episode{font-size:clamp(.8rem,1.5vw,1rem);font-weight:600}
     .play-preview{position:absolute;z-index:2;top:50%;left:50%;display:grid;width:clamp(3.25rem,9vw,4.5rem);height:clamp(3.25rem,9vw,4.5rem);place-items:center;transform:translate(-50%,-50%);padding:0;border:0;border-radius:50%;outline:0;box-shadow:none;background:rgba(0,0,0,.62);color:#fff;cursor:pointer;transition:background-color .2s ease;-webkit-tap-highlight-color:transparent;appearance:none;-webkit-appearance:none}
@@ -62,7 +65,9 @@
   <main>
 
     <section class="player-stage" id="playerStage" aria-label="Prévia da aula">
-      <img class="player-preview" id="playerPreview" src="" alt="Prévia da aula">
+      <div class="player-cover" id="playerCover" aria-hidden="true"></div>
+      <img class="player-preview" id="playerPreview" alt="" hidden>
+      <div class="player-loading" id="playerLoading" role="status" aria-label="Carregando vídeo" hidden></div>
       <div class="player-title" id="playerTitle">
         <span id="playerLessonTitle"></span><br><span class="player-episode" id="playerEpisode"></span>
       </div>
@@ -103,6 +108,8 @@
     const exit = document.getElementById('exit');
     const next = document.getElementById('next');
     const playerStage = document.getElementById('playerStage');
+    const playerCover = document.getElementById('playerCover');
+    const playerLoading = document.getElementById('playerLoading');
     const playerPreview = document.getElementById('playerPreview');
     const playerTitle = document.getElementById('playerTitle');
     const playerLessonTitle = document.getElementById('playerLessonTitle');
@@ -116,23 +123,37 @@
     let iframeVideoId = null;
     let preparedVideoId = null;
     let playbackRequested = false;
-    let previewTimer = null;
+    let previewActive = false;
+
+    playerPreview.addEventListener('load', () => {
+      // A late load must never restore the preview after Play or recovery.
+      playerPreview.hidden = !previewActive || playbackRequested ||
+        !playerPreview.complete || playerPreview.naturalWidth === 0;
+    });
+    playerPreview.addEventListener('error', () => {
+      playerPreview.hidden = true;
+    });
 
     const dismissPreview = () => {
-      clearTimeout(previewTimer);
+      previewActive = false;
       playerPreview.hidden = true;
       playerTitle.hidden = true;
       playPreview.hidden = true;
     };
 
-    const beginPreviewExit = () => {
-      playerTitle.hidden = true;
-      playPreview.hidden = true;
+    const beginPlayback = () => {
+      dismissPreview();
+      playerCover.hidden = false;
+      playerLoading.hidden = false;
+      playerStage.setAttribute('aria-busy', 'true');
       playerStage.setAttribute('aria-label', `Aula: ${lessons[current].title}`);
-      playerPreview.classList.add('is-leaving');
-      // The click dismisses the preview even if the API never reports PLAYING.
-      // A brief cover and fade soften the handoff to the native player.
-      previewTimer = setTimeout(dismissPreview, 360);
+    };
+
+    const revealPlayer = () => {
+      dismissPreview();
+      playerCover.hidden = true;
+      playerLoading.hidden = true;
+      playerStage.setAttribute('aria-busy', 'false');
     };
 
     let current =
@@ -167,29 +188,30 @@
             playerReady = true;
             if (preparedVideoId && preparedVideoId !== iframeVideoId) {
               if (playbackRequested) {
-                event.target.loadVideoById(preparedVideoId);
                 pendingPlayback = false;
+                event.target.loadVideoById(preparedVideoId);
               } else {
                 event.target.cueVideoById(preparedVideoId);
               }
             } else if (pendingPlayback) {
-              event.target.playVideo();
               pendingPlayback = false;
+              event.target.playVideo();
             }
           },
           onStateChange: event => {
             if (event.data === YT.PlayerState.PLAYING) {
               playbackRequested = true;
-              dismissPreview();
+              pendingPlayback = false;
+              revealPlayer();
             }
           },
           onAutoplayBlocked: () => {
             pendingPlayback = false;
-            dismissPreview();
+            revealPlayer();
           },
           onError: () => {
             pendingPlayback = false;
-            dismissPreview();
+            revealPlayer();
           }
         }
       });
@@ -215,6 +237,7 @@
         video.searchParams.set('autoplay', '0');
         video.searchParams.set('enablejsapi', '1');
         video.searchParams.set('playsinline', '1');
+        video.searchParams.set('controls', '1');
         video.searchParams.set('origin', window.location.origin);
 
         playerFrame = document.createElement('iframe');
@@ -262,22 +285,26 @@
     });
 
     const showPreview = () => {
-      preparePlayer();
+      previewActive = true;
+      playerPreview.hidden = true;
+      playerCover.hidden = false;
+      playerLoading.hidden = true;
+      playerStage.setAttribute('aria-busy', 'false');
       const videoId = getVideoId(lessons[current].video);
       const activePreviewUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
       playerPreview.src = activePreviewUrl;
-      playerPreview.alt = `Prévia: ${lessons[current].title}`;
       playerLessonTitle.textContent = lessons[current].title;
       playerEpisode.textContent = `Episódio ${current + 1}`;
       playerTitle.hidden = false;
       playPreview.hidden = false;
       playerStage.setAttribute('aria-label', `Prévia da aula: ${lessons[current].title}`);
+      preparePlayer();
     };
 
     const playCurrent = () => {
       if (playbackRequested) return;
       playbackRequested = true;
-      beginPreviewExit();
+      beginPlayback();
       if (playerReady) {
         youtubePlayer.playVideo();
       } else {
@@ -306,6 +333,8 @@
 
       if (playbackRequested) {
         preparedVideoId = getVideoId(lessons[current].video);
+        beginPlayback();
+        playerFrame.title = `Aula: ${lessons[current].title}`;
         if (playerReady) {
           youtubePlayer.loadVideoById(preparedVideoId);
         } else {
