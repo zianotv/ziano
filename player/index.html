@@ -16,6 +16,8 @@
     .player-stage iframe,.player-preview{position:absolute;inset:0;width:100%;height:100%;border:0}
     .player-stage iframe{z-index:0}
     .player-preview{z-index:1;object-fit:cover;opacity:1}
+    .player-preview.is-leaving{pointer-events:none;opacity:0;transition:opacity 180ms ease 180ms}
+    @media (prefers-reduced-motion:reduce){.player-preview.is-leaving{transition:none}}
     .player-title{position:absolute;z-index:2;top:clamp(.75rem,2vw,1.5rem);left:clamp(.75rem,2vw,1.5rem);display:block;max-width:calc(100% - 2rem);padding:0;color:#fff;font-size:clamp(1rem,2vw,1.5rem);font-weight:700;line-height:1.2;text-shadow:0 2px 5px rgba(0,0,0,.8);overflow-wrap:anywhere;pointer-events:none}
     .player-episode{font-size:clamp(.8rem,1.5vw,1rem);font-weight:600}
     .play-preview{position:absolute;z-index:2;top:50%;left:50%;display:grid;width:clamp(3.25rem,9vw,4.5rem);height:clamp(3.25rem,9vw,4.5rem);place-items:center;transform:translate(-50%,-50%);padding:0;border:0;border-radius:50%;outline:0;box-shadow:none;background:rgba(0,0,0,.62);color:#fff;cursor:pointer;transition:background-color .2s ease;-webkit-tap-highlight-color:transparent;appearance:none;-webkit-appearance:none}
@@ -102,6 +104,7 @@
     const next = document.getElementById('next');
     const playerStage = document.getElementById('playerStage');
     const playerPreview = document.getElementById('playerPreview');
+    const playerTitle = document.getElementById('playerTitle');
     const playerLessonTitle = document.getElementById('playerLessonTitle');
     const playerEpisode = document.getElementById('playerEpisode');
     const playPreview = document.getElementById('playPreview');
@@ -113,7 +116,24 @@
     let iframeVideoId = null;
     let preparedVideoId = null;
     let playbackRequested = false;
-    let playbackStarted = false;
+    let previewTimer = null;
+
+    const dismissPreview = () => {
+      clearTimeout(previewTimer);
+      playerPreview.hidden = true;
+      playerTitle.hidden = true;
+      playPreview.hidden = true;
+    };
+
+    const beginPreviewExit = () => {
+      playerTitle.hidden = true;
+      playPreview.hidden = true;
+      playerStage.setAttribute('aria-label', `Aula: ${lessons[current].title}`);
+      playerPreview.classList.add('is-leaving');
+      // The click dismisses the preview even if the API never reports PLAYING.
+      // A brief cover and fade soften the handoff to the native player.
+      previewTimer = setTimeout(dismissPreview, 360);
+    };
 
     let current =
       Number.isInteger(aulaParam) &&
@@ -159,17 +179,17 @@
           },
           onStateChange: event => {
             if (event.data === YT.PlayerState.PLAYING) {
-              playbackStarted = true;
-              playerPreview.hidden = true;
-              playerTitle.hidden = true;
-              playPreview.hidden = true;
+              playbackRequested = true;
+              dismissPreview();
             }
           },
           onAutoplayBlocked: () => {
-            if (!playbackStarted) {
-              playbackRequested = false;
-              pendingPlayback = false;
-            }
+            pendingPlayback = false;
+            dismissPreview();
+          },
+          onError: () => {
+            pendingPlayback = false;
+            dismissPreview();
           }
         }
       });
@@ -250,13 +270,14 @@
       playerLessonTitle.textContent = lessons[current].title;
       playerEpisode.textContent = `Episódio ${current + 1}`;
       playerTitle.hidden = false;
-      playPreview.hidden = playbackStarted;
+      playPreview.hidden = false;
       playerStage.setAttribute('aria-label', `Prévia da aula: ${lessons[current].title}`);
     };
 
     const playCurrent = () => {
       if (playbackRequested) return;
       playbackRequested = true;
+      beginPreviewExit();
       if (playerReady) {
         youtubePlayer.playVideo();
       } else {

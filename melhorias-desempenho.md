@@ -6,8 +6,11 @@ Notas para aplicar em outro projeto com catálogo de aulas, thumbnails e player 
 
 - Criar o iframe do YouTube assim que a aula for exibida, deixando-o atrás da thumbnail. Assim o player começa a carregar antes da interação.
 - Inicializar o iframe sem reprodução automática (`autoplay=0`) e habilitar a API do player (`enablejsapi=1`).
-- Ao clicar no botão Play, esconder a thumbnail e chamar `playVideo()` no player já carregado. Se o player ainda não estiver pronto, guardar a intenção de reproduzir e iniciar assim que o evento `onReady` chegar.
-- Ao trocar de aula antes do Play, preparar a nova aula sem iniciar a reprodução. Depois que a reprodução já começou, trocar a aula com `loadVideoById()`.
+- Ao clicar no botão Play, chamar `playVideo()` no player já carregado. Se o player ainda não estiver pronto, guardar a intenção de reproduzir e iniciar assim que o evento `onReady` chegar.
+- O clique no Play encerra a prévia: esconder título e botão imediatamente, manter a thumbnail por 180 ms e então retirá-la com um fade de 180 ms. Remover a thumbnail ao fim de 360 ms desde o clique, independentemente de o player estar pronto ou reproduzindo. Com movimento reduzido, omitir a transição.
+- Se `PLAYING` chegar antes, remover a prévia imediatamente. Esse evento apenas antecipa a saída; não é requisito para liberar o iframe. Em bloqueio de autoplay ou erro, liberar imediatamente os controles e mensagens nativos do YouTube.
+- A transição curta reduz o flash do Play vermelho, mas não garante escondê-lo em carregamentos lentos. Não manter uma thumbnail parada indefinidamente aguardando o vídeo.
+- Ao trocar de aula antes do Play, preparar a nova aula sem iniciar a reprodução. Depois que o usuário solicitar reprodução, trocar a aula com `loadVideoById()`.
 - Manter somente `maxresdefault` para a thumbnail grande do player; não percorrer `sddefault` e `hqdefault` como tentativas alternativas.
 
 ## Thumbnails da lista
