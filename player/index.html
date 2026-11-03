@@ -112,6 +112,7 @@
     let pendingPlayback = false;
     let iframeVideoId = null;
     let preparedVideoId = null;
+    let playbackRequested = false;
     let playbackStarted = false;
 
     let current =
@@ -145,7 +146,7 @@
           onReady: event => {
             playerReady = true;
             if (preparedVideoId && preparedVideoId !== iframeVideoId) {
-              if (playbackStarted) {
+              if (playbackRequested) {
                 event.target.loadVideoById(preparedVideoId);
                 pendingPlayback = false;
               } else {
@@ -153,6 +154,20 @@
               }
             } else if (pendingPlayback) {
               event.target.playVideo();
+              pendingPlayback = false;
+            }
+          },
+          onStateChange: event => {
+            if (event.data === YT.PlayerState.PLAYING) {
+              playbackStarted = true;
+              playerPreview.hidden = true;
+              playerTitle.hidden = true;
+              playPreview.hidden = true;
+            }
+          },
+          onAutoplayBlocked: () => {
+            if (!playbackStarted) {
+              playbackRequested = false;
               pendingPlayback = false;
             }
           }
@@ -191,7 +206,7 @@
         playerFrame.src = video.toString();
         playerStage.appendChild(playerFrame);
         initializeYoutubePlayer();
-      } else if (playerReady && !playbackStarted) {
+      } else if (playerReady && !playbackRequested) {
         youtubePlayer.cueVideoById(videoId);
       }
     };
@@ -240,16 +255,13 @@
     };
 
     const playCurrent = () => {
-      if (playbackStarted) return;
-      playbackStarted = true;
+      if (playbackRequested) return;
+      playbackRequested = true;
       if (playerReady) {
         youtubePlayer.playVideo();
       } else {
         pendingPlayback = true;
       }
-      playerPreview.hidden = true;
-      playerTitle.hidden = true;
-      playPreview.hidden = true;
     };
 
     showPreview();
@@ -271,9 +283,7 @@
 
       cards[current].classList.add('ativo');
 
-      if (playbackStarted) {
-        playerPreview.hidden = true;
-        playPreview.hidden = true;
+      if (playbackRequested) {
         preparedVideoId = getVideoId(lessons[current].video);
         if (playerReady) {
           youtubePlayer.loadVideoById(preparedVideoId);
