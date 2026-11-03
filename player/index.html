@@ -11,7 +11,18 @@
     *{margin:0;padding:0;box-sizing:border-box}
     body{background-color:#091838;color:#fff;font-family:'Plus Jakarta Sans',sans-serif}
     main{width:100%;display:flex;flex-direction:column;gap:1.5rem}
-    iframe{width:100%;aspect-ratio:16 / 9;height:auto;max-height:calc(100vh - 7rem);background:#000;border:none;flex-shrink:0}
+    .player-stage{position:relative;width:100%;aspect-ratio:16 / 9;max-height:calc(100vh - 7rem);background:#000;overflow:hidden}
+    .player-stage [hidden]{display:none!important}
+    .player-stage iframe,.player-preview{position:absolute;inset:0;width:100%;height:100%;border:0}
+    .player-stage iframe{z-index:1}
+    .player-preview{object-fit:cover;opacity:0}
+    .player-preview.is-loaded{opacity:1}
+    .player-title{position:absolute;z-index:2;top:clamp(.75rem,2vw,1.5rem);left:clamp(.75rem,2vw,1.5rem);display:block;max-width:calc(100% - 2rem);padding:0;color:#fff;font-size:clamp(1rem,2vw,1.5rem);font-weight:700;line-height:1.2;text-shadow:0 2px 5px rgba(0,0,0,.8);overflow-wrap:anywhere;pointer-events:none}
+    .player-episode{font-size:clamp(.8rem,1.5vw,1rem);font-weight:600}
+    .play-preview{position:absolute;top:50%;left:50%;display:grid;width:clamp(3.25rem,9vw,4.5rem);height:clamp(3.25rem,9vw,4.5rem);place-items:center;transform:translate(-50%,-50%);padding:0;border:0;border-radius:50%;outline:0;box-shadow:none;background:rgba(0,0,0,.62);color:#fff;cursor:pointer;transition:background-color .2s ease;-webkit-tap-highlight-color:transparent;appearance:none;-webkit-appearance:none}
+    .play-preview:focus,.play-preview:focus-visible,.play-preview:active{outline:0;box-shadow:none}
+    .play-preview:hover{background:rgba(0,0,0,.78)}
+    .play-preview svg{width:clamp(1.2rem,3vw,1.6rem);height:clamp(1.2rem,3vw,1.6rem);fill:currentColor}
     .header{display:flex;justify-content:space-between;align-items:center;gap:.5rem;flex-wrap:wrap;padding:0 1rem}
     .header button{border:.125rem solid #fff;padding:.4rem .8rem;border-radius:.5rem;cursor:pointer;font-family: inherit;font-size:.85rem;font-weight:600;transition:opacity .2s ease;display:inline-flex;align-items:center;gap:.5rem; -webkit-tap-highlight-color: transparent;}
     #exit{background:transparent;color:#fff;border:.0625rem solid #fff}
@@ -19,17 +30,26 @@
     .header button:disabled{opacity:.5;cursor:not-allowed}
     .header button svg{width:1rem;height:1rem;display:block;flex-shrink:0}
     .list{display:flex;gap:1rem;padding:0 1rem 1rem;overflow-x:auto;width:100%;flex-shrink:0;scroll-behavior:smooth}
-    .card{display:flex;flex-direction:column;gap:.4rem;color:inherit;text-decoration:none;cursor:pointer;flex:0 0 14rem;scroll-snap-align:start;min-width:0}
-    .card img{width:100%;height:7.875rem;object-fit:cover;border-radius:.5rem;border:.0625rem solid rgba(56,189,248,.2);transition:border-color .2s ease;-webkit-tap-highlight-color: transparent;}
-    .card.ativo img{border:.125rem solid #fff}
+    .card{display:flex;flex-direction:column;gap:.4rem;color:inherit;text-decoration:none;cursor:pointer;flex:0 0 14rem;scroll-snap-align:start;min-width:0;outline:0}
+    .card img{width:100%;height:7.875rem;object-fit:cover;border-radius:.5rem;border:0;transition:none;-webkit-tap-highlight-color:transparent}
+    .card.ativo .lesson-thumbnail img{outline:.125rem solid #fff;outline-offset:-.125rem}
+    .card:focus img,.card:focus-visible img{box-shadow:none}
     .card span{font-size:.85rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block;width:100%}
     .lesson-thumbnail{position:relative}
     .lesson-thumbnail img{display:block}
     .lesson-duration{position:absolute;right:.5rem;bottom:.5rem;width:auto!important;padding:.15rem .35rem;border-radius:.25rem;background:rgba(0,0,0,.8);color:#fff;font-size:.75rem!important;line-height:1.4;font-variant-numeric:tabular-nums;pointer-events:none}
+    .lesson-copy{display:flex;flex-direction:column;gap:.4rem;min-width:0}
+    .lesson-episode{order:-1}
     @media (max-width:768px){
+      .player-title{line-height:1}
+      .player-episode{line-height:1}
       .list{flex-direction:column;overflow-x:visible;scroll-snap-type:none}
-      .card{flex:none;width:100%}
-      .lesson-thumbnail img{height:auto;aspect-ratio:16 / 9}
+      .card{flex:none;width:100%;display:flex;flex-direction:row;align-items:center;gap:.75rem}
+      .card .lesson-thumbnail{flex:0 0 min(34vw,11rem)}
+      .card .lesson-thumbnail img{height:auto;aspect-ratio:16 / 9;object-fit:contain}
+      .card .lesson-copy{display:block;flex:1;min-width:0;align-self:flex-start;line-height:1.15}
+      .card .lesson-title,.card .lesson-episode{display:block;width:auto;margin:0;padding:0;white-space:normal;line-height:1.15}
+      .card .lesson-episode{margin-top:.3rem;font-size:.75rem}
     }
   </style>
 </head>
@@ -38,13 +58,15 @@
 
   <main>
 
-    <iframe
-      name="player"
-      src=""
-      loading="lazy"
-      allow="autoplay; encrypted-media"
-      allowfullscreen
-    ></iframe>
+    <section class="player-stage" id="playerStage" aria-label="Prévia da aula">
+      <img class="player-preview" id="playerPreview" src="" alt="Prévia da aula">
+      <div class="player-title" id="playerTitle">
+        <span id="playerLessonTitle"></span><br><span class="player-episode" id="playerEpisode"></span>
+      </div>
+      <button class="play-preview" id="playPreview" type="button" aria-label="Reproduzir aula">
+        <svg viewBox="0 0 36 36" aria-hidden="true"><path d="M32.16,16.08,8.94,4.47A2.07,2.07,0,0,0,6,6.32V29.53a2.06,2.06,0,0,0,3,1.85L32.16,19.77a2.07,2.07,0,0,0,0-3.7Z"></path></svg>
+      </button>
+    </section>
 
     <section class="header">
       <button id="exit">
@@ -77,7 +99,13 @@
     const list = document.getElementById('list');
     const exit = document.getElementById('exit');
     const next = document.getElementById('next');
-    const player = document.querySelector('iframe');
+    const playerStage = document.getElementById('playerStage');
+    const playerPreview = document.getElementById('playerPreview');
+    const playerLessonTitle = document.getElementById('playerLessonTitle');
+    const playerEpisode = document.getElementById('playerEpisode');
+    const playPreview = document.getElementById('playPreview');
+    let player = null;
+    let playbackStarted = false;
 
     let current =
       Number.isInteger(aulaParam) &&
@@ -86,14 +114,22 @@
         ? aulaParam
         : 0;
 
+    const getVideoId = videoUrl => {
+      const video = new URL(videoUrl);
+      const match = video.pathname.match(/\/(?:embed|shorts|live)\/([^/]+)/);
+      return match ? match[1] : video.searchParams.get('v');
+    };
+
     list.innerHTML = lessons.map((item,index) => `
       <div class="card ${index === current ? 'ativo' : ''}">
         <div class="lesson-thumbnail">
-          <img src="${item.thumb}" alt="" loading="lazy">
+          <img src="https://img.youtube.com/vi/${getVideoId(item.video)}/maxresdefault.jpg" alt="" loading="lazy" onerror="this.onerror=null;this.src='${item.thumb}'">
           ${item.duration ? `<span class="lesson-duration" aria-label="Duração: ${item.duration}">${item.duration}</span>` : ''}
         </div>
-        <span class="lesson-episode">Episódio ${index + 1}</span>
-        <span class="lesson-title">${item.title}</span>
+        <div class="lesson-copy">
+          <span class="lesson-title">${item.title}</span>
+          <span class="lesson-episode">Episódio ${index + 1}</span>
+        </div>
       </div>
     `).join('');
 
@@ -101,7 +137,64 @@
       list.querySelectorAll('.card')
     );
 
-    player.src = lessons[current].video;
+    const showPreview = () => {
+      if (player) {
+        player.remove();
+        player = null;
+      }
+      const videoId = getVideoId(lessons[current].video);
+      const thumbnailSizes = ['maxresdefault', 'sddefault', 'hqdefault'];
+      let thumbnailIndex = 0;
+      let activePreviewUrl = `https://img.youtube.com/vi/${videoId}/${thumbnailSizes[thumbnailIndex]}.jpg`;
+      playerPreview.onerror = () => {
+        playerPreview.classList.remove('is-loaded');
+        thumbnailIndex += 1;
+        if (thumbnailIndex < thumbnailSizes.length) {
+          activePreviewUrl = `https://img.youtube.com/vi/${videoId}/${thumbnailSizes[thumbnailIndex]}.jpg`;
+          playerPreview.src = activePreviewUrl;
+        }
+      };
+      playerPreview.onload = () => {
+        const loadedUrl = playerPreview.currentSrc;
+        playerPreview.decode().then(() => {
+          if (playerPreview.currentSrc === loadedUrl && loadedUrl === activePreviewUrl) {
+            playerPreview.classList.add('is-loaded');
+          }
+        }).catch(() => {
+          if (playerPreview.currentSrc === loadedUrl && loadedUrl === activePreviewUrl) {
+            playerPreview.classList.add('is-loaded');
+          }
+        });
+      };
+      playerPreview.classList.remove('is-loaded');
+      playerPreview.src = activePreviewUrl;
+      playerPreview.alt = `Prévia: ${lessons[current].title}`;
+      playerLessonTitle.textContent = lessons[current].title;
+      playerEpisode.textContent = `Episódio ${current + 1}`;
+      playerTitle.hidden = false;
+      playPreview.hidden = playbackStarted;
+      playerStage.setAttribute('aria-label', `Prévia da aula: ${lessons[current].title}`);
+    };
+
+    const playCurrent = () => {
+      if (player) return;
+      playbackStarted = true;
+      player = document.createElement('iframe');
+      player.name = 'player';
+      player.loading = 'eager';
+      player.allow = 'autoplay; encrypted-media';
+      player.allowFullscreen = true;
+      const video = new URL(lessons[current].video);
+      video.searchParams.set('autoplay', '1');
+      player.src = video.toString();
+      playerStage.appendChild(player);
+      playerPreview.hidden = true;
+      playerTitle.hidden = true;
+      playPreview.hidden = true;
+    };
+
+    showPreview();
+    playPreview.addEventListener('click', playCurrent);
 
     next.toggleAttribute(
       'disabled',
@@ -119,7 +212,15 @@
 
       cards[current].classList.add('ativo');
 
-      player.src = lessons[current].video;
+      if (playbackStarted) {
+        playerPreview.hidden = true;
+        playPreview.hidden = true;
+        if (player) player.remove();
+        player = null;
+        playCurrent();
+      } else {
+        showPreview();
+      }
 
       next.toggleAttribute(
         'disabled',
