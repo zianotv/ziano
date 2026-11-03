@@ -1,7 +1,5 @@
 let currentCategory = 'all';
 let currentSearch = '';
-let currentPage = 1;
-const itemsPerPage = 10;
 const favoritesKey = 'zianotv-favorites';
 
 const sidebar = document.getElementById('sidebar');
@@ -9,9 +7,6 @@ const overlay = document.getElementById('overlay');
 const categoryNav = document.getElementById('categoryNav');
 const categoryTitle = document.getElementById('categoryTitle');
 const courseGrid = document.getElementById('courseGrid');
-const paginationStatus = document.getElementById('paginationStatus');
-const previous = document.getElementById('previous');
-const next = document.getElementById('next');
 const mobileMenu = document.getElementById('mobileMenu');
 const courseModal = document.getElementById('courseModal');
 const courseModalContent = document.getElementById('courseModalContent');
@@ -59,8 +54,6 @@ function renderCategories() {
 
 function selectCategory(id) {
   currentCategory = id;
-  currentPage = 1;
-
   const category = categories.find(item => item.id === id);
 
   categoryTitle.textContent = category
@@ -102,7 +95,6 @@ function closeSidebarOnMobile() {
 
 function handleSearch(value) {
   currentSearch = value.toLowerCase().trim();
-  currentPage = 1;
   renderGrid();
 }
 
@@ -129,25 +121,7 @@ function getFilteredCourses() {
 
 function renderGrid() {
   const courses = getFilteredCourses();
-  const totalPages = Math.ceil(courses.length / itemsPerPage) || 1;
-
-  if (currentPage > totalPages) {
-    currentPage = totalPages;
-  }
-
-  const start = (currentPage - 1) * itemsPerPage;
-  const visible = courses.slice(start, start + itemsPerPage);
-
-  paginationStatus.textContent =
-    `Página ${currentPage} de ${totalPages}`;
-
-  previous.style.visibility =
-    totalPages > 1 ? 'visible' : 'hidden';
-
-  next.style.visibility =
-    totalPages > 1 ? 'visible' : 'hidden';
-
-  if (!visible.length) {
+  if (!courses.length) {
     courseGrid.innerHTML = `
       <div class="empty">
         <i class="bi bi-mortarboard-fill"></i>
@@ -158,7 +132,7 @@ function renderGrid() {
     return;
   }
 
-  courseGrid.innerHTML = visible.map(course => `
+  courseGrid.innerHTML = courses.map(course => `
     <article
       class="card"
       onclick="openCourse(${course.id})"
@@ -301,18 +275,6 @@ courseModal.addEventListener('cancel', event => {
   event.preventDefault();
   closeCourse();
 });
-
-function changePage(delta) {
-  const totalPages =
-    Math.ceil(getFilteredCourses().length / itemsPerPage) || 1;
-
-  const page = currentPage + delta;
-
-  if (page < 1 || page > totalPages) return;
-
-  currentPage = page;
-  renderGrid();
-}
 
 window.addEventListener('resize', () => {
   if (window.innerWidth > 768) {
