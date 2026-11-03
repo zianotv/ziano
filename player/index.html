@@ -14,9 +14,8 @@
     .player-stage{position:relative;width:100%;aspect-ratio:16 / 9;max-height:calc(100vh - 7rem);background:#000;overflow:hidden}
     .player-stage [hidden]{display:none!important}
     .player-stage iframe,.player-preview{position:absolute;inset:0;width:100%;height:100%;border:0}
-    .player-stage iframe{z-index:1}
-    .player-preview{object-fit:cover;opacity:0}
-    .player-preview.is-loaded{opacity:1}
+    .player-stage iframe{z-index:0}
+    .player-preview{z-index:1;object-fit:cover;opacity:1}
     .player-title{position:absolute;z-index:2;top:clamp(.75rem,2vw,1.5rem);left:clamp(.75rem,2vw,1.5rem);display:block;max-width:calc(100% - 2rem);padding:0;color:#fff;font-size:clamp(1rem,2vw,1.5rem);font-weight:700;line-height:1.2;text-shadow:0 2px 5px rgba(0,0,0,.8);overflow-wrap:anywhere;pointer-events:none}
     .player-episode{font-size:clamp(.8rem,1.5vw,1rem);font-weight:600}
     .play-preview{position:absolute;top:50%;left:50%;display:grid;width:clamp(3.25rem,9vw,4.5rem);height:clamp(3.25rem,9vw,4.5rem);place-items:center;transform:translate(-50%,-50%);padding:0;border:0;border-radius:50%;outline:0;box-shadow:none;background:rgba(0,0,0,.62);color:#fff;cursor:pointer;transition:background-color .2s ease;-webkit-tap-highlight-color:transparent;appearance:none;-webkit-appearance:none}
@@ -105,7 +104,13 @@
     const playerLessonTitle = document.getElementById('playerLessonTitle');
     const playerEpisode = document.getElementById('playerEpisode');
     const playPreview = document.getElementById('playPreview');
-    let player = null;
+    let playerFrame = null;
+    let youtubePlayer = null;
+    let playerReady = false;
+    let playerApiReady = false;
+    let pendingPlayback = false;
+    let iframeVideoId = null;
+    let preparedVideoId = null;
     let playbackStarted = false;
 
     let current =
@@ -119,6 +124,64 @@
       const video = new URL(videoUrl);
       const match = video.pathname.match(/\/(?:embed|shorts|live)\/([^/]+)/);
       return match ? match[1] : video.searchParams.get('v');
+    };
+
+    const initializeYoutubePlayer = () => {
+      if (!playerApiReady || !playerFrame || youtubePlayer) return;
+      youtubePlayer = new YT.Player(playerFrame, {
+        events: {
+          onReady: event => {
+            playerReady = true;
+            if (preparedVideoId && preparedVideoId !== iframeVideoId) {
+              if (playbackStarted) {
+                event.target.loadVideoById(preparedVideoId);
+                pendingPlayback = false;
+              } else {
+                event.target.cueVideoById(preparedVideoId);
+              }
+            } else if (pendingPlayback) {
+              event.target.playVideo();
+              pendingPlayback = false;
+            }
+          }
+        }
+      });
+    };
+
+    window.onYouTubeIframeAPIReady = () => {
+      playerApiReady = true;
+      initializeYoutubePlayer();
+    };
+
+    const youtubeApi = document.createElement('script');
+    youtubeApi.src = 'https://www.youtube.com/iframe_api';
+    youtubeApi.async = true;
+    document.head.appendChild(youtubeApi);
+
+    const preparePlayer = () => {
+      const videoId = getVideoId(lessons[current].video);
+      preparedVideoId = videoId;
+
+      if (!playerFrame) {
+        iframeVideoId = videoId;
+        const video = new URL(lessons[current].video);
+        video.searchParams.set('autoplay', '0');
+        video.searchParams.set('enablejsapi', '1');
+        video.searchParams.set('playsinline', '1');
+        video.searchParams.set('origin', window.location.origin);
+
+        playerFrame = document.createElement('iframe');
+        playerFrame.id = 'youtubePlayerFrame';
+        playerFrame.name = 'player';
+        playerFrame.allow = 'autoplay; encrypted-media; picture-in-picture';
+        playerFrame.allowFullscreen = true;
+        playerFrame.title = `Aula: ${lessons[current].title}`;
+        playerFrame.src = video.toString();
+        playerStage.appendChild(playerFrame);
+        initializeYoutubePlayer();
+      } else if (playerReady && !playbackStarted) {
+        youtubePlayer.cueVideoById(videoId);
+      }
     };
 
     list.innerHTML = lessons.map((item,index) => `
@@ -139,26 +202,9 @@
     );
 
     const showPreview = () => {
-      if (player) {
-        player.remove();
-        player = null;
-      }
+      preparePlayer();
       const videoId = getVideoId(lessons[current].video);
       const activePreviewUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
-      playerPreview.onerror = () => playerPreview.classList.remove('is-loaded');
-      playerPreview.onload = () => {
-        const loadedUrl = playerPreview.currentSrc;
-        playerPreview.decode().then(() => {
-          if (playerPreview.currentSrc === loadedUrl && loadedUrl === activePreviewUrl) {
-            playerPreview.classList.add('is-loaded');
-          }
-        }).catch(() => {
-          if (playerPreview.currentSrc === loadedUrl && loadedUrl === activePreviewUrl) {
-            playerPreview.classList.add('is-loaded');
-          }
-        });
-      };
-      playerPreview.classList.remove('is-loaded');
       playerPreview.src = activePreviewUrl;
       playerPreview.alt = `Prévia: ${lessons[current].title}`;
       playerLessonTitle.textContent = lessons[current].title;
@@ -169,16 +215,13 @@
     };
 
     const playCurrent = () => {
-      if (player) return;
+      if (playbackStarted) return;
       playbackStarted = true;
-      player = document.createElement('iframe');
-      player.name = 'player';
-      player.allow = 'autoplay; encrypted-media';
-      player.allowFullscreen = true;
-      const video = new URL(lessons[current].video);
-      video.searchParams.set('autoplay', '1');
-      player.src = video.toString();
-      playerStage.appendChild(player);
+      if (playerReady) {
+        youtubePlayer.playVideo();
+      } else {
+        pendingPlayback = true;
+      }
       playerPreview.hidden = true;
       playerTitle.hidden = true;
       playPreview.hidden = true;
@@ -206,9 +249,12 @@
       if (playbackStarted) {
         playerPreview.hidden = true;
         playPreview.hidden = true;
-        if (player) player.remove();
-        player = null;
-        playCurrent();
+        preparedVideoId = getVideoId(lessons[current].video);
+        if (playerReady) {
+          youtubePlayer.loadVideoById(preparedVideoId);
+        } else {
+          pendingPlayback = true;
+        }
       } else {
         showPreview();
       }
