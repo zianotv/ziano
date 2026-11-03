@@ -34,8 +34,7 @@ flex: 0 0 18rem;
 flex-direction: column;
 background: rgba(4, 9, 23, .84);
 border-right: .0625rem solid rgba(56, 189, 248, .1);
-backdrop-filter: blur(.875rem);
-transition: flex-basis .2s ease
+backdrop-filter: blur(.875rem)
 }
 
 .sidebar-header {
@@ -91,7 +90,7 @@ background: transparent;
 text-align: left
 }
 
-.category-button:hover {
+.category-button:not(.experiment-link):hover {
 background: rgba(255, 255, 255, .05);
 color: #fff
 }
@@ -185,24 +184,32 @@ gap: .75rem
 }
 
 .search {
-position: absolute;
-top: 50%;
-right: 1.5rem;
+position: relative;
 width: 18rem;
-transform: translateY(-50%)
+max-width: 100%;
+min-width: 0;
+margin-left: auto
 }
 
 .search i {
 position: absolute;
 top: 50%;
-left: .875rem;
+right: .875rem;
+width: 1em;
+height: 1em;
+display: flex;
+align-items: center;
+justify-content: center;
 transform: translateY(-50%);
+line-height: 1;
+pointer-events: none;
 color: #fff
 }
 
 .search input {
+display: block;
 width: 100%;
-padding: .5625rem 1rem .5625rem 2.5rem;
+padding: .5625rem 2.5rem .5625rem 1rem;
 border: .0625rem solid rgba(148, 163, 184, .35);
 border-radius: .75rem;
 outline: 0;
@@ -216,37 +223,6 @@ color: #94a3b8
 
 .search input:focus {
 border-color: rgba(56, 189, 248, .5)
-}
-
-.pagination {
-position: absolute;
-top: 50%;
-left: 50%;
-display: flex;
-align-items: center;
-gap: .5rem;
-transform: translate(-50%, -50%)
-}
-
-.pagination button {
-display: grid;
-width: 2rem;
-height: 2rem;
-place-items: center;
-border: 0;
-border-radius: .5rem;
-color: #7dd3fc;
-background: transparent
-}
-
-.pagination button:hover {
-background: rgba(56, 189, 248, .2)
-}
-
-.pagination span {
-padding: 0 .5rem;
-font-size: .875rem;
-white-space: nowrap
 }
 
 .catalog {
@@ -508,8 +484,7 @@ stroke: #fbbf24
 
 .sidebar-toggle:active,
 .mobile-menu:active,
-.category-button:active,
-.pagination button:active {
+.category-button:active {
 background: transparent;
 color: inherit;
 border-color: transparent;
@@ -522,7 +497,443 @@ outline: 0
 }
 }
 
-@media (max-width:768px) {
+html[data-client="mobile"] body {
+    overflow: auto
+}
+
+html[data-client="mobile"] .app {
+    min-height: 100vh;
+    height: auto;
+    overflow: visible
+}
+
+html[data-client="mobile"] .sidebar {
+    position: fixed;
+    z-index: 20;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: min(70vh, 32.5rem);
+    flex-basis: auto;
+    border-top: .0625rem solid rgba(56, 189, 248, .15);
+    border-right: 0;
+    transform: translateY(100%);
+    transition: transform .2s ease
+}
+
+html[data-client="mobile"] .sidebar.open {
+    transform: translateY(0)
+}
+
+html[data-client="mobile"] .sidebar.collapsed {
+    flex-basis: auto
+}
+
+html[data-client="mobile"] .sidebar-header {
+    height: 5rem;
+    flex: 0 0 5rem;
+    padding: 1.25rem
+}
+
+html[data-client="mobile"] .sidebar.collapsed .sidebar-header {
+    width: auto;
+    justify-content: initial;
+    padding: 1.25rem
+}
+
+html[data-client="mobile"] .sidebar.collapsed .brand {
+    display: block
+}
+
+html[data-client="mobile"] .sidebar-toggle {
+    display: none
+}
+
+html[data-client="mobile"] .mobile-close {
+    display: grid;
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-left: auto;
+    place-items: center;
+    border: 0;
+    color: #fff;
+    background: transparent;
+    font-size: 1.25rem
+}
+
+html[data-client="mobile"] .category-nav,
+html[data-client="mobile"] .sidebar.collapsed .category-nav {
+    display: flex;
+    align-items: stretch;
+    padding: 1rem .75rem;
+    overflow-y: auto
+}
+
+html[data-client="mobile"] .category-button,
+html[data-client="mobile"] .sidebar.collapsed .category-button {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    gap: .875rem;
+    padding: .75rem 1rem
+}
+
+html[data-client="mobile"] .category-button span,
+html[data-client="mobile"] .sidebar.collapsed .category-button span {
+    display: inline
+}
+
+html[data-client="mobile"] .category-button i,
+html[data-client="mobile"] .sidebar.collapsed .category-button i {
+    width: 1.125rem
+}
+
+html[data-client="mobile"] .main {
+    min-height: 100vh
+}
+
+html[data-client="mobile"] .header {
+    align-items: stretch;
+    flex-direction: column;
+    gap: .75rem;
+    padding: 1rem
+}
+
+html[data-client="mobile"] .heading {
+    position: static
+}
+
+html[data-client="mobile"] .mobile-menu {
+    display: block;
+    flex: 0 0 2.5rem
+}
+
+html[data-client="mobile"] .header-title {
+    font-size: 1.1rem
+}
+
+html[data-client="mobile"] .search {
+    width: 100%
+}
+
+html[data-client="mobile"] .catalog {
+    padding: 1rem 1rem 3rem;
+    overflow: visible
+}
+
+html[data-client="mobile"] .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem .75rem
+}
+
+html[data-client="mobile"] .overlay {
+    position: fixed;
+    z-index: 10;
+    inset: 0;
+    display: block;
+    border: 0;
+    background: rgba(2, 6, 23, .65);
+    backdrop-filter: blur(.125rem)
+}
+
+html[data-client="mobile"] .overlay.hidden {
+    display: none
+}
+
+html[data-client="mobile"] dialog {
+    width: calc(100% - 1rem);
+    max-height: 94vh
+}
+
+html[data-client="mobile"] .course-modal {
+    padding: 1.25rem
+}
+
+html[data-client="mobile"] .modal-thumb {
+    display: none
+}
+
+html[data-client="mobile"] .modal-header {
+    display: block
+}
+
+html[data-client="mobile"] .modal-info h2 {
+    padding-right: 3rem;
+    font-size: 1.5rem
+}
+
+html[data-client="mobile"] .modal-actions {
+    flex-wrap: wrap
+}
+
+.category-button.experiment-link {
+text-decoration: none
+}
+
+.category-button.experiment-link,
+.category-button.experiment-link:hover,
+.category-button.experiment-link:active {
+background: transparent;
+color: rgba(226, 232, 240, .72);
+transition: none
+}
+
+@media (max-width: 1200px) {
+html[data-client="desktop"] .catalog-page .header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(10rem, 18rem);
+    gap: .75rem 1rem;
+    flex-shrink: 0
+}
+
+html[data-client="desktop"] .catalog-page .header-title {
+    white-space: normal
+}
+
+html[data-client="desktop"] .catalog-page .search {
+    width: 100%
+}
+
+}
+
+@media (max-width: 1000px) {
+html[data-client="desktop"] .catalog-page .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr))
+}
+}
+
+@media (max-width: 768px) {
+html[data-client="desktop"] body.catalog-page {
+    overflow: auto
+}
+
+html[data-client="desktop"] .catalog-page .app {
+    min-height: 100vh;
+    height: auto;
+    overflow: visible
+}
+
+html[data-client="desktop"] .catalog-page .sidebar {
+    position: fixed;
+    z-index: 20;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: min(70vh, 32.5rem);
+    flex-basis: auto;
+    border-top: .0625rem solid rgba(56, 189, 248, .15);
+    border-right: 0;
+    transform: translateY(100%);
+    transition: transform .2s ease
+}
+
+html[data-client="desktop"] .catalog-page .sidebar.open {
+    transform: translateY(0)
+}
+
+html[data-client="desktop"] .catalog-page .sidebar.collapsed {
+    flex-basis: auto
+}
+
+html[data-client="desktop"] .catalog-page .sidebar-header {
+    height: 5rem;
+    flex: 0 0 5rem;
+    padding: 1.25rem
+}
+
+html[data-client="desktop"] .catalog-page .sidebar.collapsed .sidebar-header {
+    width: auto;
+    justify-content: initial;
+    padding: 1.25rem
+}
+
+html[data-client="desktop"] .catalog-page .sidebar.collapsed .brand {
+    display: block
+}
+
+html[data-client="desktop"] .catalog-page .sidebar-toggle {
+    display: none
+}
+
+html[data-client="desktop"] .catalog-page .mobile-close {
+    display: grid;
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-left: auto;
+    place-items: center;
+    border: 0;
+    color: #fff;
+    background: transparent;
+    font-size: 1.25rem
+}
+
+html[data-client="desktop"] .catalog-page .category-nav,
+html[data-client="desktop"] .catalog-page .sidebar.collapsed .category-nav {
+    display: flex;
+    align-items: stretch;
+    padding: 1rem .75rem;
+    overflow-y: auto
+}
+
+html[data-client="desktop"] .catalog-page .category-button,
+html[data-client="desktop"] .catalog-page .sidebar.collapsed .category-button {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    gap: .875rem;
+    padding: .75rem 1rem
+}
+
+html[data-client="desktop"] .catalog-page .category-button span,
+html[data-client="desktop"] .catalog-page .sidebar.collapsed .category-button span {
+    display: inline
+}
+
+html[data-client="desktop"] .catalog-page .category-button i,
+html[data-client="desktop"] .catalog-page .sidebar.collapsed .category-button i {
+    width: 1.125rem
+}
+
+html[data-client="desktop"] .catalog-page .main {
+    min-height: 100vh
+}
+
+html[data-client="desktop"] .catalog-page .header {
+    align-items: stretch;
+    flex-direction: column;
+    gap: .75rem;
+    padding: 1rem
+}
+
+html[data-client="desktop"] .catalog-page .heading {
+    position: static
+}
+
+html[data-client="desktop"] .catalog-page .mobile-menu {
+    display: block;
+    flex: 0 0 2.5rem
+}
+
+html[data-client="desktop"] .catalog-page .header-title {
+    font-size: 1.1rem
+}
+
+html[data-client="desktop"] .catalog-page .search {
+    width: 100%
+}
+
+html[data-client="desktop"] .catalog-page .catalog {
+    padding: 1rem 1rem 3rem;
+    overflow: visible
+}
+
+html[data-client="desktop"] .catalog-page .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem .75rem
+}
+
+html[data-client="desktop"] .catalog-page .overlay {
+    position: fixed;
+    z-index: 10;
+    inset: 0;
+    display: block;
+    border: 0;
+    background: rgba(2, 6, 23, .65);
+    backdrop-filter: blur(.125rem)
+}
+
+html[data-client="desktop"] .catalog-page .overlay.hidden {
+    display: none
+}
+
+html[data-client="desktop"] .catalog-page .header {
+    display: flex;
+    flex-direction: column
+}
+
+html[data-client="desktop"] .catalog-page .mobile-close {
+    display: grid !important
+}
+
+html[data-client="desktop"] .catalog-page .modal-header {
+    flex-direction: column;
+    gap: 1rem
+}
+
+html[data-client="desktop"] .catalog-page .modal-thumb {
+    width: min(12rem, 100%);
+    align-self: flex-start
+}
+
+html[data-client="desktop"] .catalog-page .course-modal {
+    padding: 1.25rem
+}
+
+html[data-client="desktop"] .catalog-page .modal-actions {
+    flex-wrap: wrap
+}
+}
+
+@media (max-width: 768px) {
+dialog#courseModal {
+    width: calc(100% - 1rem);
+    max-height: 94vh;
+    overflow: hidden
+}
+
+#courseModal .course-modal {
+    max-height: 94vh;
+    padding: 1rem;
+    overflow-y: auto
+}
+
+#courseModal .modal-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem
+}
+
+#courseModal .modal-thumb {
+    width: 100%;
+    height: auto;
+    max-height: none;
+    aspect-ratio: auto;
+    align-self: auto;
+    object-fit: contain;
+    object-position: center
+}
+
+#courseModal .modal-info h2 {
+    padding-right: 2.5rem;
+    font-size: 1.35rem
+}
+
+#courseModal .modal-info {
+    gap: .85rem
+}
+
+#courseModal .meta-line {
+    display: block;
+    line-height: 1.5
+}
+
+#courseModal .meta-line strong {
+    display: block;
+    min-width: 0;
+    margin-bottom: .15rem
+}
+
+#courseModal .meta-line span {
+    display: block;
+    overflow-wrap: anywhere
+}
+
+#courseModal .modal-actions {
+    flex-wrap: wrap
+}
+
 body {
     overflow: auto
 }
@@ -552,10 +963,6 @@ body {
     transform: translateY(0)
 }
 
-.sidebar.collapsed {
-    flex-basis: auto
-}
-
 .sidebar-header {
     height: 5rem;
     flex: 0 0 5rem;
@@ -577,7 +984,7 @@ body {
 }
 
 .mobile-close {
-    display: grid;
+    display: grid !important;
     width: 2.5rem;
     height: 2.5rem;
     margin-left: auto;
@@ -640,30 +1047,7 @@ body {
 }
 
 .search {
-    position: relative;
-    top: auto;
-    right: auto;
-    width: 100%;
-    transform: none
-}
-
-.search i {
-    position: absolute;
-    top: 50%;
-    left: .875rem;
-    transform: translateY(-50%);
-    color: #fff
-}
-
-.search input {
     width: 100%
-}
-
-.pagination {
-    position: static;
-    justify-content: center;
-    width: 100%;
-    transform: none
 }
 
 .catalog {
@@ -689,30 +1073,21 @@ body {
 .overlay.hidden {
     display: none
 }
-
-dialog {
-    width: calc(100% - 1rem);
-    max-height: 94vh
 }
 
-.course-modal {
-    padding: 1.25rem
+/* TV uses document scrolling instead of independently scrolling page panels. */
+html[data-client="tv"] body {
+overflow: auto
 }
 
-.modal-thumb {
-    display: none
+html[data-client="tv"] .app {
+height: auto;
+min-height: 100vh;
+overflow: visible
 }
 
-.modal-header {
-    display: block
-}
-
-.modal-info h2 {
-    padding-right: 3rem;
-    font-size: 1.5rem
-}
-
-.modal-actions {
-    flex-wrap: wrap
-}
+html[data-client="tv"] .main,
+html[data-client="tv"] .catalog,
+html[data-client="tv"] .category-nav {
+overflow: visible
 }

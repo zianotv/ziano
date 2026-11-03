@@ -40,55 +40,55 @@ const coursesData = [
         "description": "Se você tem interesse pela área de tecnologia ou dados, Git será uma ferramenta bastante companheira. Esse material poderá te ajudar nessa tragetória.",
         "lessons": [
             {
-                "title": "INSTALAÇÃO e PRIMEIROS CONCEITOS",
+                "title": "Instalação e primeiros conceitos",
                 "duration": "30:35",
                 "thumb": "https://img.youtube.com/vi/84FhNXNWoig/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/84FhNXNWoig?rel=0"
             },
             {
-                "title": "PRIMEIROS COMANDOS",
+                "title": "Primeiros comandos",
                 "duration": "52:18",
                 "thumb": "https://img.youtube.com/vi/RZ0g18hstwQ/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/RZ0g18hstwQ?rel=0"
             },
             {
-                "title": "BRANCHES",
+                "title": "Branches",
                 "duration": "51:12",
                 "thumb": "https://img.youtube.com/vi/pzjdEQOmsLA/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/pzjdEQOmsLA?rel=0"
             },
             {
-                "title": "RESOLVENDO CONFLITOS",
+                "title": "Resolvendo conflitos",
                 "duration": "24:51",
                 "thumb": "https://img.youtube.com/vi/IRmjluONHxU/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/IRmjluONHxU?rel=0"
             },
             {
-                "title": "PULL REQUEST",
+                "title": "Pull request",
                 "duration": "44:23",
                 "thumb": "https://img.youtube.com/vi/Y_fFZjzw-D4/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/Y_fFZjzw-D4?rel=0"
             },
             {
-                "title": "CRIANDO FORK",
+                "title": "Criando fork",
                 "duration": "20:54",
                 "thumb": "https://img.youtube.com/vi/vWtrTmjis2w/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/vWtrTmjis2w?rel=0"
             },
             {
-                "title": "INTEGRAÇÃO VSCODE",
+                "title": "Integração VS Code",
                 "duration": "15:41",
                 "thumb": "https://img.youtube.com/vi/M-mBmYj7Jh4/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/M-mBmYj7Jh4?rel=0"
             },
             {
-                "title": "GIT FLOW",
+                "title": "Git Flow",
                 "duration": "23:13",
                 "thumb": "https://img.youtube.com/vi/l44uGe-sxgM/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/l44uGe-sxgM?rel=0"
             },
             {
-                "title": "GITKEEP e GITIGNORE",
+                "title": ".gitkeep e .gitignore",
                 "duration": "22:14",
                 "thumb": "https://img.youtube.com/vi/spoUnf34R4A/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/spoUnf34R4A?rel=0"
@@ -108,31 +108,31 @@ const coursesData = [
         "description": "A ideia principal deste curso é fornecer o conhecimento mínimo sobre lógica de programação, sintaxe da linguagem Python e suas principais estruturas de dados e controle de fluxo, como laços de repetição e operadores lógicos/condicionais.",
         "lessons": [
             {
-                "title": "Conceitos de Programação e Instalação",
+                "title": "Conceitos de programação e instalação",
                 "duration": "55:12",
                 "thumb": "https://img.youtube.com/vi/OeKzVjiiRm4/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/OeKzVjiiRm4?rel=0"
             },
             {
-                "title": "PRIMEIROS COMANDOS",
+                "title": "Primeiros comandos",
                 "duration": "35:03",
                 "thumb": "https://img.youtube.com/vi/wp23DUYKQt4/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/wp23DUYKQt4?rel=0"
             },
             {
-                "title": "RECEBENDO DADOS",
+                "title": "Recebendo dados",
                 "duration": "34:16",
                 "thumb": "https://img.youtube.com/vi/_40Lzu_C_Ko/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/_40Lzu_C_Ko?rel=0"
             },
             {
-                "title": "IF ELIF ELSE",
+                "title": "if, elif e else",
                 "duration": "52:38",
                 "thumb": "https://img.youtube.com/vi/FV9Pzj3BIuU/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/FV9Pzj3BIuU?rel=0"
             },
             {
-                "title": "LAÇOS DE REPETIÇÃO",
+                "title": "Laços de repetição",
                 "duration": "1:11:45",
                 "thumb": "https://img.youtube.com/vi/HcCH_xXwOcA/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/HcCH_xXwOcA?rel=0"
@@ -144,25 +144,25 @@ const coursesData = [
                 "video": "https://www.youtube.com/embed/deWlTenrlv4?rel=0"
             },
             {
-                "title": "Dicionários e Tuplas",
+                "title": "Dicionários e tuplas",
                 "duration": "1:22:45",
                 "thumb": "https://img.youtube.com/vi/EueiZ_TXe_c/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/EueiZ_TXe_c?rel=0"
             },
             {
-                "title": "Criando Funções",
+                "title": "Criando funções",
                 "duration": "1:17:35",
                 "thumb": "https://img.youtube.com/vi/JZlJ1otXBD8/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/JZlJ1otXBD8?rel=0"
             },
             {
-                "title": "MÓDULOS",
+                "title": "Módulos",
                 "duration": "10:02",
                 "thumb": "https://img.youtube.com/vi/7U_NG78HuA4/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/7U_NG78HuA4?rel=0"
             },
             {
-                "title": "Lidando com ARQUIVOS",
+                "title": "Lidando com arquivos",
                 "duration": "43:34",
                 "thumb": "https://img.youtube.com/vi/3h15kc10fCY/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/3h15kc10fCY?rel=0"
@@ -180,31 +180,31 @@ const coursesData = [
                 "video": "https://www.youtube.com/embed/iBsyZ0RQCqc?rel=0"
             },
             {
-                "title": "Ambientes Virtuais",
+                "title": "Ambientes virtuais",
                 "duration": "22:16",
                 "thumb": "https://img.youtube.com/vi/Xa9SSu8qLHs/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/Xa9SSu8qLHs?rel=0"
             },
             {
-                "title": "Mais sobre Listas",
+                "title": "Mais sobre listas",
                 "duration": "17:47",
                 "thumb": "https://img.youtube.com/vi/QE5_WPaflU0/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/QE5_WPaflU0?rel=0"
             },
             {
-                "title": "Exercícios Parte I",
+                "title": "Exercícios parte I",
                 "duration": "19:11",
                 "thumb": "https://img.youtube.com/vi/XMmbAlsiPXM/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/XMmbAlsiPXM?rel=0"
             },
             {
-                "title": "Exercícios Parte II",
+                "title": "Exercícios parte II",
                 "duration": "32:32",
                 "thumb": "https://img.youtube.com/vi/qND0UuYZ730/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/qND0UuYZ730?rel=0"
             },
             {
-                "title": "Exercícios Parte III",
+                "title": "Exercícios parte III",
                 "duration": "17:25",
                 "thumb": "https://img.youtube.com/vi/rcbyyoNJ-mo/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/rcbyyoNJ-mo?rel=0"
@@ -243,7 +243,7 @@ const coursesData = [
             },
             {
                 "title": "SETUP",
-                "duration": "8:07",
+                "duration": "08:07",
                 "thumb": "https://img.youtube.com/vi/nuOIjVCz2zs/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/nuOIjVCz2zs?rel=0"
             },
@@ -327,7 +327,7 @@ const coursesData = [
             },
             {
                 "title": "HAVING",
-                "duration": "6:08",
+                "duration": "06:08",
                 "thumb": "https://img.youtube.com/vi/AKDAkZDXQu8/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/AKDAkZDXQu8?rel=0"
             },
@@ -418,103 +418,103 @@ const coursesData = [
         "description": "Pandas é uma biblioteca do ecossistema Python, uma das mais utilizadas e melhores documentadas para se trabalhar com processamento e análise de dados.",
         "lessons": [
             {
-                "title": "Ensinando Pandas Ep 01 - Setup + Series",
+                "title": "Setup + Series",
                 "duration": "39:20",
                 "thumb": "https://img.youtube.com/vi/9Cw7iIjFlBc/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/9Cw7iIjFlBc?rel=0"
             },
             {
-                "title": "Ensinando Pandas Ep 02 - iloc e loc",
+                "title": "iloc e loc",
                 "duration": "45:35",
                 "thumb": "https://img.youtube.com/vi/mAR5V-22oA4/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/mAR5V-22oA4?rel=0"
             },
             {
-                "title": "Ensinando Pandas Ep 03 - Importando dados",
+                "title": "Importando dados",
                 "duration": "27:31",
                 "thumb": "https://img.youtube.com/vi/7E5Cr9lMdpU/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/7E5Cr9lMdpU?rel=0"
             },
             {
-                "title": "Ensinando Pandas Ep 04 - Dataframes",
+                "title": "Dataframes",
                 "duration": "44:23",
                 "thumb": "https://img.youtube.com/vi/bMEXh1K17eg/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/bMEXh1K17eg?rel=0"
             },
             {
-                "title": "Ensinando Pandas Ep 05 - Filtros",
+                "title": "Filtros",
                 "duration": "46:08",
                 "thumb": "https://img.youtube.com/vi/GNX0Bvo40M0/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/GNX0Bvo40M0?rel=0"
             },
             {
-                "title": "Ensinando Pandas Ep 06 - Filtros não são cópias",
+                "title": "Filtros não são cópias",
                 "duration": "13:20",
                 "thumb": "https://img.youtube.com/vi/Tg3NVMbcgHs/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/Tg3NVMbcgHs?rel=0"
             },
             {
-                "title": "Ensinando Pandas Ep 07 - Novas colunas e ordenação",
+                "title": "Novas colunas e ordenação",
                 "duration": "38:58",
                 "thumb": "https://img.youtube.com/vi/NluSWHRZPFY/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/NluSWHRZPFY?rel=0"
             },
             {
-                "title": "Ensinando Pandas Ep 08 - ASTYPE e REPLACE",
+                "title": "ASTYPE e REPLACE",
                 "duration": "19:37",
                 "thumb": "https://img.youtube.com/vi/fWy5cNTWTeM/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/fWy5cNTWTeM?rel=0"
             },
             {
-                "title": "Ensinando Pandas Ep 09 - Dados Faltantes!",
+                "title": "Dados Faltantes!",
                 "duration": "25:43",
                 "thumb": "https://img.youtube.com/vi/nN3MmJGDNxM/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/nN3MmJGDNxM?rel=0"
             },
             {
-                "title": "Ensinando Pandas Ep 10 - DUPLICATAS",
+                "title": "DUPLICATAS",
                 "duration": "30:29",
                 "thumb": "https://img.youtube.com/vi/USpeepeztTI/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/USpeepeztTI?rel=0"
             },
             {
-                "title": "Ensinando Pandas Ep 11 - APPLY",
+                "title": "APPLY",
                 "duration": "59:53",
                 "thumb": "https://img.youtube.com/vi/OyO7lzlG3r8/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/OyO7lzlG3r8?rel=0"
             },
             {
-                "title": "Ensinando Pandas Ep 12 - GROUP BY",
+                "title": "GROUP BY",
                 "duration": "49:11",
                 "thumb": "https://img.youtube.com/vi/VKclVgd7kZw/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/VKclVgd7kZw?rel=0"
             },
             {
-                "title": "Ensinando Pandas Ep 13 - MERGE",
+                "title": "MERGE",
                 "duration": "54:10",
                 "thumb": "https://img.youtube.com/vi/w5PLsNnUCTA/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/w5PLsNnUCTA?rel=0"
             },
             {
-                "title": "Ensinando Pandas Ep 14 - CONCAT",
+                "title": "CONCAT",
                 "duration": "35:26",
                 "thumb": "https://img.youtube.com/vi/wOWCd-b8AuE/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/wOWCd-b8AuE?rel=0"
             },
             {
-                "title": "Ensinando Pandas Ep 15 - Conexão com Banco de Dados SQL",
+                "title": "Conexão com Banco de Dados SQL",
                 "duration": "45:37",
                 "thumb": "https://img.youtube.com/vi/u_K93Ry04U4/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/u_K93Ry04U4?rel=0"
             },
             {
-                "title": "Ensinando Pandas Ep 16 - Stack, Unstack e Pivot",
+                "title": "Stack, Unstack e Pivot",
                 "duration": "35:11",
                 "thumb": "https://img.youtube.com/vi/YxfYe2NeFAI/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/YxfYe2NeFAI?rel=0"
             },
             {
-                "title": "Ensinando Pandas Ep 17 - EXPLODE",
+                "title": "EXPLODE",
                 "duration": "31:52",
                 "thumb": "https://img.youtube.com/vi/e3j9PTAjqAk/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/e3j9PTAjqAk?rel=0"
@@ -534,133 +534,133 @@ const coursesData = [
         "favorite": false,
         "lessons": [
             {
-                "title": "APRENDA ESTATÍSTICA 01: População e Amostra",
+                "title": "População e Amostra",
                 "duration": "58:38",
                 "thumb": "https://img.youtube.com/vi/4CcgZXXIl7o/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/4CcgZXXIl7o?rel=0"
             },
             {
-                "title": "APRENDA ESTATÍSTICA 02: Tipos de Variáveis",
+                "title": "Tipos de Variáveis",
                 "duration": "21:06",
                 "thumb": "https://img.youtube.com/vi/FPZBAp8QSRM/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/FPZBAp8QSRM?rel=0"
             },
             {
-                "title": "APRENDA ESTATÍSTICA 03: Tabela de Frequência",
+                "title": "Tabela de Frequência",
                 "duration": "19:33",
                 "thumb": "https://img.youtube.com/vi/qca5fOJ2TTg/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/qca5fOJ2TTg?rel=0"
             },
             {
-                "title": "APRENDA ESTATÍSTICA 04: Tabela de Frequência na PRÁTICA",
+                "title": "Tabela de Frequência na PRÁTICA",
                 "duration": "48:05",
                 "thumb": "https://img.youtube.com/vi/cVpO7V0fu_s/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/cVpO7V0fu_s?rel=0"
             },
             {
-                "title": "APRENDA ESTATÍSTICA 05: Somatórios e Média",
+                "title": "Somatórios e Média",
                 "duration": "39:38",
                 "thumb": "https://img.youtube.com/vi/D0hlGcAmc94/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/D0hlGcAmc94?rel=0"
             },
             {
-                "title": "APRENDA ESTATÍSTICA 06: Mediana e Quartis",
+                "title": "Mediana e Quartis",
                 "duration": "38:13",
                 "thumb": "https://img.youtube.com/vi/sL5tbdc2rCE/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/sL5tbdc2rCE?rel=0"
             },
             {
-                "title": "APRENDA ESTATÍSTICA 07: Medidas de Resumo na Prática (PLANILHAS)",
+                "title": "Medidas de Resumo na Prática (PLANILHAS)",
                 "duration": "25:22",
                 "thumb": "https://img.youtube.com/vi/hgxLeea6Hr8/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/hgxLeea6Hr8?rel=0"
             },
             {
-                "title": "APRENDA ESTATÍSTICA 08: Medidas de Resumo na Prática (PYTHON)",
+                "title": "Medidas de Resumo na Prática (PYTHON)",
                 "duration": "17:27",
                 "thumb": "https://img.youtube.com/vi/9D_c_22lRL8/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/9D_c_22lRL8?rel=0"
             },
             {
-                "title": "APRENDA ESTATÍSTICA 09: Medidas de Resumo na Prática (SQL)",
+                "title": "Medidas de Resumo na Prática (SQL)",
                 "duration": "23:26",
                 "thumb": "https://img.youtube.com/vi/eTBXmQmyqMc/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/eTBXmQmyqMc?rel=0"
             },
             {
-                "title": "APRENDA ESTATÍSTICA 10: Medidas de Dispersão",
+                "title": "Medidas de Dispersão",
                 "duration": "22:41",
                 "thumb": "https://img.youtube.com/vi/0kdgO0E4Rg8/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/0kdgO0E4Rg8?rel=0"
             },
             {
-                "title": "APRENDA ESTATÍSTICA 11: Medidas de Dispersão (PLANILHAS)",
+                "title": "Medidas de Dispersão (PLANILHAS)",
                 "duration": "11:23",
                 "thumb": "https://img.youtube.com/vi/BCAbwdkdfhM/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/BCAbwdkdfhM?rel=0"
             },
             {
-                "title": "APRENDA ESTATÍSTICA 12: Medidas de Dispersão (PYTHON)",
+                "title": "Medidas de Dispersão (PYTHON)",
                 "duration": "10:55",
                 "thumb": "https://img.youtube.com/vi/aZ7ufhnsblY/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/aZ7ufhnsblY?rel=0"
             },
             {
-                "title": "APRENDA ESTATÍSTICA 13: Gráficos",
+                "title": "Gráficos",
                 "duration": "55:02",
                 "thumb": "https://img.youtube.com/vi/BAhz7OgJyAQ/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/BAhz7OgJyAQ?rel=0"
             },
             {
-                "title": "APRENDA ESTATÍSTICA 14: Gráficos (PLANILHAS)",
+                "title": "Gráficos (PLANILHAS)",
                 "duration": "18:24",
                 "thumb": "https://img.youtube.com/vi/ZmYG2dPJxfw/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/ZmYG2dPJxfw?rel=0"
             },
             {
-                "title": "APRENDA ESTATÍSTICA 15: Gráficos (PYTHON)",
+                "title": "Gráficos (PYTHON)",
                 "duration": "27:54",
                 "thumb": "https://img.youtube.com/vi/_PzfSLBn22k/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/_PzfSLBn22k?rel=0"
             },
             {
-                "title": "APRENDA ESTATÍSTICA 16: Probabilidade",
+                "title": "Probabilidade",
                 "duration": "1:28:58",
                 "thumb": "https://img.youtube.com/vi/cZyp6Tq9V-0/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/cZyp6Tq9V-0?rel=0"
             },
             {
-                "title": "APRENDA ESTATÍSTICA 17: Probabilidade (PLANILHAS)",
+                "title": "Probabilidade (PLANILHAS)",
                 "duration": "13:37",
                 "thumb": "https://img.youtube.com/vi/P48vFrhhKf0/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/P48vFrhhKf0?rel=0"
             },
             {
-                "title": "APRENDA ESTATÍSTICA 18: Distribuição Bernoulli",
+                "title": "Distribuição Bernoulli",
                 "duration": "55:27",
                 "thumb": "https://img.youtube.com/vi/QoMwhXw5aD4/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/QoMwhXw5aD4?rel=0"
             },
             {
-                "title": "APRENDA ESTATÍSTICA 19: Distribuição Normal",
+                "title": "Distribuição Normal",
                 "duration": "24:41",
                 "thumb": "https://img.youtube.com/vi/pbN-W7gV_kM/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/pbN-W7gV_kM?rel=0"
             },
             {
-                "title": "APRENDA ESTATÍSTICA 20: Intervalo de Confiança",
+                "title": "Intervalo de Confiança",
                 "duration": "59:34",
                 "thumb": "https://img.youtube.com/vi/Xy2esjcmcdI/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/Xy2esjcmcdI?rel=0"
             },
             {
-                "title": "APRENDA ESTATÍSTICA 20.1: Intervalo de Confiança (PYTHON)",
+                "title": "Intervalo de Confiança (PYTHON)",
                 "duration": "15:50",
                 "thumb": "https://img.youtube.com/vi/ueFCFsPHRRo/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/ueFCFsPHRRo?rel=0"
             },
             {
-                "title": "APRENDA ESTATÍSTICA 21: Teste de Hipótese",
+                "title": "Teste de Hipótese",
                 "duration": "1:15:02",
                 "thumb": "https://img.youtube.com/vi/qrv5rFhrM4Q/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/qrv5rFhrM4Q?rel=0"
@@ -680,157 +680,158 @@ const coursesData = [
         "favorite": false,
         "lessons": [
             {
-                "title": "Machine Learning 01: Sobre o curso e dados",
+                "title": "Sobre o curso e dados",
                 "duration": "39:25",
                 "thumb": "https://img.youtube.com/vi/oz_rZ92Tmls/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/oz_rZ92Tmls?rel=0"
             },
             {
-                "title": "Machine Learning 02: Construindo Modelo",
+                "title": "Construindo Modelo",
                 "duration": "30:12",
                 "thumb": "https://img.youtube.com/vi/dPL3eZNjsMs/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/dPL3eZNjsMs?rel=0"
             },
             {
-                "title": "Machine Learning 03: Prática no Python (Frutas)",
+                "title": "Prática no Python (Frutas)",
                 "duration": "24:53",
                 "thumb": "https://img.youtube.com/vi/80B4Ze11qWw/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/80B4Ze11qWw?rel=0"
             },
             {
-                "title": "Machine Learning 04: Prática no Python (Cerveja)",
+                "title": "Prática no Python (Cerveja)",
                 "duration": "19:03",
                 "thumb": "https://img.youtube.com/vi/wc8o423bwi8/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/wc8o423bwi8?rel=0"
             },
             {
-                "title": "Machine Learning 05: Case Star Wars",
+                "title": "Case Star Wars",
                 "duration": "21:59",
                 "thumb": "https://img.youtube.com/vi/s8jFHHM679s/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/s8jFHHM679s?rel=0"
             },
             {
-                "title": "Machine Learning 06: Ciclo Analítico",
+                "title": "Ciclo Analítico",
                 "duration": "14:36",
                 "thumb": "https://img.youtube.com/vi/KIGKWjmWavU/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/KIGKWjmWavU?rel=0"
             },
             {
-                "title": "Machine Learning 07: Regressão Linear",
+                "title": "Regressão Linear",
                 "duration": "31:45",
                 "thumb": "https://img.youtube.com/vi/IZcDceAjFWk/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/IZcDceAjFWk?rel=0"
             },
             {
-                "title": "Machine Learning 08: Árvore de Decisão - Regressão",
+                "title": "Árvore de Decisão - Regressão",
                 "duration": "14:59",
                 "thumb": "https://img.youtube.com/vi/pPWxZpSkt1s/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/pPWxZpSkt1s?rel=0"
             },
             {
-                "title": "Machine Learning 09: Prática no Python (Reg. Linear e Árvore)",
+                "title": "Prática no Python (Reg. Linear e Árvore)",
                 "duration": "28:20",
                 "thumb": "https://img.youtube.com/vi/baTTP48cOho/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/baTTP48cOho?rel=0"
             },
             {
-                "title": "Machine Learning 10: Regressão Logística",
+                "title": "Regressão Logística",
                 "duration": "22:19",
                 "thumb": "https://img.youtube.com/vi/Pk7cHs9H1OY/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/Pk7cHs9H1OY?rel=0"
             },
             {
-                "title": "Machine Learning 11: Árvore de Decisão (Classificação)",
+                "title": "Árvore de Decisão (Classificação)",
                 "duration": "25:36",
                 "thumb": "https://img.youtube.com/vi/4HwFrWAULkk/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/4HwFrWAULkk?rel=0"
             },
             {
-                "title": "Machine Learning 12: Naive Bayes",
+                "title": "Naive Bayes",
                 "duration": "28:59",
                 "thumb": "https://img.youtube.com/vi/ahJks3rmK34/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/ahJks3rmK34?rel=0"
             },
             {
-                "title": "Machine Learning 13: Prática no Python (Classificação)",
+                "title": "Prática no Python (Classificação)",
                 "duration": "22:37",
                 "thumb": "https://img.youtube.com/vi/QhjyjH8CRKw/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/QhjyjH8CRKw?rel=0"
             },
             {
-                "title": "Machine Learning 14: Métricas de ajuste - Introdução",
+                "title": "Métricas de ajuste - Introdução",
                 "duration": "28:04",
                 "thumb": "https://img.youtube.com/vi/ImWgtWmP61s/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/ImWgtWmP61s?rel=0"
             },
             {
-                "title": "Machine Learning 15: Métricas de ajuste (Matriz de Confusão)",
+                "title": "Métricas de ajuste (Matriz de Confusão)",
                 "duration": "1:04:49",
                 "thumb": "https://img.youtube.com/vi/oB6vEx11vZU/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/oB6vEx11vZU?rel=0"
             },
             {
-                "title": "Machine Learning 16: Prevendo a Felicidade",
+                "title": "Prevendo a Felicidade",
                 "duration": "33:19",
                 "thumb": "https://img.youtube.com/vi/KjI3xyZEj-w/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/KjI3xyZEj-w?rel=0"
             },
             {
-                "title": "Machine Learning 17: Projeto Churn - Sample",
+                "title": "Projeto Churn - Sample",
                 "duration": "52:23",
                 "thumb": "https://img.youtube.com/vi/QMThkUWSEVM/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/QMThkUWSEVM?rel=0"
             },
             {
-                "title": "Machine Learning 18: Projeto Churn - Explore",
+                "title": "Projeto Churn - Explore",
                 "duration": "35:59",
                 "thumb": "https://img.youtube.com/vi/GdFvcj_m4VE/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/GdFvcj_m4VE?rel=0"
             },
             {
-                "title": "Machine Learning 19: Projeto Churn - Modify",
+                "title": "Projeto Churn - Modify",
                 "duration": "57:31",
                 "thumb": "https://img.youtube.com/vi/u23Ld3ji_nk/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/u23Ld3ji_nk?rel=0"
             },
             {
-                "title": "Machine Learning 20: Projeto Churn - Modify (Python)",
+                "title": "Projeto Churn - Modify (Python)",
                 "duration": "27:33",
                 "thumb": "https://img.youtube.com/vi/QbKjOfY_bpQ/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/QbKjOfY_bpQ?rel=0"
             },
             {
-                "title": "Machine Learning 21: Projeto Churn - Pipeline",
+                "title": "Projeto Churn - Pipeline",
                 "duration": "32:54",
                 "thumb": "https://img.youtube.com/vi/kPQAla_r8d0/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/kPQAla_r8d0?rel=0"
             },
             {
-                "title": "Machine Learning 22: Projeto Churn - Assess",
+                "title": "Projeto Churn - Assess",
                 "duration": "40:32",
                 "thumb": "https://img.youtube.com/vi/jK5ljNa_Qrs/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/jK5ljNa_Qrs?rel=0"
             },
             {
-                "title": "Machine Learning 23: Projeto Churn - Tuning",
+                "title": "Projeto Churn - Tuning",
                 "duration": "45:24",
                 "thumb": "https://img.youtube.com/vi/lYXyYmSOZLM/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/lYXyYmSOZLM?rel=0"
             },
             {
-                "title": "Machine Learning 24: Projeto Churn - Novas predições",
+                "title": "Projeto Churn - Novas predições",
                 "duration": "44:50",
                 "thumb": "https://img.youtube.com/vi/iWFBeR552Hc/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/iWFBeR552Hc?rel=0"
             },
             {
-                "title": "Machine Learning 25: Métricas Adicionais",
+                "title": "Métricas Adicionais",
                 "duration": "22:01",
                 "thumb": "https://img.youtube.com/vi/LhXiEDrt418/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/LhXiEDrt418?rel=0"
             }
         ]
-    },{
+    },
+    {
         "id": 7,
         "title": "MLFlow",
         "instructor": "Téo Calvo",
@@ -862,7 +863,7 @@ const coursesData = [
             },
             {
                 "title": "Atualização AUTOMÁTICA do modelo com MLFLOW",
-                "duration": "6:58",
+                "duration": "06:58",
                 "thumb": "https://img.youtube.com/vi/KdnRZSH6Drk/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/KdnRZSH6Drk?rel=0"
             }
@@ -881,211 +882,211 @@ const coursesData = [
         "favorite": false,
         "lessons": [
             {
-                "title": "Curso Linguagem Go: Sobre o Curso",
+                "title": "Sobre o Curso",
                 "duration": "24:17",
                 "thumb": "https://img.youtube.com/vi/LDuWS595vsU/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/LDuWS595vsU?rel=0"
             },
             {
-                "title": "Curso Linguagem Go: Sobre o Go e Instalação",
-                "duration": "7:43",
+                "title": "Sobre o Go e Instalação",
+                "duration": "07:43",
                 "thumb": "https://img.youtube.com/vi/WM4WhVYNBPw/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/WM4WhVYNBPw?rel=0"
             },
             {
-                "title": "Curso Linguagem Go: Olá, Mundo!",
+                "title": "Olá, Mundo!",
                 "duration": "14:59",
                 "thumb": "https://img.youtube.com/vi/EarYUT9N88U/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/EarYUT9N88U?rel=0"
             },
             {
-                "title": "Curso Linguagem Go: Tipos Numéricos",
+                "title": "Tipos Numéricos",
                 "duration": "12:10",
                 "thumb": "https://img.youtube.com/vi/aiN4-ow1-yU/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/aiN4-ow1-yU?rel=0"
             },
             {
-                "title": "Curso Linguagem Go: Tipo String",
-                "duration": "8:27",
+                "title": "Tipo String",
+                "duration": "08:27",
                 "thumb": "https://img.youtube.com/vi/2VAHVYi1Obk/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/2VAHVYi1Obk?rel=0"
             },
             {
-                "title": "Curso Linguagem Go: Tipo Bool",
-                "duration": "2:43",
+                "title": "Tipo Bool",
+                "duration": "02:43",
                 "thumb": "https://img.youtube.com/vi/mcyWxNAC3jw/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/mcyWxNAC3jw?rel=0"
             },
             {
-                "title": "Curso Linguagem Go: Exercícios Bloco 01",
-                "duration": "7:10",
+                "title": "Exercícios Bloco 01",
+                "duration": "07:10",
                 "thumb": "https://img.youtube.com/vi/8mB9GB2ss_c/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/8mB9GB2ss_c?rel=0"
             },
             {
-                "title": "Curso Linguagem Go: Variáveis",
+                "title": "Variáveis",
                 "duration": "19:51",
                 "thumb": "https://img.youtube.com/vi/D3XLpDVMRxk/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/D3XLpDVMRxk?rel=0"
             },
             {
-                "title": "Curso Linguagem Go: Recebendo Entradas",
-                "duration": "5:41",
+                "title": "Recebendo Entradas",
+                "duration": "05:41",
                 "thumb": "https://img.youtube.com/vi/aqxwmkSuvVQ/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/aqxwmkSuvVQ?rel=0"
             },
             {
-                "title": "Curso Linguagem Go: Exercícios Bloco 02",
+                "title": "Exercícios Bloco 02",
                 "duration": "24:07",
                 "thumb": "https://img.youtube.com/vi/M3dVw_IfXx4/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/M3dVw_IfXx4?rel=0"
             },
             {
-                "title": "Curso Linguagem Go: IF e ELSE",
+                "title": "IF e ELSE",
                 "duration": "17:10",
                 "thumb": "https://img.youtube.com/vi/zdVQQdujFYM/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/zdVQQdujFYM?rel=0"
             },
             {
-                "title": "Curso Linguagem Go: Switch",
+                "title": "Switch",
                 "duration": "11:29",
                 "thumb": "https://img.youtube.com/vi/DZNLckEvI5s/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/DZNLckEvI5s?rel=0"
             },
             {
-                "title": "Curso Linguagem Go: Exercícios Bloco 03",
+                "title": "Exercícios Bloco 03",
                 "duration": "43:51",
                 "thumb": "https://img.youtube.com/vi/lPdysvEl4Eg/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/lPdysvEl4Eg?rel=0"
             },
             {
-                "title": "Curso Linguagem Go: Laços de Repetição",
+                "title": "Laços de Repetição",
                 "duration": "24:15",
                 "thumb": "https://img.youtube.com/vi/PjiWvbR3spg/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/PjiWvbR3spg?rel=0"
             },
             {
-                "title": "Curso Linguagem Go: Exercícios Bloco 04",
+                "title": "Exercícios Bloco 04",
                 "duration": "24:19",
                 "thumb": "https://img.youtube.com/vi/f02dMZKm09w/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/f02dMZKm09w?rel=0"
             },
             {
-                "title": "Curso Linguagem Go: Arrays",
+                "title": "Arrays",
                 "duration": "18:46",
                 "thumb": "https://img.youtube.com/vi/skRjOj8lEhc/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/skRjOj8lEhc?rel=0"
             },
             {
-                "title": "Curso Linguagem Go: Fatias",
+                "title": "Fatias",
                 "duration": "16:07",
                 "thumb": "https://img.youtube.com/vi/hOpB47oUZPM/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/hOpB47oUZPM?rel=0"
             },
             {
-                "title": "Curso Linguagem Go: Exercícios Bloco 05",
+                "title": "Exercícios Bloco 05",
                 "duration": "17:46",
                 "thumb": "https://img.youtube.com/vi/8lUe7_Bz3lc/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/8lUe7_Bz3lc?rel=0"
             },
             {
-                "title": "Curso Linguagem Go: Mapas",
+                "title": "Mapas",
                 "duration": "26:14",
                 "thumb": "https://img.youtube.com/vi/fXVtnJphAXk/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/fXVtnJphAXk?rel=0"
             },
             {
-                "title": "Curso Linguagem Go: Exercícios Bloco 06",
+                "title": "Exercícios Bloco 06",
                 "duration": "14:57",
                 "thumb": "https://img.youtube.com/vi/qHqD085K39o/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/qHqD085K39o?rel=0"
             },
             {
-                "title": "Curso Linguagem Go: Funções",
+                "title": "Funções",
                 "duration": "33:58",
                 "thumb": "https://img.youtube.com/vi/9jwLK5R_xgU/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/9jwLK5R_xgU?rel=0"
             },
             {
-                "title": "Curso Linguagem Go: defer, panic, recover",
+                "title": "defer, panic, recover",
                 "duration": "16:28",
                 "thumb": "https://img.youtube.com/vi/8uEyCO0Ydyk/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/8uEyCO0Ydyk?rel=0"
             },
             {
-                "title": "Curso Linguagem Go: Ponteiros",
+                "title": "Ponteiros",
                 "duration": "13:22",
                 "thumb": "https://img.youtube.com/vi/L4Mg4RE2bo8/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/L4Mg4RE2bo8?rel=0"
             },
             {
-                "title": "Curso Linguagem Go: Exercícios Bloco 07",
+                "title": "Exercícios Bloco 07",
                 "duration": "23:08",
                 "thumb": "https://img.youtube.com/vi/E_nguMPoadc/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/E_nguMPoadc?rel=0"
             },
             {
-                "title": "Curso Linguagem Go: Criação de Tipos",
+                "title": "Criação de Tipos",
                 "duration": "18:40",
                 "thumb": "https://img.youtube.com/vi/Ojx4-8Ckvxk/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/Ojx4-8Ckvxk?rel=0"
             },
             {
-                "title": "Curso Linguagem Go: Structs",
+                "title": "Structs",
                 "duration": "27:03",
                 "thumb": "https://img.youtube.com/vi/SFNYr3dT16o/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/SFNYr3dT16o?rel=0"
             },
             {
-                "title": "Curso Linguagem Go: Tipos Incluídos",
+                "title": "Tipos Incluídos",
                 "duration": "14:14",
                 "thumb": "https://img.youtube.com/vi/_gh_rDJViUU/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/_gh_rDJViUU?rel=0"
             },
             {
-                "title": "Curso Linguagem Go: Interfaces",
+                "title": "Interfaces",
                 "duration": "38:06",
                 "thumb": "https://img.youtube.com/vi/rck0DOd4Nc0/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/rck0DOd4Nc0?rel=0"
             },
             {
-                "title": "Curso Linguagem Go: GoRoutines",
+                "title": "GoRoutines",
                 "duration": "17:19",
                 "thumb": "https://img.youtube.com/vi/Xuiq5Qr4PeA/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/Xuiq5Qr4PeA?rel=0"
             },
             {
-                "title": "Curso Linguagem Go: Centenas de Goroutines",
-                "duration": "9:53",
+                "title": "Centenas de Goroutines",
+                "duration": "09:53",
                 "thumb": "https://img.youtube.com/vi/DW_O80zhMB0/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/DW_O80zhMB0?rel=0"
             },
             {
-                "title": "Curso Linguagem Go: Canais",
+                "title": "Canais",
                 "duration": "10:19",
                 "thumb": "https://img.youtube.com/vi/sWT3T5IXMoA/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/sWT3T5IXMoA?rel=0"
             },
             {
-                "title": "Curso Linguagem Go: SELECT",
+                "title": "SELECT",
                 "duration": "15:34",
                 "thumb": "https://img.youtube.com/vi/ZX4QksTUM3A/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/ZX4QksTUM3A?rel=0"
             },
             {
-                "title": "Curso Linguagem Go: Canais com Buffer",
+                "title": "Canais com Buffer",
                 "duration": "24:27",
                 "thumb": "https://img.youtube.com/vi/N_WEcmNk15w/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/N_WEcmNk15w?rel=0"
             },
             {
-                "title": "Curso Linguagem Go: Desafio FiGourinhas",
+                "title": "Desafio FiGourinhas",
                 "duration": "41:14",
                 "thumb": "https://img.youtube.com/vi/6JWBNYbriwU/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/6JWBNYbriwU?rel=0"
             },
             {
-                "title": "Curso Linguagem Go: Exercícios para casa",
+                "title": "Exercícios para casa",
                 "duration": "1:42:10",
                 "thumb": "https://img.youtube.com/vi/V87PTX2r_eY/hqdefault.jpg",
                 "video": "https://www.youtube.com/embed/V87PTX2r_eY?rel=0"
