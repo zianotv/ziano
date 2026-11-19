@@ -29,8 +29,16 @@
     .play-preview svg{width:clamp(1.2rem,3vw,1.6rem);height:clamp(1.2rem,3vw,1.6rem);fill:currentColor}
     .header{display:flex;justify-content:space-between;align-items:center;gap:.5rem;flex-wrap:wrap;padding:0 1rem}
     .header button{border:.125rem solid #fff;padding:.4rem .8rem;border-radius:.5rem;cursor:pointer;font-family: inherit;font-size:.85rem;font-weight:600;transition:opacity .2s ease;display:inline-flex;align-items:center;gap:.5rem; -webkit-tap-highlight-color: transparent;}
-    #exit{background:transparent;color:#fff;border:.0625rem solid #fff}
-    #next{background:#fff;color:#091838}
+    #next,#lessonDescriptionButton{background:#fff;color:#091838}
+    #next{margin-left:auto}
+    #lessonDescriptionButton[hidden]{display:none!important}
+    .lesson-dialog{margin:auto;width:min(42rem,calc(100% - 2rem));max-height:calc(100dvh - 2rem);padding:2rem;border:1px solid rgba(56,189,248,.2);border-radius:1rem;background:#091838;color:#fff;overflow:auto}
+    .lesson-dialog::backdrop{background:rgba(2,6,23,.75);backdrop-filter:blur(2px)}
+    .lesson-dialog h2{padding-right:2rem;font-size:1.35rem;line-height:1.4;overflow-wrap:anywhere}
+    .lesson-dialog p{margin-top:1.25rem;color:#e2e8f0;line-height:1.7;white-space:pre-wrap;overflow-wrap:anywhere}
+    .lesson-dialog-close{position:absolute;top:.75rem;right:.75rem;display:grid;place-items:center;width:2rem;height:2rem;border:0;border-radius:.5rem;background:transparent;color:#fff;font:inherit;font-size:1.5rem;cursor:pointer}
+    .lesson-dialog-close:hover{background:rgba(255,255,255,.1)}
+    .lesson-dialog-close:focus-visible,.header button:focus-visible{outline:2px solid #fff;outline-offset:3px}
     .header button:disabled{opacity:.5;cursor:not-allowed;user-select:none;-webkit-user-select:none}
     .header button svg{width:1rem;height:1rem;display:block;flex-shrink:0}
     .list{display:flex;gap:1rem;padding:0 1rem 1rem;overflow-x:auto;width:100%;flex-shrink:0;scroll-behavior:smooth}
@@ -77,12 +85,7 @@
     </section>
 
     <section class="header">
-      <button id="exit">
-        <svg fill="currentColor" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
-          <path d="M6.70711 2.29289C6.31658 1.90237 5.68342 1.90237 5.29289 2.29289L0.792893 6.79289C0.402369 7.18342 0.402369 7.81658 0.792893 8.20711L5.29289 12.7071C5.68342 13.0976 6.31658 13.0976 6.70711 12.7071C7.09763 12.3166 7.09763 11.6834 6.70711 11.2929L4 8.5H13.5C14.0523 8.5 14.5 8.05228 14.5 7.5C14.5 6.94772 14.0523 6.5 13.5 6.5H4L6.70711 3.70711C7.09763 3.31658 7.09763 2.68342 6.70711 2.29289Z"/>
-        </svg>
-        Sair
-      </button>
+      <button id="lessonDescriptionButton" type="button" aria-haspopup="dialog" aria-controls="lessonDescriptionModal">Descrição</button>
 
       <button id="next">Próxima Aula</button>
     </section>
@@ -90,6 +93,12 @@
     <section class="list" id="list"></section>
 
   </main>
+
+  <dialog id="lessonDescriptionModal" class="lesson-dialog" aria-labelledby="lessonDescriptionTitle" aria-describedby="lessonDescriptionText">
+    <button id="closeLessonDescription" class="lesson-dialog-close" type="button" aria-label="Fechar" autofocus>&times;</button>
+    <h2 id="lessonDescriptionTitle"></h2>
+    <p id="lessonDescriptionText"></p>
+  </dialog>
 
   <script src="../data.js"></script>
 
@@ -105,7 +114,10 @@
     const lessons = course.lessons;
 
     const list = document.getElementById('list');
-    const exit = document.getElementById('exit');
+    const descriptionButton = document.getElementById('lessonDescriptionButton');
+    const descriptionModal = document.getElementById('lessonDescriptionModal');
+    const descriptionTitle = document.getElementById('lessonDescriptionTitle');
+    const descriptionText = document.getElementById('lessonDescriptionText');
     const next = document.getElementById('next');
     const playerStage = document.getElementById('playerStage');
     const playerCover = document.getElementById('playerCover');
@@ -124,6 +136,7 @@
     let preparedVideoId = null;
     let playbackRequested = false;
     let previewActive = false;
+    let erroredVideoId = null;
 
     playerPreview.addEventListener('load', () => {
       // A late load must never restore the preview after Play or recovery.
@@ -206,10 +219,14 @@
             }
           },
           onAutoplayBlocked: () => {
+            // Sem clique em Play, a prévia continua na tela.
+            if (!playbackRequested) return;
             pendingPlayback = false;
             revealPlayer();
           },
           onError: () => {
+            erroredVideoId = preparedVideoId;
+            if (!playbackRequested) return;
             pendingPlayback = false;
             revealPlayer();
           }
@@ -305,7 +322,10 @@
       if (playbackRequested) return;
       playbackRequested = true;
       beginPlayback();
-      if (playerReady) {
+      if (erroredVideoId && erroredVideoId === preparedVideoId) {
+        // Vídeo já deu erro antes do clique: mostra a mensagem do YouTube.
+        revealPlayer();
+      } else if (playerReady) {
         youtubePlayer.playVideo();
       } else {
         pendingPlayback = true;
@@ -320,8 +340,40 @@
       current === cards.length - 1
     );
 
-    exit.addEventListener('click',() => {
-      window.location.href = '../';
+    const hasDescription = lesson =>
+      typeof lesson.description === 'string' && lesson.description.length > 0;
+
+    const updateDescription = () => {
+      const lesson = lessons[current];
+      descriptionButton.hidden = !hasDescription(lesson);
+      if (descriptionButton.hidden) return;
+      descriptionTitle.textContent = lesson.title;
+      descriptionText.textContent = lesson.description;
+    };
+
+    const clickedOutsideModal = event => {
+      const area = descriptionModal.getBoundingClientRect();
+      return event.clientX < area.left || event.clientX > area.right ||
+        event.clientY < area.top || event.clientY > area.bottom;
+    };
+
+    updateDescription();
+
+    descriptionButton.addEventListener('click',() => {
+      updateDescription();
+      descriptionModal.showModal();
+    });
+
+    descriptionModal.addEventListener('close',() => descriptionButton.focus());
+
+    document.getElementById('closeLessonDescription').addEventListener('click',() => {
+      descriptionModal.close();
+    });
+
+    descriptionModal.addEventListener('click',event => {
+      if (event.target === descriptionModal && clickedOutsideModal(event)) {
+        descriptionModal.close();
+      }
     });
 
     const update = index => {
@@ -330,6 +382,8 @@
       current = index;
 
       cards[current].classList.add('ativo');
+
+      updateDescription();
 
       if (playbackRequested) {
         preparedVideoId = getVideoId(lessons[current].video);

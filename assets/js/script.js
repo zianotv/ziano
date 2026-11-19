@@ -1,3 +1,31 @@
+const categories = [
+    {
+        "id": "all",
+        "name": "Todos os Cursos",
+        "icon": "bi bi-grid"
+    },
+    {
+        "id": "programacao",
+        "name": "Programação",
+        "icon": "bi bi-code-slash"
+    },
+    {
+        "id": "dados",
+        "name": "Dados",
+        "icon": "bi bi-database"
+    },
+    {
+        "id": "ia",
+        "name": "Inteligência Artificial",
+        "icon": "bi bi-robot"
+    },
+    {
+        "id": "favoritos",
+        "name": "Favoritos",
+        "icon": "bi bi-star"
+    }
+];
+
 let currentCategory = 'all';
 let currentSearch = '';
 const favoritesKey = 'zianotv-favorites';

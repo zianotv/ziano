@@ -1,1096 +1,184 @@
-const categories = [
-    {
-        "id": "all",
-        "name": "Todos os Cursos",
-        "icon": "bi bi-grid"
-    },
-    {
-        "id": "programacao",
-        "name": "Programação",
-        "icon": "bi bi-code-slash"
-    },
-    {
-        "id": "dados",
-        "name": "Dados",
-        "icon": "bi bi-database"
-    },
-    {
-        "id": "ia",
-        "name": "Inteligência Artificial",
-        "icon": "bi bi-robot"
-    },
-    {
-        "id": "favoritos",
-        "name": "Favoritos",
-        "icon": "bi bi-star"
-    }
-];
-
 const coursesData = [
     {
         "id": 1,
-        "title": "Git e GitHub",
+        "title": "Curso de Terraform com AWS",
         "category": "programacao",
-        "instructor": "Téo Calvo",
+        "instructor": "Cleber Gasparoto",
         "level": "Iniciante",
-        "duration": "4h 45m",
-        "date": "2025",
+        "duration": "3h 48m",
+        "date": "2021",
         "favorite": false,
-        "poster": "https://img.youtube.com/vi/84FhNXNWoig/maxresdefault.jpg",
-        "description": "Se você tem interesse pela área de tecnologia ou dados, Git será uma ferramenta bastante companheira. Esse material poderá te ajudar nessa tragetória.",
+        "poster": "https://img.youtube.com/vi/bIPF_hzmQGE/maxresdefault.jpg",
+        "description": "Neste curso serão ensinados conceitos básicos à intermediários do Terraform para entender como ele funciona e se integra junto com a AWS. Você irá aprender a criar recursos na AWS utilizando as mais variadas funcionalidades do Terraform.",
         "lessons": [
             {
-                "title": "Instalação e primeiros conceitos",
-                "duration": "30:35",
-                "thumb": "https://img.youtube.com/vi/84FhNXNWoig/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/84FhNXNWoig?rel=0"
+                "title": "O que é e para o que serve o Terraform?",
+                "duration": "4:21",
+                "thumb": "https://img.youtube.com/vi/bIPF_hzmQGE/hqdefault.jpg",
+                "video": "https://www.youtube.com/embed/bIPF_hzmQGE?rel=0",
+                "description": "Curso completo de Terraform 1.6: https://bit.ly/4bj6aUK\n\nO que exatamente é o Terraform?\nTerraform é uma ferramenta para construir, alterar e criar versões de infraestrutura com segurança e eficiência através de código. \n\nPrincipais características:\nInfraestrutura como Código (IaC)\n- Open source e declarativo\n- Permite versionamento (evolução da infraestrutura e automação)\n- Idempotente\n- Sintaxe high-level e reusável\n- Paridade de ambiente\nPlanos de execução\n- Segurança e previsibilidade\n- Separação de planejamento e aplicação\nHíbrido\n- Agnóstico\n- Permite deployar para múltiplos provedores simultaneamente\n\nCasos de uso:\n- Criar ou provisionar uma nova infraestrutura;\n- Gerenciar a infraestrutura existente;\n- Replicar a infraestrutura.\n\nComo o Terraform funciona?\nCore do Terraform usa duas fontes de entrada:\n- Seus arquivos de configuração (seu estado desejado);\n- O estado atual, que é gerenciado pelo Terraform.\nProviders: Os provedores expõem recursos, o que possibilita a criação de infraestrutura em todas essas plataformas:\n- IaaS: AWS, GCP, Azure\n- PaaS: Kubernetes, Heroku, Digital Ocean\n- SaaS: New Relic, Datadog\n\nTerraform vs. Outros Softwares\n\nTerraform é uma ferramenta de alto nível de orquestração de infraestrutura. \n\nAnsible, Puppet, Chef e outras ferramentas de gerenciamento de configuração:\n- Não é a intenção gerenciar configuração;\n- Provedores podem usar essas ferramentas.\nCloudFormation e outras ferramentas IaC:\n- Dá suporte para apenas um vendor específico.\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nPlaylist do curso: https://bit.ly/3t3iDFk\nCódigo fonte: https://bit.ly/3EfHCf0\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nSiga-me no Twitter: https://twitter.com/clebergasparoto\nVisite meu site: https://clebergasparoto.com"
             },
             {
-                "title": "Primeiros comandos",
-                "duration": "52:18",
-                "thumb": "https://img.youtube.com/vi/RZ0g18hstwQ/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/RZ0g18hstwQ?rel=0"
+                "title": "Como instalar o Terraform em 2 minutos",
+                "duration": "2:40",
+                "thumb": "https://img.youtube.com/vi/YhMuuUwQhhU/hqdefault.jpg",
+                "video": "https://www.youtube.com/embed/YhMuuUwQhhU?rel=0",
+                "description": "Curso completo de Terraform 1.6: https://bit.ly/4bj6aUK\n\nAprenda a instalar o Terraform CLI na sua máquina de forma fácil e rápida!\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nLinks mencionados no vídeo:\nSite do Terraform: http://bit.ly/35K2onc\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nCurso completo gratuito de Terraform:\nPlaylist do curso: https://bit.ly/3t3iDFk\nCódigo fonte: https://bit.ly/3EfHCf0\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nSiga-me no Twitter: https://twitter.com/clebergasparoto\nVisite meu site: https://clebergasparoto.com"
             },
             {
-                "title": "Branches",
-                "duration": "51:12",
-                "thumb": "https://img.youtube.com/vi/pzjdEQOmsLA/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/pzjdEQOmsLA?rel=0"
+                "title": "tfenv: o gerenciador de versões do Terraform",
+                "duration": "3:24",
+                "thumb": "https://img.youtube.com/vi/8St_qwGQrPQ/hqdefault.jpg",
+                "video": "https://www.youtube.com/embed/8St_qwGQrPQ?rel=0",
+                "description": "Curso completo de Terraform 1.6: https://bit.ly/4bj6aUK\n\nAprenda a gerenciar as versões do Terraform como um profissional, conheça o tfenv, sua ferramenta para navegar facilmente entre as variadas versões do Terraform.\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nLinks mencionados no vídeo:\ntfenv: http://bit.ly/3bP1EB2\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nCurso completo gratuito de Terraform:\nPlaylist do curso: https://bit.ly/3t3iDFk\nCódigo fonte: https://bit.ly/3EfHCf0\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nSiga-me no Twitter: https://twitter.com/clebergasparoto\nVisite meu site: https://clebergasparoto.com"
             },
             {
-                "title": "Resolvendo conflitos",
-                "duration": "24:51",
-                "thumb": "https://img.youtube.com/vi/IRmjluONHxU/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/IRmjluONHxU?rel=0"
+                "title": "Configurando editor de texto para o melhorar a produtividade do Terraform",
+                "duration": "1:44",
+                "thumb": "https://img.youtube.com/vi/Aw0xNNmlSGs/hqdefault.jpg",
+                "video": "https://www.youtube.com/embed/Aw0xNNmlSGs?rel=0",
+                "description": "Aprenda a configurar seu editor de texto/IDE para aumentar sua produtividade com o Terraform. Aqui vemos duas ferramentas, Webstorm (paga) e VSCode (gratuita).\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nLinks mencionados no vídeo:\nWebstorm: http://bit.ly/30L2HuZ\nPlugin Webstorm: http://bit.ly/3cqCrvF\nVSCode: http://bit.ly/30Erl0p\nPlugin VSCode: http://bit.ly/38wMPk3\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nCurso completo gratuito de Terraform:\nPlaylist do curso: https://bit.ly/3t3iDFk\nCódigo fonte: https://bit.ly/3EfHCf0\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nCurso pago com exemplos do mundo real:\n- Gumroad: https://bit.ly/3gvOL0x - Preço cheio. Curso atualizado com novos módulos. Possibilidade de mentoria\n- Udemy: https://bit.ly/2JuJmJn - Os maiores descontos. Sem atualizações futuras. Sem mentoria\n- Workover: https://bit.ly/2YzfSBt - Desconto considerável. Possibilidade de mentoria. Sem atualizações futuras\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nSite/Blog: https://bit.ly/3tdDUvU\nTwitter: https://bit.ly/2OSIZe4\nLinkedin: https://bit.ly/3zfuDag"
             },
             {
-                "title": "Pull request",
-                "duration": "44:23",
-                "thumb": "https://img.youtube.com/vi/Y_fFZjzw-D4/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/Y_fFZjzw-D4?rel=0"
+                "title": "Como criar uma conta na AWS em 2021",
+                "duration": "2:38",
+                "thumb": "https://img.youtube.com/vi/ctdknxufrmU/hqdefault.jpg",
+                "video": "https://www.youtube.com/embed/ctdknxufrmU?rel=0",
+                "description": "Veja como é simples e rápido criar uma conta na AWS em 2021. Com uma conta na AWS você pode começar seus projetos e/ou estudos na nuvem (cloud).\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nLinks mencionados no vídeo:\n- Site da AWS: https://aws.amazon.com/\n- Site da AWS em Português: https://aws.amazon.com/pt\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nSite/Blog: https://bit.ly/3tdDUvU\nTwitter: https://bit.ly/2OSIZe4\nLinkedin: https://bit.ly/3zfuDag"
             },
             {
-                "title": "Criando fork",
-                "duration": "20:54",
-                "thumb": "https://img.youtube.com/vi/vWtrTmjis2w/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/vWtrTmjis2w?rel=0"
+                "title": "Como configurar AWS para usar o Terraform",
+                "duration": "4:53",
+                "thumb": "https://img.youtube.com/vi/2Q39eWPLVpg/hqdefault.jpg",
+                "video": "https://www.youtube.com/embed/2Q39eWPLVpg?rel=0",
+                "description": "Curso completo de Terraform 1.6: https://bit.ly/4bj6aUK\n\nAprenda a configurar um usuário na AWS para ser usado pelo Terraform CLI. Com essa configuração você será capaz de criar todos os recursos da sua infraestrutura dentro da AWS utilizando o Terraform.\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nLinks mencionados no vídeo:\n\nLink para criar conta na AWS: http://amzn.to/3bI1X03\nAWS CLI: http://amzn.to/2Nevpl3\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nCurso completo gratuito de Terraform:\nPlaylist do curso: https://bit.ly/3t3iDFk\nCódigo fonte: https://bit.ly/3EfHCf0\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nSiga-me no Twitter: https://twitter.com/clebergasparoto\nVisite meu site: https://clebergasparoto.com"
             },
             {
-                "title": "Integração VS Code",
-                "duration": "15:41",
-                "thumb": "https://img.youtube.com/vi/M-mBmYj7Jh4/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/M-mBmYj7Jh4?rel=0"
+                "title": "Como criar um S3 bucket na AWS",
+                "duration": "1:56",
+                "thumb": "https://img.youtube.com/vi/ZzZZvqbFjF4/hqdefault.jpg",
+                "video": "https://www.youtube.com/embed/ZzZZvqbFjF4?rel=0",
+                "description": "Antes de começarmos a por a mão no código vamos entender como é o processo de criação de um AWS S3 bucket manualmente. Desta forma quando formos implementá-lo no Terraform será mais fácil a compreensão de cada item e propriedade escritas.\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nLinks mencionados no vídeo:\nAWS S3: http://amzn.to/3la22wO\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nCurso completo gratuito de Terraform:\nPlaylist do curso: https://bit.ly/3t3iDFk\nCódigo fonte: https://bit.ly/3EfHCf0\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nCurso pago com exemplos do mundo real:\n- Gumroad: https://bit.ly/3gvOL0x - Preço cheio. Curso atualizado com novos módulos. Possibilidade de mentoria\n- Udemy: https://bit.ly/2JuJmJn - Os maiores descontos. Sem atualizações futuras. Sem mentoria\n- Workover: https://bit.ly/2YzfSBt - Desconto considerável. Possibilidade de mentoria. Sem atualizações futuras\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nSite/Blog: https://bit.ly/3tdDUvU\nTwitter: https://bit.ly/2OSIZe4\nLinkedin: https://bit.ly/3zfuDag"
             },
             {
-                "title": "Git Flow",
-                "duration": "23:13",
-                "thumb": "https://img.youtube.com/vi/l44uGe-sxgM/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/l44uGe-sxgM?rel=0"
+                "title": "O que é o Terraform CLI",
+                "duration": "3:21",
+                "thumb": "https://img.youtube.com/vi/OWLpFgk9O4c/hqdefault.jpg",
+                "video": "https://www.youtube.com/embed/OWLpFgk9O4c?rel=0",
+                "description": "Entender o funcionamento da nossa ferramenta de trabalho é de suma importância para tirar o maior proveito e aumentar nossa produtividade, seja na hora de construir, debugar, alterar ou deletar a nossa infraestrutura com o Terraform. Nesse vídeo é mostrado como você deve ler a ajuda que o Terraform CLI nos oferece. Se você compreender esses conceitos você conseguirá resolver futuros problemas mais facilmente.\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nLinks mencionados no vídeo:\nTerraform CLI: https://bit.ly/35K2onc\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nCurso completo gratuito de Terraform:\nPlaylist do curso: https://bit.ly/3t3iDFk\nCódigo fonte: https://bit.ly/3EfHCf0\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nCurso pago com exemplos do mundo real:\n- Gumroad: https://bit.ly/3gvOL0x - Preço cheio. Curso atualizado com novos módulos. Possibilidade de mentoria\n- Udemy: https://bit.ly/2JuJmJn - Os maiores descontos. Sem atualizações futuras. Sem mentoria\n- Workover: https://bit.ly/2YzfSBt - Desconto considerável. Possibilidade de mentoria. Sem atualizações futuras\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nSite/Blog: https://bit.ly/3tdDUvU\nTwitter: https://bit.ly/2OSIZe4\nLinkedin: https://bit.ly/3zfuDag"
             },
             {
-                "title": ".gitkeep e .gitignore",
-                "duration": "22:14",
-                "thumb": "https://img.youtube.com/vi/spoUnf34R4A/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/spoUnf34R4A?rel=0"
-            }
-        ]
-    },
-    {
-        "id": 2,
-        "title": "Python",
-        "category": "programacao",
-        "instructor": "Téo Calvo",
-        "level": "Iniciante",
-        "duration": "12h 26m",
-        "date": "2025",
-        "favorite": false,
-        "poster": "https://img.youtube.com/vi/OeKzVjiiRm4/maxresdefault.jpg",
-        "description": "A ideia principal deste curso é fornecer o conhecimento mínimo sobre lógica de programação, sintaxe da linguagem Python e suas principais estruturas de dados e controle de fluxo, como laços de repetição e operadores lógicos/condicionais.",
-        "lessons": [
-            {
-                "title": "Conceitos de programação e instalação",
-                "duration": "55:12",
-                "thumb": "https://img.youtube.com/vi/OeKzVjiiRm4/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/OeKzVjiiRm4?rel=0"
-            },
-            {
-                "title": "Primeiros comandos",
-                "duration": "35:03",
-                "thumb": "https://img.youtube.com/vi/wp23DUYKQt4/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/wp23DUYKQt4?rel=0"
-            },
-            {
-                "title": "Recebendo dados",
-                "duration": "34:16",
-                "thumb": "https://img.youtube.com/vi/_40Lzu_C_Ko/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/_40Lzu_C_Ko?rel=0"
-            },
-            {
-                "title": "if, elif e else",
-                "duration": "52:38",
-                "thumb": "https://img.youtube.com/vi/FV9Pzj3BIuU/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/FV9Pzj3BIuU?rel=0"
-            },
-            {
-                "title": "Laços de repetição",
-                "duration": "1:11:45",
-                "thumb": "https://img.youtube.com/vi/HcCH_xXwOcA/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/HcCH_xXwOcA?rel=0"
-            },
-            {
-                "title": "Listas",
-                "duration": "1:16:50",
-                "thumb": "https://img.youtube.com/vi/deWlTenrlv4/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/deWlTenrlv4?rel=0"
-            },
-            {
-                "title": "Dicionários e tuplas",
-                "duration": "1:22:45",
-                "thumb": "https://img.youtube.com/vi/EueiZ_TXe_c/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/EueiZ_TXe_c?rel=0"
-            },
-            {
-                "title": "Criando funções",
-                "duration": "1:17:35",
-                "thumb": "https://img.youtube.com/vi/JZlJ1otXBD8/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/JZlJ1otXBD8?rel=0"
-            },
-            {
-                "title": "Módulos",
-                "duration": "10:02",
-                "thumb": "https://img.youtube.com/vi/7U_NG78HuA4/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/7U_NG78HuA4?rel=0"
-            },
-            {
-                "title": "Lidando com arquivos",
-                "duration": "43:34",
-                "thumb": "https://img.youtube.com/vi/3h15kc10fCY/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/3h15kc10fCY?rel=0"
-            },
-            {
-                "title": "Loteria da Babilônia",
-                "duration": "28:12",
-                "thumb": "https://img.youtube.com/vi/lIczWRig7S8/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/lIczWRig7S8?rel=0"
-            },
-            {
-                "title": "Dados de API",
-                "duration": "1:09:32",
-                "thumb": "https://img.youtube.com/vi/iBsyZ0RQCqc/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/iBsyZ0RQCqc?rel=0"
-            },
-            {
-                "title": "Ambientes virtuais",
-                "duration": "22:16",
-                "thumb": "https://img.youtube.com/vi/Xa9SSu8qLHs/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/Xa9SSu8qLHs?rel=0"
-            },
-            {
-                "title": "Mais sobre listas",
-                "duration": "17:47",
-                "thumb": "https://img.youtube.com/vi/QE5_WPaflU0/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/QE5_WPaflU0?rel=0"
-            },
-            {
-                "title": "Exercícios parte I",
-                "duration": "19:11",
-                "thumb": "https://img.youtube.com/vi/XMmbAlsiPXM/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/XMmbAlsiPXM?rel=0"
-            },
-            {
-                "title": "Exercícios parte II",
-                "duration": "32:32",
-                "thumb": "https://img.youtube.com/vi/qND0UuYZ730/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/qND0UuYZ730?rel=0"
-            },
-            {
-                "title": "Exercícios parte III",
-                "duration": "17:25",
-                "thumb": "https://img.youtube.com/vi/rcbyyoNJ-mo/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/rcbyyoNJ-mo?rel=0"
-            }
-        ]
-    },
-    {
-        "id": 3,
-        "title": "SQL",
-        "category": "dados",
-        "instructor": "Téo Calvo",
-        "level": "Iniciante",
-        "duration": "14h 8m",
-        "date": "2025",
-        "favorite": false,
-        "poster": "https://img.youtube.com/vi/VmkJG8awKqM/maxresdefault.jpg",
-        "description": "Curso de SQL completamente do zero até o avançado. Por aqui você vai aprender a sintaxe SQL e também conceitos importantes sobre banco de dados relacionais.",
-        "lessons": [
-            {
-                "title": "Introdução",
-                "duration": "38:34",
-                "thumb": "https://img.youtube.com/vi/VmkJG8awKqM/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/VmkJG8awKqM?rel=0"
-            },
-            {
-                "title": "Primeiros Conceitos",
-                "duration": "27:00",
-                "thumb": "https://img.youtube.com/vi/AYIEGnTtMsY/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/AYIEGnTtMsY?rel=0"
-            },
-            {
-                "title": "O tal SQL",
-                "duration": "10:25",
-                "thumb": "https://img.youtube.com/vi/dXdo-KtGzRk/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/dXdo-KtGzRk?rel=0"
-            },
-            {
-                "title": "SETUP",
-                "duration": "08:07",
-                "thumb": "https://img.youtube.com/vi/nuOIjVCz2zs/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/nuOIjVCz2zs?rel=0"
-            },
-            {
-                "title": "OLÁ MUNDO!",
-                "duration": "21:08",
-                "thumb": "https://img.youtube.com/vi/uHMCwfyWwuE/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/uHMCwfyWwuE?rel=0"
-            },
-            {
-                "title": "Dúvidas",
-                "duration": "10:10",
-                "thumb": "https://img.youtube.com/vi/zkTIJBBIiwY/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/zkTIJBBIiwY?rel=0"
-            },
-            {
-                "title": "Revisão SELECT",
-                "duration": "12:41",
-                "thumb": "https://img.youtube.com/vi/00kRo-4BvOA/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/00kRo-4BvOA?rel=0"
-            },
-            {
-                "title": "FROM",
-                "duration": "12:01",
-                "thumb": "https://img.youtube.com/vi/ZvAXR06HC9Y/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/ZvAXR06HC9Y?rel=0"
-            },
-            {
-                "title": "WHERE",
-                "duration": "43:44",
-                "thumb": "https://img.youtube.com/vi/Cbl93-R89rw/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/Cbl93-R89rw?rel=0"
-            },
-            {
-                "title": "Novas COLUNAS",
-                "duration": "31:54",
-                "thumb": "https://img.youtube.com/vi/-1Jyhq_1cXA/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/-1Jyhq_1cXA?rel=0"
-            },
-            {
-                "title": "EXERCÍCIOS 1",
-                "duration": "25:39",
-                "thumb": "https://img.youtube.com/vi/PpYNbpLlCVI/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/PpYNbpLlCVI?rel=0"
-            },
-            {
-                "title": "ORDER BY",
-                "duration": "15:22",
-                "thumb": "https://img.youtube.com/vi/AFdXBhhLsuk/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/AFdXBhhLsuk?rel=0"
-            },
-            {
-                "title": "CASE WHEN",
-                "duration": "22:48",
-                "thumb": "https://img.youtube.com/vi/j_RgoKL1PgI/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/j_RgoKL1PgI?rel=0"
-            },
-            {
-                "title": "COUNT",
-                "duration": "11:00",
-                "thumb": "https://img.youtube.com/vi/YMKDvy7O7t8/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/YMKDvy7O7t8?rel=0"
-            },
-            {
-                "title": "DISTINCT",
-                "duration": "19:58",
-                "thumb": "https://img.youtube.com/vi/lxhbbrCZnsU/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/lxhbbrCZnsU?rel=0"
-            },
-            {
-                "title": "ESTATÍSTICAS",
-                "duration": "23:58",
-                "thumb": "https://img.youtube.com/vi/Ds7RYPRhh-Y/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/Ds7RYPRhh-Y?rel=0"
-            },
-            {
-                "title": "GROUP BY",
-                "duration": "20:33",
-                "thumb": "https://img.youtube.com/vi/vyXP640E8vw/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/vyXP640E8vw?rel=0"
-            },
-            {
-                "title": "HAVING",
-                "duration": "06:08",
-                "thumb": "https://img.youtube.com/vi/AKDAkZDXQu8/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/AKDAkZDXQu8?rel=0"
-            },
-            {
-                "title": "EXERCÍCIOS 2",
-                "duration": "50:08",
-                "thumb": "https://img.youtube.com/vi/TFt5Hs-L6F4/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/TFt5Hs-L6F4?rel=0"
-            },
-            {
-                "title": "Cruzamento de Dados",
-                "duration": "22:04",
-                "thumb": "https://img.youtube.com/vi/G0zcV0OZJM0/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/G0zcV0OZJM0?rel=0"
-            },
-            {
-                "title": "JOINs",
-                "duration": "46:05",
-                "thumb": "https://img.youtube.com/vi/PwL4h66oPZs/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/PwL4h66oPZs?rel=0"
-            },
-            {
-                "title": "EXERCÍCIOS 3",
-                "duration": "31:32",
-                "thumb": "https://img.youtube.com/vi/oSYUkr_x83s/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/oSYUkr_x83s?rel=0"
-            },
-            {
-                "title": "SubQueries",
-                "duration": "25:42",
-                "thumb": "https://img.youtube.com/vi/GMq_i5D2Jw4/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/GMq_i5D2Jw4?rel=0"
-            },
-            {
-                "title": "CTEs",
-                "duration": "33:48",
-                "thumb": "https://img.youtube.com/vi/6kh8pQyz-jA/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/6kh8pQyz-jA?rel=0"
-            },
-            {
-                "title": "EXERCÍCIOS 4",
-                "duration": "35:52",
-                "thumb": "https://img.youtube.com/vi/i3vsaRzvWKE/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/i3vsaRzvWKE?rel=0"
-            },
-            {
-                "title": "ENUMERANDO LINHAS",
-                "duration": "27:31",
-                "thumb": "https://img.youtube.com/vi/cwDfakRemVw/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/cwDfakRemVw?rel=0"
-            },
-            {
-                "title": "WINDOW FUNCTIONS",
-                "duration": "27:30",
-                "thumb": "https://img.youtube.com/vi/Zql3MJ26xsw/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/Zql3MJ26xsw?rel=0"
-            },
-            {
-                "title": "EXERCÍCIOS 5",
-                "duration": "32:55",
-                "thumb": "https://img.youtube.com/vi/U29Lp2c2ZCM/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/U29Lp2c2ZCM?rel=0"
-            },
-            {
-                "title": "DDL e DML",
-                "duration": "43:47",
-                "thumb": "https://img.youtube.com/vi/52-TAulVmYU/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/52-TAulVmYU?rel=0"
-            },
-            {
-                "title": "PROJETO FINAL",
-                "duration": "1:50:24",
-                "thumb": "https://img.youtube.com/vi/kyxQGR9ubyA/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/kyxQGR9ubyA?rel=0"
-            }
-        ]
-    },
-    {
-        "id": 4,
-        "title": "Pandas",
-        "category": "dados",
-        "instructor": "Téo Calvo",
-        "level": "Iniciante",
-        "duration": "10h 42m",
-        "date": "2025",
-        "favorite": false,
-        "poster": "https://img.youtube.com/vi/9Cw7iIjFlBc/maxresdefault.jpg",
-        "description": "Pandas é uma biblioteca do ecossistema Python, uma das mais utilizadas e melhores documentadas para se trabalhar com processamento e análise de dados.",
-        "lessons": [
-            {
-                "title": "Setup + Series",
-                "duration": "39:20",
-                "thumb": "https://img.youtube.com/vi/9Cw7iIjFlBc/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/9Cw7iIjFlBc?rel=0"
-            },
-            {
-                "title": "iloc e loc",
-                "duration": "45:35",
-                "thumb": "https://img.youtube.com/vi/mAR5V-22oA4/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/mAR5V-22oA4?rel=0"
-            },
-            {
-                "title": "Importando dados",
-                "duration": "27:31",
-                "thumb": "https://img.youtube.com/vi/7E5Cr9lMdpU/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/7E5Cr9lMdpU?rel=0"
-            },
-            {
-                "title": "Dataframes",
-                "duration": "44:23",
-                "thumb": "https://img.youtube.com/vi/bMEXh1K17eg/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/bMEXh1K17eg?rel=0"
-            },
-            {
-                "title": "Filtros",
-                "duration": "46:08",
-                "thumb": "https://img.youtube.com/vi/GNX0Bvo40M0/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/GNX0Bvo40M0?rel=0"
-            },
-            {
-                "title": "Filtros não são cópias",
-                "duration": "13:20",
-                "thumb": "https://img.youtube.com/vi/Tg3NVMbcgHs/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/Tg3NVMbcgHs?rel=0"
-            },
-            {
-                "title": "Novas colunas e ordenação",
-                "duration": "38:58",
-                "thumb": "https://img.youtube.com/vi/NluSWHRZPFY/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/NluSWHRZPFY?rel=0"
-            },
-            {
-                "title": "ASTYPE e REPLACE",
-                "duration": "19:37",
-                "thumb": "https://img.youtube.com/vi/fWy5cNTWTeM/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/fWy5cNTWTeM?rel=0"
-            },
-            {
-                "title": "Dados Faltantes!",
-                "duration": "25:43",
-                "thumb": "https://img.youtube.com/vi/nN3MmJGDNxM/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/nN3MmJGDNxM?rel=0"
-            },
-            {
-                "title": "DUPLICATAS",
-                "duration": "30:29",
-                "thumb": "https://img.youtube.com/vi/USpeepeztTI/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/USpeepeztTI?rel=0"
-            },
-            {
-                "title": "APPLY",
-                "duration": "59:53",
-                "thumb": "https://img.youtube.com/vi/OyO7lzlG3r8/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/OyO7lzlG3r8?rel=0"
-            },
-            {
-                "title": "GROUP BY",
-                "duration": "49:11",
-                "thumb": "https://img.youtube.com/vi/VKclVgd7kZw/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/VKclVgd7kZw?rel=0"
-            },
-            {
-                "title": "MERGE",
-                "duration": "54:10",
-                "thumb": "https://img.youtube.com/vi/w5PLsNnUCTA/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/w5PLsNnUCTA?rel=0"
-            },
-            {
-                "title": "CONCAT",
-                "duration": "35:26",
-                "thumb": "https://img.youtube.com/vi/wOWCd-b8AuE/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/wOWCd-b8AuE?rel=0"
-            },
-            {
-                "title": "Conexão com Banco de Dados SQL",
-                "duration": "45:37",
-                "thumb": "https://img.youtube.com/vi/u_K93Ry04U4/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/u_K93Ry04U4?rel=0"
-            },
-            {
-                "title": "Stack, Unstack e Pivot",
-                "duration": "35:11",
-                "thumb": "https://img.youtube.com/vi/YxfYe2NeFAI/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/YxfYe2NeFAI?rel=0"
-            },
-            {
-                "title": "EXPLODE",
-                "duration": "31:52",
-                "thumb": "https://img.youtube.com/vi/e3j9PTAjqAk/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/e3j9PTAjqAk?rel=0"
-            }
-        ]
-    },
-    {
-        "id": 5,
-        "title": "Estatística",
-        "instructor": "Téo Calvo",
-        "description": "Estatística é uma das principais disciplinas para a área de dados. Desde análise simples, mas tambem, toda base para avançarmos em aprendizado de máquina, se faz necessário o conhecimento de métodos e modelos estatísticos.",
-        "category": "dados",
-        "level": "Iniciante",
-        "date": "2025",
-        "poster": "https://img.youtube.com/vi/D0hlGcAmc94/maxresdefault.jpg",
-        "duration": "12h 50m",
-        "favorite": false,
-        "lessons": [
-            {
-                "title": "População e Amostra",
-                "duration": "58:38",
-                "thumb": "https://img.youtube.com/vi/4CcgZXXIl7o/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/4CcgZXXIl7o?rel=0"
-            },
-            {
-                "title": "Tipos de Variáveis",
-                "duration": "21:06",
-                "thumb": "https://img.youtube.com/vi/FPZBAp8QSRM/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/FPZBAp8QSRM?rel=0"
-            },
-            {
-                "title": "Tabela de Frequência",
-                "duration": "19:33",
-                "thumb": "https://img.youtube.com/vi/qca5fOJ2TTg/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/qca5fOJ2TTg?rel=0"
-            },
-            {
-                "title": "Tabela de Frequência na PRÁTICA",
-                "duration": "48:05",
-                "thumb": "https://img.youtube.com/vi/cVpO7V0fu_s/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/cVpO7V0fu_s?rel=0"
-            },
-            {
-                "title": "Somatórios e Média",
-                "duration": "39:38",
-                "thumb": "https://img.youtube.com/vi/D0hlGcAmc94/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/D0hlGcAmc94?rel=0"
-            },
-            {
-                "title": "Mediana e Quartis",
-                "duration": "38:13",
-                "thumb": "https://img.youtube.com/vi/sL5tbdc2rCE/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/sL5tbdc2rCE?rel=0"
-            },
-            {
-                "title": "Medidas de Resumo na Prática (PLANILHAS)",
-                "duration": "25:22",
-                "thumb": "https://img.youtube.com/vi/hgxLeea6Hr8/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/hgxLeea6Hr8?rel=0"
-            },
-            {
-                "title": "Medidas de Resumo na Prática (PYTHON)",
-                "duration": "17:27",
-                "thumb": "https://img.youtube.com/vi/9D_c_22lRL8/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/9D_c_22lRL8?rel=0"
-            },
-            {
-                "title": "Medidas de Resumo na Prática (SQL)",
-                "duration": "23:26",
-                "thumb": "https://img.youtube.com/vi/eTBXmQmyqMc/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/eTBXmQmyqMc?rel=0"
-            },
-            {
-                "title": "Medidas de Dispersão",
-                "duration": "22:41",
-                "thumb": "https://img.youtube.com/vi/0kdgO0E4Rg8/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/0kdgO0E4Rg8?rel=0"
-            },
-            {
-                "title": "Medidas de Dispersão (PLANILHAS)",
-                "duration": "11:23",
-                "thumb": "https://img.youtube.com/vi/BCAbwdkdfhM/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/BCAbwdkdfhM?rel=0"
-            },
-            {
-                "title": "Medidas de Dispersão (PYTHON)",
-                "duration": "10:55",
-                "thumb": "https://img.youtube.com/vi/aZ7ufhnsblY/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/aZ7ufhnsblY?rel=0"
-            },
-            {
-                "title": "Gráficos",
-                "duration": "55:02",
-                "thumb": "https://img.youtube.com/vi/BAhz7OgJyAQ/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/BAhz7OgJyAQ?rel=0"
-            },
-            {
-                "title": "Gráficos (PLANILHAS)",
-                "duration": "18:24",
-                "thumb": "https://img.youtube.com/vi/ZmYG2dPJxfw/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/ZmYG2dPJxfw?rel=0"
-            },
-            {
-                "title": "Gráficos (PYTHON)",
-                "duration": "27:54",
-                "thumb": "https://img.youtube.com/vi/_PzfSLBn22k/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/_PzfSLBn22k?rel=0"
-            },
-            {
-                "title": "Probabilidade",
-                "duration": "1:28:58",
-                "thumb": "https://img.youtube.com/vi/cZyp6Tq9V-0/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/cZyp6Tq9V-0?rel=0"
-            },
-            {
-                "title": "Probabilidade (PLANILHAS)",
-                "duration": "13:37",
-                "thumb": "https://img.youtube.com/vi/P48vFrhhKf0/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/P48vFrhhKf0?rel=0"
-            },
-            {
-                "title": "Distribuição Bernoulli",
-                "duration": "55:27",
-                "thumb": "https://img.youtube.com/vi/QoMwhXw5aD4/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/QoMwhXw5aD4?rel=0"
-            },
-            {
-                "title": "Distribuição Normal",
-                "duration": "24:41",
-                "thumb": "https://img.youtube.com/vi/pbN-W7gV_kM/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/pbN-W7gV_kM?rel=0"
-            },
-            {
-                "title": "Intervalo de Confiança",
-                "duration": "59:34",
-                "thumb": "https://img.youtube.com/vi/Xy2esjcmcdI/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/Xy2esjcmcdI?rel=0"
-            },
-            {
-                "title": "Intervalo de Confiança (PYTHON)",
-                "duration": "15:50",
-                "thumb": "https://img.youtube.com/vi/ueFCFsPHRRo/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/ueFCFsPHRRo?rel=0"
-            },
-            {
-                "title": "Teste de Hipótese",
-                "duration": "1:15:02",
-                "thumb": "https://img.youtube.com/vi/qrv5rFhrM4Q/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/qrv5rFhrM4Q?rel=0"
-            }
-        ]
-    },
-    {
-        "id": 6,
-        "title": "Machine Learning",
-        "instructor": "Téo Calvo",
-        "description": "O uso de técnicas voltadas à Aprendizado de Máquina tem sido cada dia mais comuns em diferentes mercados e indústricas. Dominar os principais conceitos te ajudará a alcançar não só objetivos da sua empresa, mas também, de crescimento profissional.",
-        "category": "ia",
-        "level": "Iniciante",
-        "date": "2026",
-        "poster": "https://img.youtube.com/vi/80B4Ze11qWw/maxresdefault.jpg",
-        "duration": "13h 30m",
-        "favorite": false,
-        "lessons": [
-            {
-                "title": "Sobre o curso e dados",
-                "duration": "39:25",
-                "thumb": "https://img.youtube.com/vi/oz_rZ92Tmls/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/oz_rZ92Tmls?rel=0"
-            },
-            {
-                "title": "Construindo Modelo",
-                "duration": "30:12",
-                "thumb": "https://img.youtube.com/vi/dPL3eZNjsMs/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/dPL3eZNjsMs?rel=0"
+                "title": "Como criar o seu primeiro script Terraform",
+                "duration": "8:34",
+                "thumb": "https://img.youtube.com/vi/uEpMbDnoWBI/hqdefault.jpg",
+                "video": "https://www.youtube.com/embed/uEpMbDnoWBI?rel=0",
+                "description": "Nesse primeiro script vamos criar um AWS S3 bucket de forma programática com o Terraform. Vamos entender o processo de criação e como é feito o deploy da infraestrutura para a AWS com os comandos básicos do Terraform.\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nLinks mencionados no vídeo:\nTerraform aws_s3_bucket: https://bit.ly/3cs1IFB\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nCurso completo gratuito de Terraform:\nPlaylist do curso: https://bit.ly/3t3iDFk\nCódigo fonte: https://bit.ly/3EfHCf0\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nCurso pago com exemplos do mundo real:\n- Gumroad: https://bit.ly/3gvOL0x - Preço cheio. Curso atualizado com novos módulos. Possibilidade de mentoria\n- Udemy: https://bit.ly/2JuJmJn - Os maiores descontos. Sem atualizações futuras. Sem mentoria\n- Workover: https://bit.ly/2YzfSBt - Desconto considerável. Possibilidade de mentoria. Sem atualizações futuras\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nSite/Blog: https://bit.ly/3tdDUvU\nTwitter: https://bit.ly/2OSIZe4\nLinkedin: https://bit.ly/3zfuDag"
             },
             {
-                "title": "Prática no Python (Frutas)",
-                "duration": "24:53",
-                "thumb": "https://img.youtube.com/vi/80B4Ze11qWw/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/80B4Ze11qWw?rel=0"
+                "title": "Como acessar a AWS utilizando Terraform em um ambiente de CI/CD",
+                "duration": "1:57",
+                "thumb": "https://img.youtube.com/vi/l4AhkW90VQ0/hqdefault.jpg",
+                "video": "https://www.youtube.com/embed/l4AhkW90VQ0?rel=0",
+                "description": "É possível se conectar à sua conta da AWS de outras formas utilizando o Terraform. Neste vídeo eu mostro como podemos fazer isso de uma forma totalmente insegura e usando variáveis de ambiente, para pipelines de CI/CD.\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nLinks mencionados no vídeo:\nTerraform aws_s3_bucket: https://bit.ly/3cs1IFB\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nCurso completo gratuito de Terraform:\nPlaylist do curso: https://bit.ly/3t3iDFk\nCódigo fonte: https://bit.ly/3EfHCf0\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nCurso pago com exemplos do mundo real:\n- Gumroad: https://bit.ly/3gvOL0x - Preço cheio. Curso atualizado com novos módulos. Possibilidade de mentoria\n- Udemy: https://bit.ly/2JuJmJn - Os maiores descontos. Sem atualizações futuras. Sem mentoria\n- Workover: https://bit.ly/2YzfSBt - Desconto considerável. Possibilidade de mentoria. Sem atualizações futuras\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nSite/Blog: https://bit.ly/3tdDUvU\nTwitter: https://bit.ly/2OSIZe4\nLinkedin: https://bit.ly/3zfuDag"
             },
             {
-                "title": "Prática no Python (Cerveja)",
-                "duration": "19:03",
-                "thumb": "https://img.youtube.com/vi/wc8o423bwi8/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/wc8o423bwi8?rel=0"
+                "title": "Como alterar e destruir sua infra na AWS com Terraform",
+                "duration": "6:38",
+                "thumb": "https://img.youtube.com/vi/lOm9OcNnjdk/hqdefault.jpg",
+                "video": "https://www.youtube.com/embed/lOm9OcNnjdk?rel=0",
+                "description": "Agora que já sabemos como construir nossa infraestrutura, vamos aprender a alterar e em seguida destruir os recursos criados na AWS com o Terraform. \n\nNeste vídeo é mostrado os comandos:\n- terraform init\n- terraform plan\n- terraform apply\n- terraform destroy\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nLinks mencionados no vídeo:\nTerraform aws_s3_bucket: https://bit.ly/3cs1IFB\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nCurso completo gratuito de Terraform:\nPlaylist do curso: https://bit.ly/3t3iDFk\nCódigo fonte: https://bit.ly/3EfHCf0\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nCurso pago com exemplos do mundo real:\n- Gumroad: https://bit.ly/3gvOL0x - Preço cheio. Curso atualizado com novos módulos. Possibilidade de mentoria\n- Udemy: https://bit.ly/2JuJmJn - Os maiores descontos. Sem atualizações futuras. Sem mentoria\n- Workover: https://bit.ly/2YzfSBt - Desconto considerável. Possibilidade de mentoria. Sem atualizações futuras\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nSite/Blog: https://bit.ly/3tdDUvU\nTwitter: https://bit.ly/2OSIZe4\nLinkedin: https://bit.ly/3zfuDag"
             },
             {
-                "title": "Case Star Wars",
-                "duration": "21:59",
-                "thumb": "https://img.youtube.com/vi/s8jFHHM679s/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/s8jFHHM679s?rel=0"
+                "title": "Variáveis no Terraform, tudo que você precisa saber",
+                "duration": "16:20",
+                "thumb": "https://img.youtube.com/vi/55S4D9c5T2k/hqdefault.jpg",
+                "video": "https://www.youtube.com/embed/55S4D9c5T2k?rel=0",
+                "description": "À esta altura já conhecemos os comandos básicos do Terraform e está  na hora de começar a conhecer outras funcionalidades que o Terraform tem nos a ofercer para facilitar e dar mais flexibilidade para os nossos projetos na AWS.\n\nNeste vídeo é mostrado os comandos:\n- terraform init\n- terraform plan\n- terraform apply\n- terraform destroy\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nLinks mencionados no vídeo:\nTerraform aws_s3_bucket: https://bit.ly/3cs1IFB\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nCurso completo gratuito de Terraform:\nPlaylist do curso: https://bit.ly/3t3iDFk\nCódigo fonte: https://bit.ly/3EfHCf0\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nCurso pago com exemplos do mundo real:\n- Gumroad: https://bit.ly/3gvOL0x - Preço cheio. Curso atualizado com novos módulos. Possibilidade de mentoria\n- Udemy: https://bit.ly/2JuJmJn - Os maiores descontos. Sem atualizações futuras. Sem mentoria\n- Workover: https://bit.ly/2YzfSBt - Desconto considerável. Possibilidade de mentoria. Sem atualizações futuras\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nSite/Blog: https://bit.ly/3tdDUvU\nTwitter: https://bit.ly/2OSIZe4\nLinkedin: https://bit.ly/3zfuDag"
             },
             {
-                "title": "Ciclo Analítico",
+                "title": "O que é Interpolação, Locals e Outputs no Terraform?",
                 "duration": "14:36",
-                "thumb": "https://img.youtube.com/vi/KIGKWjmWavU/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/KIGKWjmWavU?rel=0"
+                "thumb": "https://img.youtube.com/vi/yP3Ak_06x6I/hqdefault.jpg",
+                "video": "https://www.youtube.com/embed/yP3Ak_06x6I?rel=0",
+                "description": "À esta altura já conhecemos os comandos básicos do Terraform e está  na hora de começar a conhecer mais todas as funcionalidades que o Terraform tem nos a ofercer para facilitar dar flexibilidade para os nossos projetos na AWS.\n\nNeste vídeo é mostrado os comandos:\n- terraform init\n- terraform plan\n- terraform apply\n- terraform destroy\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nLinks mencionados no vídeo:\nTerraform aws_s3_bucket: https://bit.ly/3cs1IFB\nTerraform aws_s3_bucket_object: https://bit.ly/3vdUYDQ\nTerraform interpolation: http://bit.ly/3vkzw05\nTerraform locals: http://bit.ly/3eFMYpz\nTerraform outputs: https://www.terraform.io/docs/language/values/outputs.html\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nCurso completo gratuito de Terraform:\nPlaylist do curso: https://bit.ly/3t3iDFk\nCódigo fonte: https://bit.ly/3EfHCf0\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nCurso pago com exemplos do mundo real:\n- Gumroad: https://bit.ly/3gvOL0x - Preço cheio. Curso atualizado com novos módulos. Possibilidade de mentoria\n- Udemy: https://bit.ly/2JuJmJn - Os maiores descontos. Sem atualizações futuras. Sem mentoria\n- Workover: https://bit.ly/2YzfSBt - Desconto considerável. Possibilidade de mentoria. Sem atualizações futuras\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nSite/Blog: https://bit.ly/3tdDUvU\nTwitter: https://bit.ly/2OSIZe4\nLinkedin: https://bit.ly/3zfuDag"
             },
             {
-                "title": "Regressão Linear",
-                "duration": "31:45",
-                "thumb": "https://img.youtube.com/vi/IZcDceAjFWk/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/IZcDceAjFWk?rel=0"
+                "title": "Terraform tfstate, o que é exatamente?",
+                "duration": "6:52",
+                "thumb": "https://img.youtube.com/vi/q1H6BMX9FnM/hqdefault.jpg",
+                "video": "https://www.youtube.com/embed/q1H6BMX9FnM?rel=0",
+                "description": "Ter um entedimento deste arquivo especial do Teraform é fundamental para entender as engrenagens por trás da ferramenta e como o Terraform faz para manter o track dos recursos da AWS. Com o arquivo tfstate o Terraform sabe extamente o que e quando criar, alterar ou destruir qualquer recurso da nossa infraestrutura.\n\nNeste vídeo é mostrado os comandos:\n- terraform plan\n- terraform apply\n- terraform destroy\n- terraform show\n- terraform console\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nLinks mencionados no vídeo:\nTerraform aws_s3_bucket: https://bit.ly/3cs1IFB\nTerraform aws_s3_bucket_object: https://bit.ly/3vdUYDQ\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nCurso completo gratuito de Terraform:\nPlaylist do curso: https://bit.ly/3t3iDFk\nCódigo fonte: https://bit.ly/3EfHCf0\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nCurso pago com exemplos do mundo real:\n- Gumroad: https://bit.ly/3gvOL0x - Preço cheio. Curso atualizado com novos módulos. Possibilidade de mentoria\n- Udemy: https://bit.ly/2JuJmJn - Os maiores descontos. Sem atualizações futuras. Sem mentoria\n- Workover: https://bit.ly/2YzfSBt - Desconto considerável. Possibilidade de mentoria. Sem atualizações futuras\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nSite/Blog: https://bit.ly/3tdDUvU\nTwitter: https://bit.ly/2OSIZe4\nLinkedin: https://bit.ly/3zfuDag"
             },
             {
-                "title": "Árvore de Decisão - Regressão",
-                "duration": "14:59",
-                "thumb": "https://img.youtube.com/vi/pPWxZpSkt1s/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/pPWxZpSkt1s?rel=0"
+                "title": "Como usar o terraform import",
+                "duration": "7:11",
+                "thumb": "https://img.youtube.com/vi/x5P_wnrUq6o/hqdefault.jpg",
+                "video": "https://www.youtube.com/embed/x5P_wnrUq6o?rel=0",
+                "description": "Nem sempre teremos a oportunidade de criar os recursos diretamente com o Terraform e é muito importante saber como e quando importar algum recurso existenta na AWSM que não está sendo gerenciado pelo Terraform. Neste vídeo eu mostro como é feito a importação de um AWS S3 bucket para fazer parte do state do nosso Terraform.\n\nNeste vídeo é mostrado os comandos:\n- terraform import\n- terraform init\n- terraform plan\n- terraform apply\n- terraform destroy\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nLinks mencionados no vídeo:\nTerraform aws_s3_bucket: https://bit.ly/3cs1IFB\nTerraform aws_s3_bucket_object: https://bit.ly/3vdUYDQ\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nCurso completo gratuito de Terraform:\nPlaylist do curso: https://bit.ly/3t3iDFk\nCódigo fonte: https://bit.ly/3EfHCf0\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nCurso pago com exemplos do mundo real:\n- Gumroad: https://bit.ly/3gvOL0x - Preço cheio. Curso atualizado com novos módulos. Possibilidade de mentoria\n- Udemy: https://bit.ly/2JuJmJn - Os maiores descontos. Sem atualizações futuras. Sem mentoria\n- Workover: https://bit.ly/2YzfSBt - Desconto considerável. Possibilidade de mentoria. Sem atualizações futuras\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nSite/Blog: https://bit.ly/3tdDUvU\nTwitter: https://bit.ly/2OSIZe4\nLinkedin: https://bit.ly/3zfuDag"
             },
             {
-                "title": "Prática no Python (Reg. Linear e Árvore)",
-                "duration": "28:20",
-                "thumb": "https://img.youtube.com/vi/baTTP48cOho/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/baTTP48cOho?rel=0"
+                "title": "Terraform Remote State utilizando um S3 bucket",
+                "duration": "12:56",
+                "thumb": "https://img.youtube.com/vi/QHfI3NRedIg/hqdefault.jpg",
+                "video": "https://www.youtube.com/embed/QHfI3NRedIg?rel=0",
+                "description": "Agora que os tópicos básicos já foram cobertos vamos nos aprofundar um pouco mais em alguns assuntos que considero já sendo intermediários. A partir daqui você vai pode entender como é feita a colaboração entre times e pessoas seguindo as melhores práticas para evitar conflitos perca de dados.\nCom o Terraform Remote State você será capaz de manter o seu arquivo tfstate na nuvem para poder compartilhar e colaborar com outros membros ou ferramentas. Você verá que é possível mover um arquivo tfstat local para o remote sem problemas.\n\nNeste vídeo é mostrado os comandos:\n- terraform init\n- terraform plan\n- terraform apply\n- terraform destroy\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nLinks mencionados no vídeo:\nTerraform aws_s3_bucket: https://bit.ly/3cs1IFB\nTerraform aws_s3_bucket_object: https://bit.ly/3vdUYDQ\nTerraform aws_instance: https://bit.ly/2Otu1LN\nTerraform remote state: http://bit.ly/2NeHqa9\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nCurso completo gratuito de Terraform:\nPlaylist do curso: https://bit.ly/3t3iDFk\nCódigo fonte: https://bit.ly/3EfHCf0\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nCurso pago com exemplos do mundo real:\n- Gumroad: https://bit.ly/3gvOL0x - Preço cheio. Curso atualizado com novos módulos. Possibilidade de mentoria\n- Udemy: https://bit.ly/2JuJmJn - Os maiores descontos. Sem atualizações futuras. Sem mentoria\n- Workover: https://bit.ly/2YzfSBt - Desconto considerável. Possibilidade de mentoria. Sem atualizações futuras\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nSite/Blog: https://bit.ly/3tdDUvU\nTwitter: https://bit.ly/2OSIZe4\nLinkedin: https://bit.ly/3zfuDag"
             },
             {
-                "title": "Regressão Logística",
-                "duration": "22:19",
-                "thumb": "https://img.youtube.com/vi/Pk7cHs9H1OY/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/Pk7cHs9H1OY?rel=0"
+                "title": "Terraform Built-in Functions e Data Templates",
+                "duration": "15:30",
+                "thumb": "https://img.youtube.com/vi/dmIrPSBHSwc/hqdefault.jpg",
+                "video": "https://www.youtube.com/embed/dmIrPSBHSwc?rel=0",
+                "description": "O Terraform contém uma série de funções que já vem por padrão para ajudar e facilitar a nossa vida na hora de escrever o código da nossa infra. Também é ensinado como utilizar templates para gerenciar strings complexas sem \"sujar\" muito o padrão de código do Terraform.\n\nNeste vídeo é mostrado os comandos:\n- terraform init\n- terraform plan\n- terraform apply\n- terraform destroy\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nLinks mencionados no vídeo:\nTerraform aws_s3_bucket: https://bit.ly/3cs1IFB\nTerraform aws_s3_bucket_object: https://bit.ly/3vdUYDQ\nTerraform aws_instance: https://bit.ly/2Otu1LN\nTerraform remote state: http://bit.ly/2NeHqa9\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nCurso completo gratuito de Terraform:\nPlaylist do curso: https://bit.ly/3t3iDFk\nCódigo fonte: https://bit.ly/3EfHCf0\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nCurso pago com exemplos do mundo real:\n- Gumroad: https://bit.ly/3gvOL0x - Preço cheio. Curso atualizado com novos módulos. Possibilidade de mentoria\n- Udemy: https://bit.ly/2JuJmJn - Os maiores descontos. Sem atualizações futuras. Sem mentoria\n- Workover: https://bit.ly/2YzfSBt - Desconto considerável. Possibilidade de mentoria. Sem atualizações futuras\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nSite/Blog: https://bit.ly/3tdDUvU\nTwitter: https://bit.ly/2OSIZe4\nLinkedin: https://bit.ly/3zfuDag"
             },
             {
-                "title": "Árvore de Decisão (Classificação)",
-                "duration": "25:36",
-                "thumb": "https://img.youtube.com/vi/4HwFrWAULkk/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/4HwFrWAULkk?rel=0"
+                "title": "Terraform Data Sources",
+                "duration": "13:44",
+                "thumb": "https://img.youtube.com/vi/4DSeY8Zwo5Y/hqdefault.jpg",
+                "video": "https://www.youtube.com/embed/4DSeY8Zwo5Y?rel=0",
+                "description": "O Data Sources serve para você computar e pegar informações externas utilizando o Terraform. \nNeste vídeo eu mostro como é feito o compartilhamento de certas configurações usando um remote state em um S3 bucket como fonte de dados e como computar uma AWS AMI utilizando determinados filtros.\n\nNeste vídeo é mostrado os comandos:\n- terraform init\n- terraform validate\n- terraform plan\n- terraform apply\n- terraform destroy\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nLinks mencionados no vídeo:\nTerraform aws_s3_bucket: https://bit.ly/3cs1IFB\nTerraform aws_s3_bucket_object: https://bit.ly/3vdUYDQ\nTerraform aws_instance: https://bit.ly/2Otu1LN\nTerraform remote state: http://bit.ly/2NeHqa9\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nCurso completo gratuito de Terraform:\nPlaylist do curso: https://bit.ly/3t3iDFk\nCódigo fonte: https://bit.ly/3EfHCf0\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nCurso pago com exemplos do mundo real:\n- Gumroad: https://bit.ly/3gvOL0x - Preço cheio. Curso atualizado com novos módulos. Possibilidade de mentoria\n- Udemy: https://bit.ly/2JuJmJn - Os maiores descontos. Sem atualizações futuras. Sem mentoria\n- Workover: https://bit.ly/2YzfSBt - Desconto considerável. Possibilidade de mentoria. Sem atualizações futuras\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nSite/Blog: https://bit.ly/3tdDUvU\nTwitter: https://bit.ly/2OSIZe4\nLinkedin: https://bit.ly/3zfuDag"
             },
             {
-                "title": "Naive Bayes",
-                "duration": "28:59",
-                "thumb": "https://img.youtube.com/vi/ahJks3rmK34/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/ahJks3rmK34?rel=0"
+                "title": "Terraform for_each, for e splat operator",
+                "duration": "19:50",
+                "thumb": "https://img.youtube.com/vi/kP_iNtFIOM8/hqdefault.jpg",
+                "video": "https://www.youtube.com/embed/kP_iNtFIOM8?rel=0",
+                "description": "Aprenda a manipular dados e recursos com essas três importante ferramentas que o Terraform dispõe. \n\nSão elas: \nfor_each: para criar recursos semelhantes sem duplicar o bloco\nfor: para gerar dados complexos\nsplat: atalho para um for mais comum\n\nNeste vídeo é mostrado os comandos:\n- terraform init\n- terraform validate\n- terraform plan\n- terraform apply\n- terraform destroy\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nLinks mencionados no vídeo:\nTerraform aws_s3_bucket: https://bit.ly/3cs1IFB\nTerraform aws_s3_bucket_object: https://bit.ly/3vdUYDQ\nTerraform aws_instance: https://bit.ly/2Otu1LN\nTerraform remote state: http://bit.ly/2NeHqa9\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nCurso completo gratuito de Terraform:\nPlaylist do curso: https://bit.ly/3t3iDFk\nCódigo fonte: https://bit.ly/3EfHCf0\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nCurso pago com exemplos do mundo real:\n- Gumroad: https://bit.ly/3gvOL0x - Preço cheio. Curso atualizado com novos módulos. Possibilidade de mentoria\n- Udemy: https://bit.ly/2JuJmJn - Os maiores descontos. Sem atualizações futuras. Sem mentoria- - Workover: https://bit.ly/2YzfSBt - Desconto considerável. Possibilidade de mentoria. Sem atualizações futuras\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nSite/Blog: https://bit.ly/3tdDUvU\nTwitter: https://bit.ly/2OSIZe4\nLinkedin: https://bit.ly/3zfuDag"
             },
             {
-                "title": "Prática no Python (Classificação)",
-                "duration": "22:37",
-                "thumb": "https://img.youtube.com/vi/QhjyjH8CRKw/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/QhjyjH8CRKw?rel=0"
+                "title": "Como criar Terraform Modules",
+                "duration": "29:55",
+                "thumb": "https://img.youtube.com/vi/WDOUmcnipxw/hqdefault.jpg",
+                "video": "https://www.youtube.com/embed/WDOUmcnipxw?rel=0",
+                "description": "Terraform Modules é umas das funcionalidades mais legais e poderosas do Terraform. Com módulos podemos abstrair muitas partes da nossa infraestrutura que se repetem e torná-las flexíveis e reutilizáveis.\n\nNeste vídeo é mostrado os comandos:\n- terraform init\n- terraform validate\n- terraform plan\n- terraform apply\n- terraform destroy\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nLinks mencionados no vídeo:\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nCurso completo gratuito de Terraform:\nPlaylist do curso: https://bit.ly/3t3iDFk\nCódigo fonte: https://bit.ly/3EfHCf0\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nCurso pago com exemplos do mundo real:\n- Gumroad: https://bit.ly/3gvOL0x - Preço cheio. Curso atualizado com novos módulos. Possibilidade de mentoria\n- Udemy: https://bit.ly/2JuJmJn - Os maiores descontos. Sem atualizações futuras. Sem mentoria\n- Workover: https://bit.ly/2YzfSBt - Desconto considerável. Possibilidade de mentoria. Sem atualizações futuras\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nSite/Blog: https://bit.ly/3tdDUvU\nTwitter: https://bit.ly/2OSIZe4\nLinkedin: https://bit.ly/3zfuDag"
             },
             {
-                "title": "Métricas de ajuste - Introdução",
-                "duration": "28:04",
-                "thumb": "https://img.youtube.com/vi/ImWgtWmP61s/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/ImWgtWmP61s?rel=0"
+                "title": "Como trabalhar com Terraform Workspaces",
+                "duration": "15:02",
+                "thumb": "https://img.youtube.com/vi/e7yk5aY9evo/hqdefault.jpg",
+                "video": "https://www.youtube.com/embed/e7yk5aY9evo?rel=0",
+                "description": "Com Terraform Workspaces é possível criar diferentes states utilizando o mesmo backend, dando a possibilidade de deployar recursos iguais ou similiares na mesma região ou em regiões diferentes sem que haja conflitos entre eles. É muito útil quando você só tem uma conta na AWS e gostaria de criar diferentes ambientes sem que um afete o outro.\n\nNeste vídeo é mostrado os comandos:\n- terraform init\n- terraform validate\n- terraform plan\n- terraform apply\n- terraform destroy\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nLinks mencionados no vídeo:\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nCurso completo gratuito de Terraform:\nPlaylist do curso: https://bit.ly/3t3iDFk\nCódigo fonte: https://bit.ly/3EfHCf0\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nCurso pago com exemplos do mundo real:\n- Gumroad: https://bit.ly/3gvOL0x - Preço cheio. Curso atualizado com novos módulos. Possibilidade de mentoria\n- Udemy: https://bit.ly/2JuJmJn - Os maiores descontos. Sem atualizações futuras. Sem mentoria\n- Workover: https://bit.ly/2YzfSBt - Desconto considerável. Possibilidade de mentoria. Sem atualizações futuras\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nSite/Blog: https://bit.ly/3tdDUvU\nTwitter: https://bit.ly/2OSIZe4\nLinkedin: https://bit.ly/3zfuDag"
             },
             {
-                "title": "Métricas de ajuste (Matriz de Confusão)",
-                "duration": "1:04:49",
-                "thumb": "https://img.youtube.com/vi/oB6vEx11vZU/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/oB6vEx11vZU?rel=0"
+                "title": "Terraform null_resource e provisioners",
+                "duration": "5:23",
+                "thumb": "https://img.youtube.com/vi/CpMzK9WpeIM/hqdefault.jpg",
+                "video": "https://www.youtube.com/embed/CpMzK9WpeIM?rel=0",
+                "description": "E na nossa última parte do curso, vamos demonstrar como utilizar o null_resource e o provisioner local-exec. Juntos eles formam uma dupla para contornar algumas situações em que o Terraform não consegue fazer nativamente.\n\nNeste vídeo é mostrado os comandos:\n- terraform init\n- terraform validate\n- terraform plan\n- terraform apply\n- terraform destroy\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nLinks mencionados no vídeo:\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nCurso completo gratuito de Terraform:\nPlaylist do curso: https://bit.ly/3t3iDFk\nCódigo fonte: https://bit.ly/3EfHCf0\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nCurso pago com exemplos do mundo real:\n- Gumroad: https://bit.ly/3gvOL0x - Preço cheio. Curso atualizado com novos módulos. Possibilidade de mentoria\n- Udemy: https://bit.ly/2JuJmJn - Os maiores descontos. Sem atualizações futuras. Sem mentoria\n- Workover: https://bit.ly/2YzfSBt - Desconto considerável. Possibilidade de mentoria. Sem atualizações futuras\n\n--------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nSite/Blog: https://bit.ly/3tdDUvU\nTwitter: https://bit.ly/2OSIZe4\nLinkedin: https://bit.ly/3zfuDag"
             },
             {
-                "title": "Prevendo a Felicidade",
-                "duration": "33:19",
-                "thumb": "https://img.youtube.com/vi/KjI3xyZEj-w/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/KjI3xyZEj-w?rel=0"
+                "title": "Automatize seus testes de infraestrutura com o Terraform Test",
+                "duration": "16:33",
+                "thumb": "https://img.youtube.com/vi/mFTq8nL5ngo/hqdefault.jpg",
+                "video": "https://www.youtube.com/embed/mFTq8nL5ngo?rel=0",
+                "description": "Curso completo de Terraform 1.6: https://bit.ly/4bj6aUK\n\nNeste tutorial abrangente, você aprenderá como rodar testes de infraestrutura de forma eficiente com a nova ferramenta de testes do Terraform. Vamos abordar passo a passo como automatizar seus testes e melhorar a qualidade da sua infraestrutura. Não perca a chance de otimizar seu fluxo de trabalho com o Terraform Test!\n\nTópicos abordados no vídeo:\n- Configuração do ambiente de teste no Terraform.\n- Escrevendo testes para validar sua infraestrutura.\n- Execução e interpretação de resultados.\n- Dicas e melhores práticas.\n\nSe você quer economizar tempo e melhorar a confiabilidade da sua infraestrutura, este vídeo é para você! Não se esqueça de se inscrever, dar um like e compartilhar. Deixe seus comentários com dúvidas ou sugestões.\n\nRecursos adicionais:\n- https://github.com/chgasparoto/youtube-cleber-gasparoto/tree/main/0013-terraform-test\n- https://www.hashicorp.com/blog/terraform-1-6-adds-a-test-framework-for-enhanced-code-validation\n- https://developer.hashicorp.com/terraform/language/tests\n- https://developer.hashicorp.com/terraform/cli/test\n- https://developer.hashicorp.com/terraform/tutorials/configuration-language/test\n- http://terraform-test-intro-09877890.s3-website.eu-central-1.amazonaws.com/index.html\n\nSiga-me no Twitter: https://twitter.com/clebergasparoto\nVisite meu site: https://clebergasparoto.com"
             },
             {
-                "title": "Projeto Churn - Sample",
-                "duration": "52:23",
-                "thumb": "https://img.youtube.com/vi/QMThkUWSEVM/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/QMThkUWSEVM?rel=0"
-            },
-            {
-                "title": "Projeto Churn - Explore",
-                "duration": "35:59",
-                "thumb": "https://img.youtube.com/vi/GdFvcj_m4VE/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/GdFvcj_m4VE?rel=0"
-            },
-            {
-                "title": "Projeto Churn - Modify",
-                "duration": "57:31",
-                "thumb": "https://img.youtube.com/vi/u23Ld3ji_nk/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/u23Ld3ji_nk?rel=0"
-            },
-            {
-                "title": "Projeto Churn - Modify (Python)",
-                "duration": "27:33",
-                "thumb": "https://img.youtube.com/vi/QbKjOfY_bpQ/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/QbKjOfY_bpQ?rel=0"
-            },
-            {
-                "title": "Projeto Churn - Pipeline",
-                "duration": "32:54",
-                "thumb": "https://img.youtube.com/vi/kPQAla_r8d0/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/kPQAla_r8d0?rel=0"
-            },
-            {
-                "title": "Projeto Churn - Assess",
-                "duration": "40:32",
-                "thumb": "https://img.youtube.com/vi/jK5ljNa_Qrs/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/jK5ljNa_Qrs?rel=0"
-            },
-            {
-                "title": "Projeto Churn - Tuning",
-                "duration": "45:24",
-                "thumb": "https://img.youtube.com/vi/lYXyYmSOZLM/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/lYXyYmSOZLM?rel=0"
-            },
-            {
-                "title": "Projeto Churn - Novas predições",
-                "duration": "44:50",
-                "thumb": "https://img.youtube.com/vi/iWFBeR552Hc/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/iWFBeR552Hc?rel=0"
-            },
-            {
-                "title": "Métricas Adicionais",
-                "duration": "22:01",
-                "thumb": "https://img.youtube.com/vi/LhXiEDrt418/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/LhXiEDrt418?rel=0"
-            }
-        ]
-    },
-    {
-        "id": 7,
-        "title": "MLFlow",
-        "instructor": "Téo Calvo",
-        "description": "MLFlow é uma peça fundamental para se ganhar produtividade em projetos de Machine Learning e Inteligência Artificial.",
-        "category": "ia",
-        "level": "Iniciante",
-        "date": "2025",
-        "poster": "https://img.youtube.com/vi/W8bxk42C9UE/maxresdefault.jpg",
-        "duration": "58m",
-        "favorite": false,
-        "lessons": [
-            {
-                "title": "O que é MLFLOW e como INSTALAR",
-                "duration": "16:03",
-                "thumb": "https://img.youtube.com/vi/W8bxk42C9UE/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/W8bxk42C9UE?rel=0"
-            },
-            {
-                "title": "Tracking de modelos com MLFlow",
-                "duration": "23:46",
-                "thumb": "https://img.youtube.com/vi/V-Zc_T6iuJc/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/V-Zc_T6iuJc?rel=0"
-            },
-            {
-                "title": "REGISTRANDO e CONSUMINDO modelos do MLFLOW",
-                "duration": "12:03",
-                "thumb": "https://img.youtube.com/vi/K2MYiW5m5Ug/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/K2MYiW5m5Ug?rel=0"
-            },
-            {
-                "title": "Atualização AUTOMÁTICA do modelo com MLFLOW",
-                "duration": "06:58",
-                "thumb": "https://img.youtube.com/vi/KdnRZSH6Drk/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/KdnRZSH6Drk?rel=0"
-            }
-        ]
-    },
-    {
-        "id": 8,
-        "title": "Linguagem Go",
-        "instructor": "Téo Calvo",
-        "description": "Curso de Go para iniciantes na linguagem com foco em sua sintaxe, exemplos e principais características da linguagem.",
-        "category": "programacao",
-        "level": "Iniciante",
-        "date": "2025",
-        "poster": "https://img.youtube.com/vi/LDuWS595vsU/maxresdefault.jpg",
-        "duration": "12h 27m",
-        "favorite": false,
-        "lessons": [
-            {
-                "title": "Sobre o Curso",
-                "duration": "24:17",
-                "thumb": "https://img.youtube.com/vi/LDuWS595vsU/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/LDuWS595vsU?rel=0"
-            },
-            {
-                "title": "Sobre o Go e Instalação",
-                "duration": "07:43",
-                "thumb": "https://img.youtube.com/vi/WM4WhVYNBPw/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/WM4WhVYNBPw?rel=0"
-            },
-            {
-                "title": "Olá, Mundo!",
-                "duration": "14:59",
-                "thumb": "https://img.youtube.com/vi/EarYUT9N88U/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/EarYUT9N88U?rel=0"
-            },
-            {
-                "title": "Tipos Numéricos",
-                "duration": "12:10",
-                "thumb": "https://img.youtube.com/vi/aiN4-ow1-yU/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/aiN4-ow1-yU?rel=0"
-            },
-            {
-                "title": "Tipo String",
-                "duration": "08:27",
-                "thumb": "https://img.youtube.com/vi/2VAHVYi1Obk/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/2VAHVYi1Obk?rel=0"
-            },
-            {
-                "title": "Tipo Bool",
-                "duration": "02:43",
-                "thumb": "https://img.youtube.com/vi/mcyWxNAC3jw/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/mcyWxNAC3jw?rel=0"
-            },
-            {
-                "title": "Exercícios Bloco 01",
-                "duration": "07:10",
-                "thumb": "https://img.youtube.com/vi/8mB9GB2ss_c/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/8mB9GB2ss_c?rel=0"
-            },
-            {
-                "title": "Variáveis",
-                "duration": "19:51",
-                "thumb": "https://img.youtube.com/vi/D3XLpDVMRxk/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/D3XLpDVMRxk?rel=0"
-            },
-            {
-                "title": "Recebendo Entradas",
-                "duration": "05:41",
-                "thumb": "https://img.youtube.com/vi/aqxwmkSuvVQ/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/aqxwmkSuvVQ?rel=0"
-            },
-            {
-                "title": "Exercícios Bloco 02",
-                "duration": "24:07",
-                "thumb": "https://img.youtube.com/vi/M3dVw_IfXx4/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/M3dVw_IfXx4?rel=0"
-            },
-            {
-                "title": "IF e ELSE",
-                "duration": "17:10",
-                "thumb": "https://img.youtube.com/vi/zdVQQdujFYM/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/zdVQQdujFYM?rel=0"
-            },
-            {
-                "title": "Switch",
-                "duration": "11:29",
-                "thumb": "https://img.youtube.com/vi/DZNLckEvI5s/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/DZNLckEvI5s?rel=0"
-            },
-            {
-                "title": "Exercícios Bloco 03",
-                "duration": "43:51",
-                "thumb": "https://img.youtube.com/vi/lPdysvEl4Eg/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/lPdysvEl4Eg?rel=0"
-            },
-            {
-                "title": "Laços de Repetição",
-                "duration": "24:15",
-                "thumb": "https://img.youtube.com/vi/PjiWvbR3spg/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/PjiWvbR3spg?rel=0"
-            },
-            {
-                "title": "Exercícios Bloco 04",
-                "duration": "24:19",
-                "thumb": "https://img.youtube.com/vi/f02dMZKm09w/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/f02dMZKm09w?rel=0"
-            },
-            {
-                "title": "Arrays",
-                "duration": "18:46",
-                "thumb": "https://img.youtube.com/vi/skRjOj8lEhc/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/skRjOj8lEhc?rel=0"
-            },
-            {
-                "title": "Fatias",
-                "duration": "16:07",
-                "thumb": "https://img.youtube.com/vi/hOpB47oUZPM/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/hOpB47oUZPM?rel=0"
-            },
-            {
-                "title": "Exercícios Bloco 05",
-                "duration": "17:46",
-                "thumb": "https://img.youtube.com/vi/8lUe7_Bz3lc/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/8lUe7_Bz3lc?rel=0"
-            },
-            {
-                "title": "Mapas",
-                "duration": "26:14",
-                "thumb": "https://img.youtube.com/vi/fXVtnJphAXk/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/fXVtnJphAXk?rel=0"
-            },
-            {
-                "title": "Exercícios Bloco 06",
-                "duration": "14:57",
-                "thumb": "https://img.youtube.com/vi/qHqD085K39o/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/qHqD085K39o?rel=0"
-            },
-            {
-                "title": "Funções",
-                "duration": "33:58",
-                "thumb": "https://img.youtube.com/vi/9jwLK5R_xgU/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/9jwLK5R_xgU?rel=0"
-            },
-            {
-                "title": "defer, panic, recover",
-                "duration": "16:28",
-                "thumb": "https://img.youtube.com/vi/8uEyCO0Ydyk/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/8uEyCO0Ydyk?rel=0"
-            },
-            {
-                "title": "Ponteiros",
-                "duration": "13:22",
-                "thumb": "https://img.youtube.com/vi/L4Mg4RE2bo8/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/L4Mg4RE2bo8?rel=0"
-            },
-            {
-                "title": "Exercícios Bloco 07",
-                "duration": "23:08",
-                "thumb": "https://img.youtube.com/vi/E_nguMPoadc/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/E_nguMPoadc?rel=0"
-            },
-            {
-                "title": "Criação de Tipos",
-                "duration": "18:40",
-                "thumb": "https://img.youtube.com/vi/Ojx4-8Ckvxk/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/Ojx4-8Ckvxk?rel=0"
-            },
-            {
-                "title": "Structs",
-                "duration": "27:03",
-                "thumb": "https://img.youtube.com/vi/SFNYr3dT16o/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/SFNYr3dT16o?rel=0"
-            },
-            {
-                "title": "Tipos Incluídos",
-                "duration": "14:14",
-                "thumb": "https://img.youtube.com/vi/_gh_rDJViUU/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/_gh_rDJViUU?rel=0"
-            },
-            {
-                "title": "Interfaces",
-                "duration": "38:06",
-                "thumb": "https://img.youtube.com/vi/rck0DOd4Nc0/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/rck0DOd4Nc0?rel=0"
-            },
-            {
-                "title": "GoRoutines",
-                "duration": "17:19",
-                "thumb": "https://img.youtube.com/vi/Xuiq5Qr4PeA/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/Xuiq5Qr4PeA?rel=0"
-            },
-            {
-                "title": "Centenas de Goroutines",
-                "duration": "09:53",
-                "thumb": "https://img.youtube.com/vi/DW_O80zhMB0/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/DW_O80zhMB0?rel=0"
-            },
-            {
-                "title": "Canais",
-                "duration": "10:19",
-                "thumb": "https://img.youtube.com/vi/sWT3T5IXMoA/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/sWT3T5IXMoA?rel=0"
-            },
-            {
-                "title": "SELECT",
-                "duration": "15:34",
-                "thumb": "https://img.youtube.com/vi/ZX4QksTUM3A/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/ZX4QksTUM3A?rel=0"
-            },
-            {
-                "title": "Canais com Buffer",
-                "duration": "24:27",
-                "thumb": "https://img.youtube.com/vi/N_WEcmNk15w/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/N_WEcmNk15w?rel=0"
-            },
-            {
-                "title": "Desafio FiGourinhas",
-                "duration": "41:14",
-                "thumb": "https://img.youtube.com/vi/6JWBNYbriwU/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/6JWBNYbriwU?rel=0"
-            },
-            {
-                "title": "Exercícios para casa",
-                "duration": "1:42:10",
-                "thumb": "https://img.youtube.com/vi/V87PTX2r_eY/hqdefault.jpg",
-                "video": "https://www.youtube.com/embed/V87PTX2r_eY?rel=0"
+                "title": "Simplificando a importação de recursos no Terraform: A revolução do Terraform Import Block",
+                "duration": "12:31",
+                "thumb": "https://img.youtube.com/vi/jDJLHCubkNI/hqdefault.jpg",
+                "video": "https://www.youtube.com/embed/jDJLHCubkNI?rel=0",
+                "description": "Curso completo de Terraform 1.6: https://bit.ly/4bj6aUK\n\nO poderoso Terraform Import Block! Se você já se perguntou como importar recursos de provedores em sua infraestrutura Terraform com facilidade, este vídeo é para você.\n\nNeste vídeo, vamos cobrir:\n- Uma visão geral do Terraform Import Block e como ele simplifica o processo de importação de recursos.\n- Passo a passo, mostraremos como importar e gerenciar diferentes recursos, tudo diretamente no seu código de configuração Terraform.\n- Como o Terraform Import Block gera automaticamente o código para vincular recursos ao seu `tfstate`, economizando tempo e esforço.\n- Dicas e melhores práticas para tirar o máximo proveito desse recurso incrível.\n\nAssista e aprenda como simplificar suas operações de infraestrutura com o Terraform Import Block. Se você é um entusiasta do Terraform ou um profissional experiente, este vídeo oferecerá insights valiosos.\n\nSe gostar do conteúdo, não se esqueça de se inscrever, dar um like e compartilhar com seus colegas. Deixe seus comentários com dúvidas ou sugestões.\n\nRecursos adicionais:\n- https://github.com/chgasparoto/youtube-cleber-gasparoto/tree/main/0014-terraform-import\n- https://developer.hashicorp.com/terraform/language/import\n- https://developer.hashicorp.com/terraform/language/import/generating-configuration\n\nSiga-me no Twitter: https://twitter.com/clebergasparoto\nVisite meu site: https://clebergasparoto.com"
             }
         ]
     }
-];
+]
