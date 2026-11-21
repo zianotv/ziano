@@ -903,13 +903,7 @@ dialog#courseModal {
 }
 
 #courseModal .modal-thumb {
-    width: 100%;
-    height: auto;
-    max-height: none;
-    aspect-ratio: auto;
-    align-self: auto;
-    object-fit: contain;
-    object-position: center
+    display: none
 }
 
 #courseModal .modal-info h2 {
